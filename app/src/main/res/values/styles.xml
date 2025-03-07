@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Custom Button Style -->
+    <style name="CustomButtonStyle">
+        <!-- If you want a shape background, set it here or reference a drawable -->
+        <item name="android:backgroundTint">@color/colorAccentGreen</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/intersemi</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+
+    <!-- Custom TextView Style for Headings -->
+    <style name="HeadingTextStyle">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/intersemi</item>
+    </style>
+
+    <style name="CustomTextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <!-- Use outlined mode -->
+        <item name="boxBackgroundMode">outline</item>
+
+        <!-- Rounded corners -->
+        <item name="boxCornerRadiusTopStart">8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+        <!-- Default stroke properties -->
+        <item name="boxStrokeColor">@color/outline_color</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <!-- Thicker stroke when focused (simulating a glow) -->
+        <item name="boxStrokeWidthFocused">6dp</item>
+    </style>
+
+
+</resources>

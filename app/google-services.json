@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "563475547427",
+    "project_id": "firebasics-1f3be",
+    "storage_bucket": "firebasics-1f3be.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563475547427:android:e24ee782291d17ae153896",
+        "android_client_info": {
+          "package_name": "com.st10194321.calculator_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPWV91tD7GgLeKZRiDfHO8OE-7sAeP1s4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563475547427:android:345ea1d51c38a38f153896",
+        "android_client_info": {
+          "package_name": "com.st10194321.centsibletest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPWV91tD7GgLeKZRiDfHO8OE-7sAeP1s4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
