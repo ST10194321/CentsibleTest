@@ -85,7 +85,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etEmailUp"
-android:textColor="@color/colorGreys"
+android:textColor="@color/white"
             android:layout_width="327dp"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -115,12 +115,13 @@ android:textColor="@color/colorGreys"
         style="@style/CustomTextInputStyle"
         android:layout_width="327dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/text_input_selector"
+
         android:hint="@string/enter_your_password"
         android:textColorHint="@color/colorGrey"
         app:layout_constraintTop_toBottomOf="@id/tvPasswordLabelUp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+
         android:layout_marginTop="4dp"
         app:boxStrokeColor="@color/outline_color">
 

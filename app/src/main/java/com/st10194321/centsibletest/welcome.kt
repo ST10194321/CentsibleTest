@@ -31,7 +31,7 @@ private lateinit var btnReg:Button
                startActivity(i)
              }
         btnReg.setOnClickListener {
-            val i = Intent(this, signup::class.java)
+            val i = Intent(this, signupD::class.java)
             startActivity(i)
         }
     }

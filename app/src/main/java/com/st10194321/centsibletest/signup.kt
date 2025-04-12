@@ -32,8 +32,8 @@ class signup : AppCompatActivity() {
 
         // Back button navigates to welcome screen
         binding.btnBack.setOnClickListener {
-            val intent = Intent(this, welcome::class.java)
-            startActivity(intent)
+            val i = Intent(this, welcome::class.java)
+            startActivity(i)
             finish()
         }
 
@@ -47,19 +47,19 @@ class signup : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Hash the password using BCrypt
+            // Hash  password using BCrypt
             val hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt())
 
-            // Access the Room database and insert the new user on a background thread
+            // Access  Room database and insert the new user
             val db = AppDatabase.getDatabase(this)
             lifecycleScope.launch {
                 val newUser = users(email = email, password = hashedPassword)
                 db.userDao().insertUser(newUser)
                 Toast.makeText(this@signup, "Sign Up Successful", Toast.LENGTH_SHORT).show()
 
-                // Navigate to the sign-in activity after successful sign-up
-                val intent = Intent(this@signup, signin::class.java)
-                startActivity(intent)
+                // Navigate to the sign in after successful sign-up
+                val i = Intent(this@signup, signin::class.java)
+                startActivity(i)
                 finish()
             }
         }

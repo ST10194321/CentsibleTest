@@ -11,43 +11,38 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import com.st10194321.centsibletest.databinding.ActivitySigninBinding
+
 import kotlinx.coroutines.launch
 import org.mindrot.jbcrypt.BCrypt
 
 
 class signin : AppCompatActivity() {
-    private lateinit var etEmail: EditText
-    private lateinit var etPassword: EditText
-    private lateinit var btnsignin: Button
-    private lateinit var btnGoogleSignIn: Button
 
-    private lateinit var btnBack: ImageButton
+    private lateinit var binding: ActivitySigninBinding
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_signin)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
+        binding = ActivitySigninBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
-        etEmail = findViewById(R.id.etEmail)
-        etPassword = findViewById(R.id.etPassword)
-        btnsignin = findViewById(R.id.btnSignIn)
-        btnGoogleSignIn = findViewById(R.id.btnGoogleSignIn)
-        btnBack = findViewById(R.id.btnBack)
 
-        btnBack.setOnClickListener {
+
+        binding.btnBack.setOnClickListener {
              val i = Intent(this, welcome::class.java)
         startActivity(i)
        }
 
-        btnsignin.setOnClickListener {
-            val email = etEmail.text.toString().trim()
-            val password = etPassword.text.toString().trim()
+
+        binding.btnSignIn.setOnClickListener {
+            val email = binding.etEmail.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
 
             if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
                 Toast.makeText(this, "Email and password cannot be empty", Toast.LENGTH_SHORT)
