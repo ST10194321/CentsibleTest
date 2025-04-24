@@ -160,6 +160,7 @@
                             android:text="@string/start_your_budget_desc" />
 
                         <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnNewBudCat"
                             style="@style/ActionCardButton"
                             android:text="@string/new_budget_category_button" />
                     </LinearLayout>
@@ -178,6 +179,8 @@
                             android:text="@string/add_transaction_desc" />
 
                         <com.google.android.material.button.MaterialButton
+
+                            android:id="@+id/btnAddTrans"
                             style="@style/ActionCardButton"
                             android:text="@string/add_transaction_button" />
                     </LinearLayout>
@@ -196,6 +199,7 @@
                             android:text="@string/view_your_budget_desc" />
 
                         <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnViewBudCat"
                             style="@style/ActionCardButton"
                             android:text="@string/view_budget_category_button" />
                     </LinearLayout>
@@ -214,6 +218,8 @@
                             android:text="@string/view_insights_desc" />
 
                         <com.google.android.material.button.MaterialButton
+
+                            android:id="@+id/btnTrackBudCat"
                             style="@style/ActionCardButton"
                             android:text="@string/track_budget_button" />
                     </LinearLayout>

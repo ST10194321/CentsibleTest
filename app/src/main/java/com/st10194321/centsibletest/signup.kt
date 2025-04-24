@@ -39,7 +39,7 @@ class signup : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        // Sign-up button logic
+
         binding.btnSignUp.setOnClickListener {
             val email = binding.etEmailUp.text.toString().trim()
             val password = binding.etPasswordUp.text.toString().trim()
@@ -54,16 +54,16 @@ class signup : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-           //use firebase to create new user
+
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this){
                     task ->
-                //if reg successful displays a message and takes user to login
+
                 if(task.isSuccessful){
                     Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show()
                     val i = Intent(this,MainActivity::class.java)
                     startActivity(i)
                     finish()
-                    //if registration fails , prompts user to try again
+
                 }else{
                     Toast.makeText(this,"Registration failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
                     val i = Intent(this,signup::class.java)

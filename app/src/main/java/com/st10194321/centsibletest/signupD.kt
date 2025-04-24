@@ -35,7 +35,7 @@ class signupD : AppCompatActivity() {
             val i = Intent(this, signup::class.java)
             startActivity(i)
         }
-        // Back button navigates to welcome screen
+
         binding.btnBackUp.setOnClickListener {
             val i = Intent(this, welcome::class.java)
             startActivity(i)
