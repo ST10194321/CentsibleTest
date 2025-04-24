@@ -13,6 +13,9 @@
         android:theme="@style/Theme.CentsibleTest"
         tools:targetApi="31">
         <activity
+            android:name=".viewBugCat"
+            android:exported="false" />
+        <activity
             android:name=".addBugCat"
             android:exported="false" />
         <activity

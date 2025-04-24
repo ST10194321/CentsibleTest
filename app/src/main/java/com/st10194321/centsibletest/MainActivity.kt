@@ -36,6 +36,11 @@ class MainActivity : AppCompatActivity() {
                 startActivity(i)
                 finish()
             }
+            binding.btnViewBudCat.setOnClickListener {
+                val i = Intent(this, viewBugCat::class.java)
+                startActivity(i)
+                finish()
+            }
         }
     }
 
