@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CentsibleTest</string>
 
-    <string name="appName">Centsible</string>
+    <string name="app_Name">Centsible</string>
     <string name="finance_text">Take hold of your personal finances today, by using <b>Centsible</b>. We understand how important your hard earned money is, so we’ve created a solution to future proof your bank account.
 </string>
 
@@ -20,5 +20,36 @@
     <string name="google_sign_in">Google Sign In</string>
     <string name="dont_have_account">Dont Have Account?</string>
     <string name="sign_up">Sign Up</string>
+
+    <string name="appName">Centsible</string>
+
+    <string name="decorative_curve">Decorative curve graphic</string>
+    <string name="status_icon">Status icon</string>
+    <string name="decorative_chip_icon">Decorative chip icon</string>
+    <string name="separator">Separator</string>
+
+    <string name="overall">Overall</string>
+    <string name="february">February</string>
+    <string name="balance">Balance</string>
+    <string name="balance_amount_placeholder">R 4000</string>
+    <string name="start_your_budget_title">Start your budget</string>
+    <string name="start_your_budget_desc">The benefits of multiple budget categories</string>
+
+    <string name="add_transaction_title">Add a transaction</string>
+    <string name="add_transaction_desc">Enter your latest expense or income</string>
+
+    <string name="view_your_budget_title">View your budget</string>
+    <string name="view_your_budget_desc">Take a look at your budgets</string>
+
+    <string name="view_insights_title">View Insights</string>
+    <string name="view_insights_desc">An in-depth look at your finances</string>
+
+    <string name="new_budget_category_button">New Budget Category</string>
+    <string name="add_transaction_button">Add Transaction</string>
+    <string name="view_budget_category_button">View Budget Category</string>
+    <string name="track_budget_button">Track Budget</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 
 </resources>

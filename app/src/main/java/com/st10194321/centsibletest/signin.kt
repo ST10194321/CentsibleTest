@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import com.google.firebase.auth.FirebaseAuth
 import com.st10194321.centsibletest.databinding.ActivitySigninBinding
 
 import kotlinx.coroutines.launch
@@ -20,6 +21,7 @@ import org.mindrot.jbcrypt.BCrypt
 class signin : AppCompatActivity() {
 
     private lateinit var binding: ActivitySigninBinding
+    private lateinit var auth: FirebaseAuth
 
 
 
@@ -28,10 +30,15 @@ class signin : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_signin)
 
+        auth = FirebaseAuth.getInstance()
+
         binding = ActivitySigninBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        binding.btnFoward.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+        }
 
 
         binding.btnBack.setOnClickListener {
@@ -50,7 +57,18 @@ class signin : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val db = AppDatabase.getDatabase(this)
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+                    val i = Intent(this, MainActivity::class.java)
+                    startActivity(i)
+                } else {
+                    Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
+       /*     val db = AppDatabase.getDatabase(this)
             lifecycleScope.launch {
                 val user = db.userDao().getUserByEmail(email)
                 if (user != null && BCrypt.checkpw(password, user.password)) {
@@ -61,7 +79,7 @@ class signin : AppCompatActivity() {
                 } else {
                     Toast.makeText(this@signin, "Sign In Failed. Invalid credentials.", Toast.LENGTH_LONG).show()
                 }
-            }
+            } */
 
 
 
@@ -70,4 +88,3 @@ class signin : AppCompatActivity() {
 
         }
     }
-}

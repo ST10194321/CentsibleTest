@@ -31,6 +31,10 @@ class signupD : AppCompatActivity() {
             insets
         }
 
+        binding.btnFoward.setOnClickListener {
+            val i = Intent(this, signup::class.java)
+            startActivity(i)
+        }
         // Back button navigates to welcome screen
         binding.btnBackUp.setOnClickListener {
             val i = Intent(this, welcome::class.java)
@@ -44,10 +48,8 @@ class signupD : AppCompatActivity() {
             val year = calendar.get(Calendar.YEAR)
             val month = calendar.get(Calendar.MONTH)
             val day = calendar.get(Calendar.DAY_OF_MONTH)
-
-            // Create the DatePickerDialog instance
             val datePickerDialog = DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
-                // Format the date (note: month is zero-indexed, so add 1)
+
                 etDOB.setText("$selectedDay/${selectedMonth + 1}/$selectedYear")
             }, year, month, day)
 

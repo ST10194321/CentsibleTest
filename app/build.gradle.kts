@@ -51,9 +51,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    //Add the room dependencies.
-    val room_version = "2.6.1"
 
+    val room_version = "2.6.1"
+    implementation("com.google.firebase:firebase-auth:22.0.0")
     implementation("androidx.room:room-runtime:$room_version")
     ksp("androidx.room:room-compiler:$room_version")
     annotationProcessor("androidx.room:room-compiler:$room_version")
