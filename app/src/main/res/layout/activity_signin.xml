@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:text="@string/email"
         android:textColor="@color/colorGreys"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:textStyle="bold"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -103,7 +103,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/password"
         android:textColor="@color/colorGreys"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tilEmail" />
@@ -153,7 +153,7 @@ android:textColor="@color/colorGreys"
         android:layout_height="wrap_content"
         android:text="@string/or_sign_in_with"
         android:textColor="@color/colorLightGray"
-        android:textSize="14sp"
+        android:textSize="14dp"
         app:layout_constraintTop_toBottomOf="@id/btnSignIn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -188,7 +188,7 @@ android:textColor="@color/colorGreys"
             android:layout_height="wrap_content"
             android:text="@string/dont_have_account"
             android:textColor="@color/colorLightGray"
-            android:textSize="14sp" />
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/tvSignUp"
@@ -196,7 +196,7 @@ android:textColor="@color/colorGreys"
             android:layout_height="wrap_content"
             android:text="@string/sign_up"
             android:textColor="@color/colorAccentGreen"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:textStyle="bold"
             android:layout_marginLeft="4dp"/>
     </LinearLayout>

@@ -18,19 +18,16 @@
         <item name="android:fontFamily">@font/intersemi</item>
     </style>
 
-    <!-- Custom TextInputLayout Style -->
+
     <style name="CustomTextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <!-- Use outlined mode -->
+
         <item name="boxBackgroundMode">outline</item>
-        <!-- Rounded corners -->
         <item name="boxCornerRadiusTopStart">8dp</item>
         <item name="boxCornerRadiusTopEnd">8dp</item>
         <item name="boxCornerRadiusBottomStart">8dp</item>
         <item name="boxCornerRadiusBottomEnd">8dp</item>
-        <!-- Default stroke properties -->
         <item name="boxStrokeColor">@color/outline_color</item>
         <item name="boxStrokeWidth">2dp</item>
-        <!-- Thicker stroke when focused -->
         <item name="boxStrokeWidthFocused">6dp</item>
     </style>
 

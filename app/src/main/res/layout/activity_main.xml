@@ -41,8 +41,9 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardOverall"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="750dp"
         android:layout_margin="24dp"
+        android:layout_marginTop="26dp"
         app:cardBackgroundColor="#25FFFFFF"
         app:cardCornerRadius="20dp"
         app:cardElevation="8dp"
@@ -55,7 +56,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="790dp"
+            android:layout_height="736dp"
             android:padding="16dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,7 +69,7 @@
                 app:layout_constraintHorizontal_bias="0.526"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0">
+                app:layout_constraintVertical_bias="0.04">
 
                 <TextView
                     android:id="@+id/tvOverallLabel"
@@ -136,16 +137,15 @@
 
             <GridLayout
                 android:id="@+id/gridActions"
-                android:layout_width="328dp"
-                android:layout_height="530dp"
+                android:layout_width="351dp"
+                android:layout_height="466dp"
                 android:columnCount="2"
                 android:rowCount="2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.807">
+                app:layout_constraintVertical_bias="0.961">
 
                 <com.google.android.material.card.MaterialCardView style="@style/ActionCardStyle">
 

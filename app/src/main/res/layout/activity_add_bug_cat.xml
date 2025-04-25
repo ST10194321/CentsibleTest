@@ -9,17 +9,8 @@
     android:background="@drawable/bg_curve"
     tools:context=".addBugCat">
 
-    <ImageView
-        android:id="@+id/ivCurve"
-        android:layout_width="151dp"
-        android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.073"
-        app:srcCompat="@drawable/curve" />
+
+
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardOverall"
@@ -37,16 +28,238 @@
         app:layout_constraintVertical_bias="0.38"
         app:strokeWidth="0dp">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tvAppNameW"
-            style="@style/HeadingTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Budget Category"
-            android:textColor="@android:color/white"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvCardTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Budget Category"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivCardCurve"
+                android:layout_width="200dp"
+                android:layout_height="8dp"
+                android:layout_marginTop="4dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/curve"
+                app:tint="@android:color/white"
+                app:layout_constraintStart_toStartOf="@id/tvCardTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvCardTitle" />
+            <LinearLayout
+                android:id="@+id/formLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@id/ivCardCurve"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/tvCatLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Category Name"
+                    android:paddingLeft="15dp"
+                    android:textColor="#B0B0B0"
+                    android:textSize="14dp"
+                    android:paddingBottom="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilCategoryName"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Category Name"
+                    android:textColorHint="@color/colorGrey"                   app:boxStrokeColor="@color/outline_color"                     app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@android:color/white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etCategoryName"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        android:textColor="@color/white"                         android:padding="20dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/toggleButtonGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:singleSelection="true"
+                    app:selectionRequired="true"
+                    app:checkedButton="@+id/btnSaving">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSaving"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Saving"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        app:backgroundTint="@color/colorAccentGreen"
+                        app:cornerRadius="20dp"
+                        app:strokeWidth="0dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnExpense"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Expense"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        app:backgroundTint="@color/colorGreys"
+                        app:cornerRadius="20dp"
+                        app:strokeWidth="0dp"/>
+
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+                <TextView
+                    android:id="@+id/tvCatNameLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Category Details"
+                    android:paddingLeft="15dp"
+                    android:textColor="#B0B0B0"
+                    android:textSize="14dp"
+                    android:paddingTop="10dp"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilCategoryDetails"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="Enter Details"
+                    android:textColorHint="@color/colorGrey"                   app:boxStrokeColor="@color/outline_color"                     app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@android:color/white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etCategoryDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences"
+                        android:textColor="@color/white"                         android:padding="20dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/tvAmountLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Amount"
+                        android:textColor="#B0B0B0"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvAmountValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="R2000"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/tvAmountLabel"/>
+
+                    <SeekBar
+                        android:id="@+id/seekBarAmount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:max="100000"
+                        android:progress="2000"
+                        android:progressTint="@color/colorAccentGreen"
+                        android:thumbTint="@color/colorAccentGreen"
+                        android:progressBackgroundTint="#5A5A5C"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvAmountLabel" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilOccurrence"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Occurrence"
+                    android:textColorHint="@color/colorGrey"
+                    app:boxStrokeColor="@color/outline_color"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:endIconMode="custom"
+                    app:endIconTint="@android:color/white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etOccurrence"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:inputType="none"
+                        android:text="Choose Date"
+                        android:textColor="@color/colorGreys"
+                        android:padding="20dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAddCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="32dp"
+                    android:text="Add Category"
+                    android:textAllCaps="false"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:backgroundTint="@color/colorAccentGreen"
+                    app:cornerRadius="20dp" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
