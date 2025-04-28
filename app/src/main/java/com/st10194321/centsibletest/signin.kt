@@ -57,15 +57,31 @@ class signin : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
-                    val i = Intent(this, MainActivity::class.java)
-                    startActivity(i)
-                } else {
-                    Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, MainActivity::class.java))
+                    } else {
+                        lifecycleScope.launch {
+                            val localUser = AppDatabase
+                                .getDatabase(this@signin)
+                                .userDao()
+                                .getUserByEmail(email)
+                            if (localUser != null && BCrypt.checkpw(password, localUser.password)) {
+                                Toast.makeText(this@signin, "Offline login successful", Toast.LENGTH_SHORT).show()
+                                startActivity(Intent(this@signin, MainActivity::class.java))
+                            } else {
+                                Toast.makeText(
+                                    this@signin,
+                                    "Login failed: ${task.exception?.message}",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
+                    }
                 }
-            }
+
         }
 
        /*     val db = AppDatabase.getDatabase(this)
