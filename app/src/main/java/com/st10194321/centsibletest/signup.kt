@@ -52,12 +52,12 @@ class signup : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // 1️⃣ Create Firebase Auth user
+
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         val uid = auth.currentUser!!.uid
-                        // 2️⃣ Build profile map
+
                         val profile = mapOf(
                             "firstName" to firstName,
                             "lastName"  to lastName,
@@ -65,7 +65,7 @@ class signup : AppCompatActivity() {
                             "dob"       to dob,
                             "email"     to email
                         )
-                        // 3️⃣ Write into Firestore under users/{uid}
+
                         db.collection("users")
                             .document(uid)
                             .set(profile)

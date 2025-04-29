@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.addTextChangedListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.st10194321.centsibletest.databinding.ActivityAddBugCatBinding
@@ -36,13 +37,27 @@ class addBugCat : AppCompatActivity() {
         }
 
 
-        binding.seekBarAmount.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.seekBarAmount.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(sb: SeekBar, prog: Int, fromUser: Boolean) {
-                binding.tvAmountValue.text = "R$prog"
+                // only overwrite if user isn't typing:
+                if (!binding.etAmountValue.isFocused) {
+                    binding.etAmountValue.setText(prog.toString())
+                }
             }
             override fun onStartTrackingTouch(sb: SeekBar) {}
             override fun onStopTrackingTouch(sb: SeekBar) {}
         })
+
+        binding.etAmountValue.addTextChangedListener { editable ->
+            val str = editable.toString()
+            val num = str.toIntOrNull()
+            if (num != null) {
+                val value = num.coerceIn(0, binding.seekBarAmount.max)
+                if (binding.seekBarAmount.progress != value) {
+                     binding.seekBarAmount.progress = value
+                }
+            }
+            }
 
 
         binding.etOccurrence.setOnClickListener {
@@ -70,7 +85,7 @@ class addBugCat : AppCompatActivity() {
             val name    = binding.etCategoryName.text.toString().trim()
             val details = binding.etCategoryDetails.text.toString().trim()
             val occ     = binding.etOccurrence.text.toString().trim()
-            val amtText = binding.tvAmountValue.text.toString().removePrefix("R")
+            val amtText = binding.etAmountValue.text.toString().removePrefix("R")
             val amount  = amtText.toLongOrNull() ?: 0L
             val type    = if (binding.toggleButtonGroup.checkedButtonId == R.id.btnSaving)
                 "Saving" else "Expense"
