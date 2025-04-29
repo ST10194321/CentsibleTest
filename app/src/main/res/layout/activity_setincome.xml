@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_curve"
@@ -12,75 +13,86 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:elevation="6dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="#2C2C2C">
 
-            <TextView
-                android:text="Set Income"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="24dp"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:text="Monthly Income"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:layout_marginBottom="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <EditText
-                android:hint="Enter monthly income"
-                android:textColorHint="#AAAAAA"
-                android:textColor="#FFFFFF"
-                android:layout_marginBottom="16dp"
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:backgroundTint="#444" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:text="Other Income"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:layout_marginBottom="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                <TextView
+                    android:text="Set Income"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="24dp"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-            <EditText
-                android:hint="Enter other income"
-                android:textColorHint="#AAAAAA"
-                android:textColor="#FFFFFF"
-                android:layout_marginBottom="24dp"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:backgroundTint="#444" />
+                <TextView
+                    android:text="Monthly Income"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-            <TextView
-                android:text="Why set income?"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                <EditText
+                    android:hint="Enter monthly income"
+                    android:textColorHint="#AAAAAA"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginBottom="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:backgroundTint="#444" />
 
-            <EditText
-                android:text="Setting your monthly income allows us to understand your financial situations and create fixed budget periods for the month"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#333333"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:gravity="top|start"
-                android:padding="10dp"
-                android:enabled="false"
-                android:layout_marginBottom="24dp" />
-        </LinearLayout>
+                <TextView
+                    android:text="Other Income"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:hint="Enter other income"
+                    android:textColorHint="#AAAAAA"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginBottom="24dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:backgroundTint="#444" />
+
+                <TextView
+                    android:text="Why set income?"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:text="Setting your monthly income allows us to understand your financial situations and create fixed budget periods for the month"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#333333"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:gravity="top|start"
+                    android:padding="10dp"
+                    android:enabled="false"
+                    android:layout_marginBottom="24dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </ScrollView>
 
     <Button
