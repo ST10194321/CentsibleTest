@@ -41,6 +41,18 @@ class MainActivity : AppCompatActivity() {
                 startActivity(i)
                 finish()
             }
+
+            binding.btnTrackBudCat.setOnClickListener {
+                val i = Intent(this, viewTrans::class.java)
+                startActivity(i)
+                finish()
+            }
+            binding.btnAddTrans.setOnClickListener {
+                val i = Intent(this, add_trans::class.java)
+                startActivity(i)
+                finish()
+            }
+
         }
     }
 
