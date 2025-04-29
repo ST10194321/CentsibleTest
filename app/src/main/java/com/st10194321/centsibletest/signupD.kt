@@ -5,6 +5,7 @@ import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -42,21 +43,42 @@ class signupD : AppCompatActivity() {
             finish()
         }
 
-        val etDOB = findViewById<TextInputEditText>(R.id.etDOB)
-        etDOB.setOnClickListener {
-            val calendar = Calendar.getInstance()
-            val year = calendar.get(Calendar.YEAR)
-            val month = calendar.get(Calendar.MONTH)
-            val day = calendar.get(Calendar.DAY_OF_MONTH)
-            val datePickerDialog = DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
-
-                etDOB.setText("$selectedDay/${selectedMonth + 1}/$selectedYear")
-            }, year, month, day)
-
-            datePickerDialog.show()
+        binding.etDOB.setOnClickListener {
+            val cal = Calendar.getInstance()
+            DatePickerDialog(
+                this,
+                { _, year, month, day ->
+                    binding.etDOB.setText(String.format("%02d/%02d/%04d", day, month + 1, year))
+                },
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH)
+            ).show()
         }
+
+
+        binding.btnContinue.setOnClickListener {
+            val firstName = binding.etUp.text.toString().trim()
+            val lastName  = binding.etPasswordUp.text.toString().trim()
+            val phone     = binding.etPhoneUp.text.toString().trim()
+            val dob       = binding.etDOB.text.toString().trim()
+
+            if (firstName.isEmpty() || lastName.isEmpty() ||
+                phone.isEmpty()     || dob.isEmpty()
+            ) {
+                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            Intent(this, signup::class.java).apply {
+                putExtra("FIRST_NAME", firstName)
+                putExtra("LAST_NAME",  lastName)
+                putExtra("PHONE",      phone)
+                putExtra("DOB",        dob)
+            }.also { startActivity(it) }
+        }
+    }
 
 
 
     }
-}

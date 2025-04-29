@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,44 +8,66 @@
     android:background="@drawable/bg_curve"
     tools:context=".viewBugCat">
 
-    <ImageView
-        android:id="@+id/ivCurve"
-        android:layout_width="151dp"
-        android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.073"
-        app:srcCompat="@drawable/curve" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardOverall"
         android:layout_width="360dp"
-        android:layout_height="822dp"
+        android:layout_height="0dp"
         android:layout_margin="24dp"
         app:cardBackgroundColor="#25FFFFFF"
         app:cardCornerRadius="20dp"
         app:cardElevation="8dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.38"
         app:strokeWidth="0dp">
 
 
-        <TextView
-            android:id="@+id/tvAppNameW"
-            style="@style/HeadingTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Budget Categories"
-            android:textColor="@android:color/white"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-    </com.google.android.material.card.MaterialCardView>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
 
+            <TextView
+                android:id="@+id/tvAppNameW"
+                style="@style/HeadingTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Budget Categories"
+                android:textColor="@android:color/white"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCategories"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:clipToPadding="false"
+                app:layout_constraintBottom_toTopOf="@id/btnAddCategory"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvAppNameW" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAddCategory"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:text="Add New Category"
+                android:textColor="@color/black"
+                app:backgroundTint="@color/colorAccentGreen"
+                app:cornerRadius="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

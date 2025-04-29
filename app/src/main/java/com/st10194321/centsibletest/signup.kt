@@ -7,16 +7,21 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.st10194321.centsibletest.databinding.ActivitySignupBinding
-import kotlinx.coroutines.launch
-import org.mindrot.jbcrypt.BCrypt
 
 class signup : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignupBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
+
+
+    private val firstName by lazy { intent.getStringExtra("FIRST_NAME") ?: "" }
+    private val lastName  by lazy { intent.getStringExtra("LAST_NAME")  ?: "" }
+    private val phone     by lazy { intent.getStringExtra("PHONE")      ?: "" }
+    private val dob       by lazy { intent.getStringExtra("DOB")        ?: "" }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,72 +29,62 @@ class signup : AppCompatActivity() {
 
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            val sys = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(sys.left, sys.top, sys.right, sys.bottom)
             insets
         }
 
-        binding.btnBack.setOnClickListener {
-            val i = Intent(this, welcome::class.java)
-            startActivity(i)
-            finish()
-        }
-
         auth = FirebaseAuth.getInstance()
-
+        db   = FirebaseFirestore.getInstance()
 
         binding.btnSignUp.setOnClickListener {
-            val email = binding.etEmailUp.text.toString().trim()
+            val email    = binding.etEmailUp.text.toString().trim()
             val password = binding.etPasswordUp.text.toString().trim()
-            val conPass = binding.etConPasswordUp.text.toString().trim()
+            val conPass  = binding.etConPasswordUp.text.toString().trim()
 
-            if (email.isEmpty() || password.isEmpty()||conPass.isEmpty()) {
-                Toast.makeText(this, "Email and password cannot be empty", Toast.LENGTH_SHORT).show()
+            if (email.isBlank() || password.isBlank() || conPass.isBlank()) {
+                Toast.makeText(this, "Email and password required", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            if(password != conPass){
-                Toast.makeText(this,"Passwords do not match", Toast.LENGTH_SHORT).show()
+            if (password != conPass) {
+                Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
 
-            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this){
-                    task ->
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        val uid = auth.currentUser!!.uid
 
-                if(task.isSuccessful){
-                    Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show()
-                    val i = Intent(this,MainActivity::class.java)
-                    startActivity(i)
-                    finish()
+                        val profile = mapOf(
+                            "firstName" to firstName,
+                            "lastName"  to lastName,
+                            "phone"     to phone,
+                            "dob"       to dob,
+                            "email"     to email
+                        )
 
-                }else{
-                    Toast.makeText(this,"Registration failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
-                    val i = Intent(this,signup::class.java)
-                    startActivity(i)
-                    finish()
+                        db.collection("users")
+                            .document(uid)
+                            .set(profile)
+                            .addOnSuccessListener {
+                                Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show()
+                                startActivity(Intent(this, MainActivity::class.java))
+                                finish()
+                            }
+                            .addOnFailureListener { e ->
+                                Toast.makeText(this, "Profile save failed:\n${e.message}", Toast.LENGTH_LONG).show()
+                            }
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "Registration failed:\n${task.exception?.message}",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
-            }
-
-
-
-
-            /* // Hash  password using BCrypt
-             val hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt())
-
-             // Access  Room database and insert the new user
-             val db = AppDatabase.getDatabase(this)
-             lifecycleScope.launch {
-                 val newUser = users(email = email, password = hashedPassword)
-                 db.userDao().insertUser(newUser)
-                 Toast.makeText(this@signup, "Sign Up Successful", Toast.LENGTH_SHORT).show()
-
-                 // Navigate to the sign in after successful sign-up
-                 val i = Intent(this@signup, signin::class.java)
-                 startActivity(i)
-                 finish()
-             }*/
         }
     }
 }

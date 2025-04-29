@@ -1,16 +1,56 @@
 package com.st10194321.centsibletest
 
+import CategoryAdapter
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.st10194321.centsibletest.databinding.ActivityViewBugCatBinding
+
 
 class viewBugCat : AppCompatActivity() {
+    private lateinit var binding: ActivityViewBugCatBinding
+    private val auth by lazy { FirebaseAuth.getInstance() }
+    private val db   by lazy { FirebaseFirestore.getInstance() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityViewBugCatBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_view_bug_cat)
 
+
+
+        binding.rvCategories.apply {
+            layoutManager = LinearLayoutManager(this@viewBugCat)
+        }
+
+
+        val uid = auth.currentUser?.uid ?: return
+        db.collection("users")
+            .document(uid)
+            .collection("categories")
+            .get()
+            .addOnSuccessListener { snap ->
+                val list = snap.documents.mapNotNull { it.toObject(Category::class.java) }
+                binding.rvCategories.adapter = CategoryAdapter(list) { cat ->
+
+                }
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Failed to load: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+
+
+        binding.btnAddCategory.setOnClickListener {
+            startActivity(Intent(this, addBugCat::class.java))
         }
     }
+}
+
