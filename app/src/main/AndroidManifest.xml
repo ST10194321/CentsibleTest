@@ -13,6 +13,18 @@
         android:theme="@style/Theme.CentsibleTest"
         tools:targetApi="31">
         <activity
+            android:name=".setincome"
+            android:exported="false" />
+        <activity
+            android:name=".setgoals"
+            android:exported="false" />
+        <activity
+            android:name=".editprofile"
+            android:exported="false" />
+        <activity
+            android:name=".profile"
+            android:exported="false" />
+        <activity
             android:name=".viewBugCat"
             android:exported="false" />
         <activity
