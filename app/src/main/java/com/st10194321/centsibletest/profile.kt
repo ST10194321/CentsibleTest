@@ -39,11 +39,32 @@ class profile : AppCompatActivity() {
         }
 
         // Handle Set Goals click
-        binding.cardSetGoals.setOnClickListener {
-            startActivity(Intent(this, setgoals::class.java))
+        binding.cardViewGoals.setOnClickListener {
+            startActivity(Intent(this, viewgoals::class.java))
         }
 
         // Handle Set Income click
+        binding.iconHome.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+            finish()
+        }
+//            catsIcon.setOnClickListener {
+//                val i = Intent(this, categories::class.java)
+//                startActivity(i)
+//                finish()
+//           }
+//            reportsIcon.setOnClickListener {
+//                val i = Intent(this, reports::class.java)
+//                startActivity(i)
+//                finish()
+//            }
+
+        binding.iconProfile.setOnClickListener {
+            val i = Intent(this, profile::class.java)
+            startActivity(i)
+            finish()
+        }
 
     }
 }

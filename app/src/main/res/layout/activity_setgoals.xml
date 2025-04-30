@@ -45,9 +45,11 @@
                     android:layout_marginBottom="16dp"
                     android:backgroundTint="#444"
                     android:popupBackground="#2C2C2C"
-                    android:theme="@style/ThemeOverlay.AppCompat.Dark" />
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                    android:entries="@array/month_array"/>
 
                 <EditText
+                    android:id="@+id/minGoalEdit"
                     android:hint="Min Goal"
                     android:textColorHint="#AAAAAA"
                     android:textColor="#FFFFFF"
@@ -57,6 +59,7 @@
                     android:backgroundTint="#444" />
 
                 <EditText
+                    android:id="@+id/maxGoalEdit"
                     android:hint="Max Goal"
                     android:textColorHint="#AAAAAA"
                     android:textColor="#FFFFFF"

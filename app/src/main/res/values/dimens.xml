@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Define the gap between the cards -->
+    <dimen name="card_gap">16dp</dimen>
+</resources>

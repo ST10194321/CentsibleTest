@@ -19,7 +19,7 @@
             android:name=".achievements"
             android:exported="false" />
         <activity
-            android:name=".setincome"
+            android:name=".viewgoals"
             android:exported="false" />
         <activity
             android:name=".setgoals"

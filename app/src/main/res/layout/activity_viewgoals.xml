@@ -5,40 +5,46 @@
     android:padding="16dp"
     android:background="@drawable/bg_curve">
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/bg_curve">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="View Goals"
-            android:textColor="#FFFFFF"
+            android:text="Your Monthly Goals"
             android:textSize="22sp"
+            android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="16dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Goals"
-            android:textColor="#FFFFFF"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_gravity="left"
-            android:layout_marginBottom="16dp"/>
-
+            android:layout_marginBottom="30dp" />
         <Button
-            android:id="@+id/saveButton"
+            android:id="@+id/setGoalButton"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:text="Set Goal"
-            android:textColor="#000000"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_height="wrap_content"
+            android:text="Set New Goal"
+            android:textColor="#000000" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/goalsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="16dp" />
+        </ScrollView>
+
+
     </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/bottomNavigation"
@@ -137,5 +143,4 @@
                 android:textSize="10sp" />
         </LinearLayout>
     </LinearLayout>
-
 </FrameLayout>

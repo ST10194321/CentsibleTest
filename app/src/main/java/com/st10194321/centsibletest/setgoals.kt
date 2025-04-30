@@ -69,5 +69,26 @@ class setgoals : AppCompatActivity() {
                     Toast.makeText(this, "Error checking goals: ${e.message}", Toast.LENGTH_LONG).show()
                 }
         }
+        binding.iconHome.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+            finish()
+        }
+//            catsIcon.setOnClickListener {
+//                val i = Intent(this, categories::class.java)
+//                startActivity(i)
+//                finish()
+//           }
+//            reportsIcon.setOnClickListener {
+//                val i = Intent(this, reports::class.java)
+//                startActivity(i)
+//                finish()
+//            }
+
+        binding.iconProfile.setOnClickListener {
+            val i = Intent(this, profile::class.java)
+            startActivity(i)
+            finish()
+        }
     }
 }
