@@ -3,111 +3,183 @@ package com.st10194321.centsibletest
 import TransactionAdapter
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.st10194321.centsibletest.databinding.ActivityTransactionBinding
-import com.st10194321.centsibletest.databinding.ActivityViewBugCatBinding
-import com.st10194321.centsibletest.R
-import com.st10194321.centsibletest.Transaction
-import com.st10194321.centsibletest.viewBugCat.Companion.EXTRA_CATEGORY
+import java.text.DateFormatSymbols
+import java.util.Calendar
 
 class viewTrans : AppCompatActivity() {
 
+    // UI
     private lateinit var rvTransactions: RecyclerView
-    private lateinit var adapter: TransactionAdapter
-    private val db = FirebaseFirestore.getInstance()
+    private lateinit var spinnerMonth: Spinner
+    private lateinit var tvOverallLabel: TextView
+    private lateinit var tvMonthLabel: TextView
+    private lateinit var tvRemaining: TextView
+    private lateinit var tvTotalAmount: TextView
+    private lateinit var pbBalance: ProgressBar
+    private lateinit var btnAddTxn: Button
+
+    // filter state
+    private var selectedMonthIndex = 0
+    private lateinit var categoryName: String
+
+    // Firebase
+    private val db   = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_view_trans)
 
-        rvTransactions = findViewById(R.id.rvTransactions)
+        // edge-to-edge padding
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val sys = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(sys.left, sys.top, sys.right, sys.bottom)
+            insets
+        }
 
-        // Fetch transactions from Firestore
-        fetchTransactions()
-    }
+        // bind views
+        rvTransactions    = findViewById(R.id.rvTransactions)
+        spinnerMonth      = findViewById(R.id.spinnerMonthFilter)
+        tvOverallLabel    = findViewById(R.id.tvOverallLabel)
+        tvMonthLabel      = findViewById(R.id.tvMonthLabel)
+        tvRemaining       = findViewById(R.id.tvRemaining)
+        tvTotalAmount     = findViewById(R.id.tvTotalAmount)
+        pbBalance         = findViewById(R.id.pbBalance)
+        btnAddTxn         = findViewById(R.id.btnAddTxn)
 
-//    private fun fetchTransactions() {
-//        val user = auth.currentUser
-//        if (user == null) {
-//            Toast.makeText(this, "Please sign in first", Toast.LENGTH_SHORT).show()
-//            return
-//        }
-//
-//        db.collection("users")
-//            .document(user.uid)
-//            .collection("transactions")
-//            .get()
-//            .addOnSuccessListener { documents ->
-//                val transactions = mutableListOf<Transaction>()
-//                for (document in documents) {
-//                    val name = document.getString("name") ?: ""
-//                    val amount = document.getDouble("amount") ?: 0.0
-//                    val date = document.getString("date") ?: ""
-//                    transactions.add(Transaction(name, amount, date))
-//                }
-//
-//                // Set up the RecyclerView adapter with the fetched transactions
-//                adapter = TransactionAdapter(transactions) { transaction ->
-//                    // Handle item click (optional)
-//                    Toast.makeText(this, "Clicked: ${transaction.name}", Toast.LENGTH_SHORT).show()
-//                }
-//                rvTransactions.layoutManager = LinearLayoutManager(this)
-//                rvTransactions.adapter = adapter
-//            }
-//            .addOnFailureListener { e ->
-//                Toast.makeText(this, "Error fetching transactions: ${e.message}", Toast.LENGTH_LONG).show()
-//            }
-//    }
-private fun fetchTransactions() {
-    val user = auth.currentUser
-    if (user == null) {
-        Toast.makeText(this, "Please sign in first", Toast.LENGTH_SHORT).show()
-        return
-    }
+        // get category
+        categoryName = intent.getStringExtra(EXTRA_CATEGORY) ?: run {
+            Toast.makeText(this, "No category specified", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
 
-    val selectedCategory = intent.getStringExtra(viewBugCat.EXTRA_CATEGORY)
+        // set labels
+        tvOverallLabel.text = categoryName
+        tvMonthLabel.text =
+            DateFormatSymbols().months[Calendar.getInstance().get(Calendar.MONTH)]
 
-    db.collection("users")
-        .document(user.uid)
-        .collection("transactions")
-        .whereEqualTo("category", selectedCategory) // 🔍 Filter by selected category
-        .get()
-        .addOnSuccessListener { documents ->
-            val transactions = mutableListOf<Transaction>()
-            for (document in documents) {
-                val name = document.getString("name") ?: ""
-                val amount = document.getDouble("amount") ?: 0.0
-                val details = document.getString("details") ?: ""
-                val date = document.getString("date") ?: ""
-                val image = document.getString("image") ?: ""
-                transactions.add(Transaction(name, amount, details,date, image))
+        // 1) Setup spinner adapter (uses spinner_item.xml & spinner_dropdown_item.xml)
+        val months = resources.getStringArray(R.array.month_filter_entries)
+        val monthAdapter = ArrayAdapter(
+            this,
+            R.layout.spinner_item,      // your custom TextView with white text
+            months
+        ).also { it.setDropDownViewResource(R.layout.spinner_dropdown_item) }
+        spinnerMonth.adapter = monthAdapter
+
+        // 2) Re-fetch whenever a new month is chosen
+        spinnerMonth.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>, view: View?, pos: Int, id: Long
+            ) {
+                selectedMonthIndex = pos
+                loadCategoryLimit(categoryName)
             }
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
 
-            adapter = TransactionAdapter(transactions) { transaction ->
-                Toast.makeText(this, "Clicked: ${transaction.name}", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, TransactionDetailActivity::class.java).apply {
-                    //putExtra(EXTRA_CATEGORY, cat.name)
-                    putExtra("title", transaction.name)
-                    putExtra("amount", transaction.amount.toString())
-                    putExtra("details", transaction.details)
-                    putExtra("date", transaction.date)
-                    putExtra("image", transaction.image)
+        // back to Add screen
+        btnAddTxn.setOnClickListener {
+            startActivity(Intent(this, add_trans::class.java))
+            finish()
+        }
+    }
+
+    private fun loadCategoryLimit(categoryName: String) {
+        val uid = auth.currentUser?.uid ?: return
+        db.collection("users")
+            .document(uid)
+            .collection("categories")
+            .whereEqualTo("name", categoryName)
+            .limit(1)
+            .get()
+            .addOnSuccessListener { snap ->
+                val limit = snap.documents.firstOrNull()?.getLong("amount") ?: 0L
+                fetchTransactions(categoryName, limit)
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(
+                    this,
+                    "Error loading limit: ${e.message}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+    }
+
+    private fun fetchTransactions(categoryName: String, limit: Long) {
+        val uid = auth.currentUser?.uid ?: return
+        db.collection("users")
+            .document(uid)
+            .collection("transactions")
+            .whereEqualTo("category", categoryName)
+            .get()
+            .addOnSuccessListener { docs ->
+                val list = mutableListOf<Transaction>()
+                var total = 0.0
+
+                for (doc in docs) {
+                    val name    = doc.getString("name") ?: ""
+                    val amount  = doc.getDouble("amount") ?: 0.0
+                    val details = doc.getString("details") ?: ""
+                    val date    = doc.getString("date") ?: ""
+                    val image   = doc.getString("image") ?: ""
+                    // parse month from "dd/MM/yyyy"
+                    val month = date.split("/").getOrNull(1)?.toIntOrNull() ?: 0
+
+                    if (selectedMonthIndex == 0 || month == selectedMonthIndex) {
+                        total += amount
+                        list.add(Transaction(name, amount, details, date, image))
+                    }
                 }
-                startActivity(intent)
+
+                // update UI
+                val remaining = (limit - total).coerceAtLeast(0.0)
+                tvRemaining.text   = "R%.2f left".format(remaining)
+                tvTotalAmount.text = "Total: R%.2f".format(total)
+                val pct = if (limit == 0L) 0
+                else ((total / limit * 100).coerceIn(0.0, 100.0)).toInt()
+                pbBalance.progress = pct
+
+                // show filtered list
+                rvTransactions.layoutManager = LinearLayoutManager(this)
+                rvTransactions.adapter = TransactionAdapter(list) { txn ->
+                    startActivity(Intent(this, TransactionDetailActivity::class.java).apply {
+                        putExtra("title", txn.name)
+                        putExtra("amount", txn.amount.toString())
+                        putExtra("details", txn.details)
+                        putExtra("date", txn.date)
+                        putExtra("image", txn.image)
+                    })
+                }
             }
-            rvTransactions.layoutManager = LinearLayoutManager(this)
-            rvTransactions.adapter = adapter
-        }
-        .addOnFailureListener { e ->
-            Toast.makeText(this, "Error fetching transactions: ${e.message}", Toast.LENGTH_LONG).show()
-        }
-}
+            .addOnFailureListener { e ->
+                Toast.makeText(
+                    this,
+                    "Error fetching transactions: ${e.message}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+    }
 
+    companion object {
+        const val EXTRA_CATEGORY = "EXTRA_CATEGORY"
+    }
 }
-
