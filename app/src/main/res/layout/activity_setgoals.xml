@@ -120,7 +120,9 @@
                 android:id="@+id/iconHome"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/home" />
+                android:src="@drawable/home"
+                android:clickable="true"
+                android:focusable="true"/>
             <TextView
                 android:id="@+id/textHome"
                 android:layout_width="wrap_content"
@@ -140,7 +142,9 @@
                 android:id="@+id/iconCategories"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/arrowup" />
+                android:src="@drawable/arrowup"
+                android:clickable="true"
+                android:focusable="true"/>
             <TextView
                 android:id="@+id/textCategories"
                 android:layout_width="wrap_content"
@@ -160,7 +164,9 @@
                 android:id="@+id/iconReports"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/money" />
+                android:src="@drawable/money"
+                android:clickable="true"
+                android:focusable="true"/>
             <TextView
                 android:id="@+id/textReports"
                 android:layout_width="wrap_content"
@@ -180,7 +186,9 @@
                 android:id="@+id/iconProfile"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/user" />
+                android:src="@drawable/user"
+                android:clickable="true"
+                android:focusable="true"/>
             <TextView
                 android:id="@+id/textProfile"
                 android:layout_width="wrap_content"

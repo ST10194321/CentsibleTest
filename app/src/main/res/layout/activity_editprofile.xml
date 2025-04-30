@@ -28,13 +28,13 @@
                 android:id="@+id/scrollContent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_above="@id/saveButton">
+                android:layout_above="@id/saveButton"
+                android:fillViewport="true">
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -43,7 +43,7 @@
                         android:textColor="#FFFFFF"
                         android:textSize="24sp"
                         android:textStyle="bold"
-                        android:layout_gravity="center"
+                        android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="24dp" />
 
                     <EditText
@@ -97,7 +97,6 @@
                 android:layout_alignParentBottom="true"
                 android:text="Save"
                 android:textColor="#000000" />
-
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -117,10 +116,14 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center">
+
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/home" />
+                android:src="@drawable/home"
+                android:clickable="true"
+                android:focusable="true"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -135,10 +138,14 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center">
+
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/arrowup" />
+                android:src="@drawable/arrowup"
+                android:clickable="true"
+                android:focusable="true"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -153,10 +160,14 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center">
+
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/money" />
+                android:src="@drawable/money"
+                android:clickable="true"
+                android:focusable="true"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -171,10 +182,14 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center">
+
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/user" />
+                android:src="@drawable/user"
+                android:clickable="true"
+                android:focusable="true"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -182,6 +197,6 @@
                 android:textSize="10sp"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
-
     </LinearLayout>
+
 </RelativeLayout>

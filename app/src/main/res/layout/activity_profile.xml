@@ -46,7 +46,7 @@
                     android:id="@+id/userName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Raj Hazard"
+                    android:text=""
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     android:layout_marginTop="12dp"
@@ -249,7 +249,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <!-- Home -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -283,7 +282,9 @@
                 android:id="@+id/iconCategories"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/arrowup" />
+                android:src="@drawable/arrowup"
+                android:clickable="true"
+                android:focusable="true"/>
             <TextView
                 android:id="@+id/textCategories"
                 android:layout_width="wrap_content"
@@ -304,7 +305,9 @@
                 android:id="@+id/iconReports"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/money" />
+                android:src="@drawable/money"
+                android:clickable="true"
+                android:focusable="true"/>
             <TextView
                 android:id="@+id/textReports"
                 android:layout_width="wrap_content"
@@ -325,7 +328,9 @@
                 android:id="@+id/iconProfile"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/user" />
+                android:src="@drawable/user"
+                android:clickable="true"
+                android:focusable="true"/>
             <TextView
                 android:id="@+id/textProfile"
                 android:layout_width="wrap_content"

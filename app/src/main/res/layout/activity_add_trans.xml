@@ -150,7 +150,37 @@
                         android:inputType="textCapSentences"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Transaction Category -->
+<!--                &lt;!&ndash; Transaction Category &ndash;&gt;-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:paddingLeft="8dp"-->
+<!--                    android:paddingTop="16dp"-->
+<!--                    android:paddingBottom="4dp"-->
+<!--                    android:text="Transaction Category"-->
+<!--                    android:textColor="#B0B0B0"-->
+<!--                    android:textSize="14sp"/>-->
+<!--                <com.google.android.material.textfield.TextInputLayout-->
+<!--                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:hint="Input"-->
+<!--                    app:endIconMode="clear_text"-->
+<!--                    app:boxCornerRadiusTopStart="10dp"-->
+<!--                    app:boxCornerRadiusTopEnd="10dp"-->
+<!--                    app:boxCornerRadiusBottomStart="10dp"-->
+<!--                    app:boxCornerRadiusBottomEnd="10dp"-->
+<!--                    app:boxStrokeColor="@color/outline_color">-->
+<!--                    <com.google.android.material.textfield.TextInputEditText-->
+<!--                        android:id="@+id/etTxnCategory"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="16dp"-->
+<!--                        android:textColor="@android:color/white"-->
+<!--                        android:inputType="textCapWords"/>-->
+<!--                </com.google.android.material.textfield.TextInputLayout>-->
+<!--                -->
+                <!-- Category Spinner -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -159,26 +189,16 @@
                     android:paddingBottom="4dp"
                     android:text="Transaction Category"
                     android:textColor="#B0B0B0"
-                    android:textSize="14sp"/>
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/spinnerCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Input"
-                    app:endIconMode="clear_text"
-                    app:boxCornerRadiusTopStart="10dp"
-                    app:boxCornerRadiusTopEnd="10dp"
-                    app:boxCornerRadiusBottomStart="10dp"
-                    app:boxCornerRadiusBottomEnd="10dp"
-                    app:boxStrokeColor="@color/outline_color">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etTxnCategory"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        android:textColor="@android:color/white"
-                        android:inputType="textCapWords"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:backgroundTint="@color/outline_color"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@android:color/white"
+                    android:padding="8dp" />
 
                 <!-- Start and End Dates -->
                 <TextView
