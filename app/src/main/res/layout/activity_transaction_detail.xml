@@ -29,4 +29,12 @@
         android:textSize="18sp"
         android:text="Transaction Details Missing"
         android:textColor="@android:color/white"/>
+
+    <ImageView
+        android:id="@+id/imageTransaction"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintTop_toTopOf="parent"/>
 </LinearLayout>
