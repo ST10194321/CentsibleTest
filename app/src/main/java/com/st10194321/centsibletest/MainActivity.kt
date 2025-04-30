@@ -8,8 +8,10 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.menu.MenuView.ItemView
 
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -19,6 +21,8 @@ import com.st10194321.centsibletest.databinding.ActivitySigninBinding
 
 
 class MainActivity : AppCompatActivity() {
+
+
 
 
     private lateinit var binding: ActivityMainBinding
@@ -53,6 +57,29 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
 
+
+
+            binding.iconHome.setOnClickListener {
+                val i = Intent(this, MainActivity::class.java)
+                startActivity(i)
+                finish()
+            }
+//            catsIcon.setOnClickListener {
+//                val i = Intent(this, categories::class.java)
+//                startActivity(i)
+//                finish()
+//           }
+//            reportsIcon.setOnClickListener {
+//                val i = Intent(this, reports::class.java)
+//                startActivity(i)
+//                finish()
+//            }
+
+            binding.iconProfile.setOnClickListener {
+                val i = Intent(this, profile::class.java)
+                startActivity(i)
+                finish()
+            }
         }
     }
 

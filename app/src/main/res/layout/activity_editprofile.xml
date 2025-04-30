@@ -51,7 +51,8 @@
                         android:hint="Edit First Name"
                         android:textColor="#FFFFFF"
                         android:textColorHint="#AAAAAA"
-                        android:layout_marginBottom="16dp" />
+                        android:layout_marginBottom="16dp"
+                        android:id="@+id/editFirstName"/>
 
                     <EditText
                         android:layout_width="match_parent"
@@ -59,7 +60,8 @@
                         android:hint="Edit Last Name"
                         android:textColor="#FFFFFF"
                         android:textColorHint="#AAAAAA"
-                        android:layout_marginBottom="16dp" />
+                        android:layout_marginBottom="16dp"
+                        android:id="@+id/editLastName"/>
 
                     <EditText
                         android:layout_width="match_parent"
@@ -68,7 +70,8 @@
                         android:inputType="phone"
                         android:textColor="#FFFFFF"
                         android:textColorHint="#AAAAAA"
-                        android:layout_marginBottom="24dp" />
+                        android:layout_marginBottom="24dp"
+                        android:id="@+id/editPhoneNumber"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -112,21 +115,22 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center">
-
             <ImageView
+                android:id="@+id/iconHome"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/home"
                 android:clickable="true"
                 android:focusable="true"/>
-
             <TextView
+                android:id="@+id/textHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Home"
-                android:textSize="10sp"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textSize="10sp" />
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="0dp"
@@ -134,21 +138,22 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center">
-
             <ImageView
+                android:id="@+id/iconCategories"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/arrowup"
                 android:clickable="true"
                 android:focusable="true"/>
-
             <TextView
+                android:id="@+id/textCategories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Categories"
-                android:textSize="10sp"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textSize="10sp" />
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="0dp"
@@ -156,21 +161,22 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center">
-
             <ImageView
+                android:id="@+id/iconReports"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/money"
                 android:clickable="true"
                 android:focusable="true"/>
-
             <TextView
+                android:id="@+id/textReports"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Reports"
-                android:textSize="10sp"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textSize="10sp" />
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="0dp"
@@ -178,21 +184,22 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center">
-
             <ImageView
+                android:id="@+id/iconProfile"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/user"
                 android:clickable="true"
                 android:focusable="true"/>
-
             <TextView
+                android:id="@+id/textProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Profile"
-                android:textSize="10sp"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textSize="10sp" />
         </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

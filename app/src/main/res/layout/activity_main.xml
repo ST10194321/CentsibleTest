@@ -39,14 +39,14 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardOverall"
-        android:layout_width="0dp"
-        android:layout_height="750dp"
+        android:layout_width="360dp"
+        android:layout_height="701dp"
         android:layout_margin="24dp"
         android:layout_marginTop="26dp"
         app:cardBackgroundColor="#25FFFFFF"
         app:cardCornerRadius="20dp"
         app:cardElevation="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivCurve"
@@ -55,7 +55,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="736dp"
+            android:layout_height="717dp"
             android:padding="16dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout

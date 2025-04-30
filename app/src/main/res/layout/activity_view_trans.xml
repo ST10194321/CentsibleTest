@@ -15,31 +15,30 @@
         style="@style/HeadingTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/appName"
+        android:text="Budget Progress"
         android:textColor="@android:color/white"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintVertical_bias="0.024" />
 
     <ImageView
         android:id="@+id/ivCurve"
-        android:layout_width="151dp"
-        android:layout_height="20dp"
+        android:layout_width="240dp"
+        android:layout_height="26dp"
         android:contentDescription="@string/decorative_curve"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.073"
+        app:layout_constraintVertical_bias="0.051"
         app:srcCompat="@drawable/curve" />
 
-    <!-- 1) Budget card, exactly as you provided -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardOverall"
         android:layout_width="370dp"
@@ -53,13 +52,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivCurve"
-        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintVertical_bias="0"
         app:strokeWidth="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="249dp"
-            android:padding="16dp">
+            android:padding="18dp"
+          >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/balanceSectionLayout"
@@ -71,7 +71,7 @@
                 app:layout_constraintHorizontal_bias="0.526"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.04">
+                app:layout_constraintVertical_bias="0">
 
                 <TextView
                     android:id="@+id/tvOverallLabel"
@@ -95,6 +95,20 @@
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@+id/tvOverallLabel"
                     app:layout_constraintTop_toBottomOf="@+id/tvOverallLabel" />
+
+                <TextView
+                    android:id="@+id/tvTotalAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:text="Total: R0.00"
+                    android:textColor="@android:color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/pbBalance"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.83"
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <ProgressBar
                     android:id="@+id/pbBalance"
@@ -122,14 +136,15 @@
                     app:layout_constraintTop_toBottomOf="@+id/pbBalance" />
 
                 <TextView
-                    android:id="@+id/tvBalanceAmount"
+                    android:id="@+id/tvRemaining"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
-                    android:text="@string/balance_amount_placeholder"
+                    android:text="R0.00 left"
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.127"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvBalanceLabel" />
 
@@ -150,7 +165,7 @@
         app:cardCornerRadius="20dp"
         app:cardElevation="8dp"
         app:cardBackgroundColor="#25FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddTxn"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardOverall"
@@ -184,24 +199,36 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvTxHeader" />
+
+            <Spinner
+                android:id="@+id/spinnerMonthFilter"
+                android:layout_width="159dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="168dp"
+                android:entries="@array/month_filter_entries"
+                android:popupBackground="#000000"
+
+                android:spinnerMode="dropdown"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
-
-
     <Button
         android:id="@+id/btnAddTxn"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:layout_margin="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="20"
         android:text="Add Transaction"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        android:backgroundTint="@color/colorAccentGreen"
-        android:textColor="@android:color/black"
-        app:cornerRadius="28dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.903" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
