@@ -81,7 +81,7 @@ class addBugCat : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Gather inputs
+
             val name    = binding.etCategoryName.text.toString().trim()
             val details = binding.etCategoryDetails.text.toString().trim()
             val occ     = binding.etOccurrence.text.toString().trim()

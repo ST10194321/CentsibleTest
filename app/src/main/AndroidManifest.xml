@@ -28,6 +28,12 @@
             android:name=".profile"
             android:exported="false" />
         <activity
+            android:name=".add_trans"
+            android:exported="false" />
+        <activity
+            android:name=".viewTrans"
+            android:exported="false" />
+        <activity
             android:name=".viewBugCat"
             android:exported="false" />
         <activity

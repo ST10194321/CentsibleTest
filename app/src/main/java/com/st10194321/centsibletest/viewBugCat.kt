@@ -15,6 +15,9 @@ import com.st10194321.centsibletest.databinding.ActivityViewBugCatBinding
 
 
 class viewBugCat : AppCompatActivity() {
+    companion object {
+        const val EXTRA_CATEGORY = "EXTRA_CATEGORY"
+    }
     private lateinit var binding: ActivityViewBugCatBinding
     private val auth by lazy { FirebaseAuth.getInstance() }
     private val db   by lazy { FirebaseFirestore.getInstance() }
@@ -38,9 +41,17 @@ class viewBugCat : AppCompatActivity() {
             .collection("categories")
             .get()
             .addOnSuccessListener { snap ->
-                val list = snap.documents.mapNotNull { it.toObject(Category::class.java) }
-                binding.rvCategories.adapter = CategoryAdapter(list) { cat ->
 
+                val list = snap.documents.mapNotNull {
+                    it.toObject(Category::class.java)
+                }
+
+                binding.rvCategories.adapter = CategoryAdapter(list) { cat ->
+                    Toast.makeText(this, "Clicked ${cat.name}", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, viewTrans::class.java).apply {
+                        putExtra(EXTRA_CATEGORY, cat.name)
+                    }
+                    startActivity(intent)
                 }
             }
             .addOnFailureListener { e ->
@@ -51,6 +62,10 @@ class viewBugCat : AppCompatActivity() {
         binding.btnAddCategory.setOnClickListener {
             startActivity(Intent(this, addBugCat::class.java))
         }
+
+
     }
-}
+    }
+
+
 
