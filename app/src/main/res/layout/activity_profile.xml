@@ -68,8 +68,7 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="8dp"
-                    android:clickable="true"
-                    android:focusable="true"
+
                     app:cardCornerRadius="12dp"
                     app:cardElevation="8dp"
                     app:cardBackgroundColor="#1E1E1E">
@@ -82,12 +81,15 @@
                         android:padding="16dp">
 
                         <TextView
+                            android:id="@+id/tvEditProfile"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Edit Profile"
                             android:textColor="#FFFFFF"
-                            android:textSize="16sp" />
+                            android:textSize="16sp"
+                            android:clickable="true"
+                            android:focusable="true"/>
 
                         <ImageView
                             android:layout_width="24dp"

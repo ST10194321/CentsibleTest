@@ -12,70 +12,68 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.st10194321.centsibletest.databinding.ActivityEditprofileBinding
 
 class editprofile : AppCompatActivity() {
 
-    private lateinit var etFirstName: EditText
-    private lateinit var etLastName: EditText
-    private lateinit var etPhoneNumber: EditText
-    private lateinit var saveButton: Button
-
-    val instance = signup()
-    val fName = instance.firstName
-    val lName = instance.lastName
-    val phone = instance.phone
+    private lateinit var binding: ActivityEditprofileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_editprofile)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        binding = ActivityEditprofileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
+        val auth = FirebaseAuth.getInstance()
+        val db = FirebaseFirestore.getInstance()
+        val uid = auth.currentUser?.uid
 
-        etFirstName = findViewById(R.id.editFirstName)
-        etLastName = findViewById(R.id.editLastName)
-        etPhoneNumber = findViewById(R.id.editPhoneNumber)
-        saveButton = findViewById(R.id.saveButton)
-
-        etFirstName.setText(fName)
-        etLastName.setText(lName)
-        etPhoneNumber.setText(phone)
-
-        saveButton.setOnClickListener {
-
-            val newFirstName = etFirstName.text.toString()
-            val newLastName = etLastName.text.toString()
-            val newPhoneNumber = etPhoneNumber.text.toString()
-
-            val auth: FirebaseAuth = FirebaseAuth.getInstance()
-            val db: FirebaseFirestore = FirebaseFirestore.getInstance()
-
-
-            val uid = auth.currentUser!!.uid
-
-            val profile = mapOf(
-                "firstName" to newFirstName,
-                "lastName" to newLastName,
-                "phone" to newPhoneNumber
-            )
-            db.collection("users")
-                .document(uid)
-                .set(profile, SetOptions.merge())
-                .addOnSuccessListener {
-                    Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
+        // Load user profile from Firestore
+        if (uid != null) {
+            db.collection("users").document(uid).get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        binding.editFirstName.setText(document.getString("firstName") ?: "")
+                        binding.editLastName.setText(document.getString("lastName") ?: "")
+                        binding.editPhoneNumber.setText(document.getString("phone") ?: "")
+                    }
                 }
                 .addOnFailureListener { e ->
-                    Toast.makeText(this, "Profile save failed:\n${e.message}", Toast.LENGTH_LONG)
-                        .show()
+                    Toast.makeText(this, "Failed to load profile:\n${e.message}", Toast.LENGTH_LONG).show()
                 }
+        }
 
+        // Save updated profile to Firestore
+        binding.saveButton.setOnClickListener {
+            val updatedProfile = mapOf(
+                "firstName" to binding.editFirstName.text.toString(),
+                "lastName" to binding.editLastName.text.toString(),
+                "phone" to binding.editPhoneNumber.text.toString()
+            )
 
+            if (uid != null) {
+                db.collection("users").document(uid)
+                    .set(updatedProfile, SetOptions.merge())
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "Profile updated successfully", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(this, "Failed to update profile:\n${e.message}", Toast.LENGTH_LONG).show()
+                    }
+            }
+        }
+        binding.iconHome.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+            finish()
+        }
+        binding.iconProfile.setOnClickListener {
+            val i = Intent(this, profile::class.java)
+            startActivity(i)
+            finish()
         }
     }
 }
+

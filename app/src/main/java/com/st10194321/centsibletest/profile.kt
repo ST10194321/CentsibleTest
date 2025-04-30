@@ -1,47 +1,51 @@
 package com.st10194321.centsibletest
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.auth.FirebaseAuth
+import com.st10194321.centsibletest.databinding.ActivityMainBinding
+import com.st10194321.centsibletest.databinding.ActivityProfileBinding
 
 class profile : AppCompatActivity() {
 
-    private lateinit var cdEditProfile: CardView
-    private lateinit var cdSetGoals: CardView
-    private lateinit var cdSetIncome: CardView
+
+    private lateinit var binding: ActivityProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_profile)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-        cdEditProfile = findViewById(R.id.cardEditProfile)
-        cdSetGoals = findViewById(R.id.cardSetGoals)
-        cdSetIncome = findViewById(R.id.cardSetIncome)
 
-        cdEditProfile.setOnClickListener {
-            // Handle Edit Profile button click
-            val i = android.content.Intent(this, editprofile::class.java)
-            startActivity(i)
-        }
+        binding = ActivityProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        cdSetGoals.setOnClickListener {
-            // Handle Set Goals button click
-            val i = android.content.Intent(this, setgoals::class.java)
+
+        // Initialize views
+
+
+        // Handle Edit Profile click
+        binding.tvEditProfile.setOnClickListener {
+
+            val i = Intent(this, editprofile::class.java)
             startActivity(i)
+
         }
 
-        cdSetIncome.setOnClickListener {
-            // Handle Set Income button click
-            val i = android.content.Intent(this, setincome::class.java)
-            startActivity(i)
+        // Handle Set Goals click
+        binding.cardSetGoals.setOnClickListener {
+            startActivity(Intent(this, setgoals::class.java))
+        }
+
+        // Handle Set Income click
+        binding.cardSetIncome.setOnClickListener {
+            startActivity(Intent(this, setincome::class.java))
         }
     }
 }
