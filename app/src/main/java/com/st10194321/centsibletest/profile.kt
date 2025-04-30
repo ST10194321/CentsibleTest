@@ -44,8 +44,6 @@ class profile : AppCompatActivity() {
         }
 
         // Handle Set Income click
-        binding.cardSetIncome.setOnClickListener {
-            startActivity(Intent(this, setincome::class.java))
-        }
+
     }
 }
