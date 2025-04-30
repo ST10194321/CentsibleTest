@@ -29,16 +29,19 @@ class profile : AppCompatActivity() {
         cdEditProfile.setOnClickListener {
             // Handle Edit Profile button click
             val i = android.content.Intent(this, editprofile::class.java)
+            startActivity(i)
         }
 
         cdSetGoals.setOnClickListener {
             // Handle Set Goals button click
             val i = android.content.Intent(this, setgoals::class.java)
+            startActivity(i)
         }
 
         cdSetIncome.setOnClickListener {
             // Handle Set Income button click
             val i = android.content.Intent(this, setincome::class.java)
+            startActivity(i)
         }
     }
 }
