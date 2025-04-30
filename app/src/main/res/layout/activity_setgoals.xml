@@ -38,7 +38,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-                <!-- Spinner for selecting month -->
                 <Spinner
                     android:id="@+id/monthSpinner"
                     android:layout_width="match_parent"
