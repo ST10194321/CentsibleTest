@@ -260,7 +260,9 @@
                 android:id="@+id/iconHome"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/home" />
+                android:src="@drawable/home"
+                android:clickable="true"
+                android:focusable="true"/>
             <TextView
                 android:id="@+id/textHome"
                 android:layout_width="wrap_content"
