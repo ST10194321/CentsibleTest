@@ -15,31 +15,31 @@
         style="@style/HeadingTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/appName"
+        android:text="Budget Progress"
         android:textColor="@android:color/white"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintVertical_bias="0.024" />
 
+    <!-- 1) Budget card, exactly as you provided -->
     <ImageView
         android:id="@+id/ivCurve"
-        android:layout_width="151dp"
-        android:layout_height="20dp"
+        android:layout_width="240dp"
+        android:layout_height="26dp"
         android:contentDescription="@string/decorative_curve"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.073"
+        app:layout_constraintVertical_bias="0.051"
         app:srcCompat="@drawable/curve" />
 
-    <!-- 1) Budget card, exactly as you provided -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardOverall"
         android:layout_width="370dp"
@@ -53,13 +53,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivCurve"
-        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintVertical_bias="0"
         app:strokeWidth="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="249dp"
-            android:padding="16dp">
+            android:padding="18dp"
+          >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/balanceSectionLayout"
@@ -71,7 +72,7 @@
                 app:layout_constraintHorizontal_bias="0.526"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.04">
+                app:layout_constraintVertical_bias="0">
 
                 <TextView
                     android:id="@+id/tvOverallLabel"
@@ -150,7 +151,7 @@
         app:cardCornerRadius="20dp"
         app:cardElevation="8dp"
         app:cardBackgroundColor="#25FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddTxn"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardOverall"
@@ -187,21 +188,18 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
-
-
     <Button
         android:id="@+id/btnAddTxn"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:layout_margin="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="20"
         android:text="Add Transaction"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        android:backgroundTint="@color/colorAccentGreen"
-        android:textColor="@android:color/black"
-        app:cornerRadius="28dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.881" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
