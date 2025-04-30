@@ -56,23 +56,6 @@
                     android:backgroundTint="#444" />
 
                 <TextView
-                    android:text="Other Income"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <EditText
-                    android:hint="Enter other income"
-                    android:textColorHint="#AAAAAA"
-                    android:textColor="#FFFFFF"
-                    android:layout_marginBottom="24dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:backgroundTint="#444" />
-
-                <TextView
                     android:text="Why set income?"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"

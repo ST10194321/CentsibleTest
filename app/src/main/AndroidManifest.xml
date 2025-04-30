@@ -13,6 +13,9 @@
         android:theme="@style/Theme.CentsibleTest"
         tools:targetApi="31">
         <activity
+            android:name=".achievements"
+            android:exported="false" />
+        <activity
             android:name=".setincome"
             android:exported="false" />
         <activity

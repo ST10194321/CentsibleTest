@@ -38,8 +38,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
+                <!-- Spinner for selecting month -->
+                <Spinner
+                    android:id="@+id/monthSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="16dp"
+                    android:backgroundTint="#444"
+                    android:popupBackground="#2C2C2C"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark" />
+
                 <EditText
-                    android:hint="Main Goal"
+                    android:hint="Min Goal"
                     android:textColorHint="#AAAAAA"
                     android:textColor="#FFFFFF"
                     android:layout_marginBottom="16dp"
