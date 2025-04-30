@@ -18,10 +18,10 @@ class signup : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
 
 
-    private val firstName by lazy { intent.getStringExtra("FIRST_NAME") ?: "" }
-    private val lastName  by lazy { intent.getStringExtra("LAST_NAME")  ?: "" }
-    private val phone     by lazy { intent.getStringExtra("PHONE")      ?: "" }
-    private val dob       by lazy { intent.getStringExtra("DOB")        ?: "" }
+    val firstName by lazy { intent.getStringExtra("FIRST_NAME") ?: "" }
+    val lastName  by lazy { intent.getStringExtra("LAST_NAME")  ?: "" }
+    val phone     by lazy { intent.getStringExtra("PHONE")      ?: "" }
+    val dob       by lazy { intent.getStringExtra("DOB")        ?: "" }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
