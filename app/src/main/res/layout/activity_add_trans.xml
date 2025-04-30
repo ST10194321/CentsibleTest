@@ -232,33 +232,65 @@
                         android:textColor="@android:color/white"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Add Image -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="8dp"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="4dp"
-                    android:text="Add Image"
-                    android:textColor="#B0B0B0"
-                    android:textSize="14sp"/>
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="4dp"
+<!--                &lt;!&ndash; Add Image &ndash;&gt;-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:paddingLeft="8dp"-->
+<!--                    android:paddingTop="16dp"-->
+<!--                    android:paddingBottom="4dp"-->
+<!--                    android:text="Add Image"-->
+<!--                    android:textColor="#B0B0B0"-->
+<!--                    android:textSize="14sp"/>-->
+<!--                <FrameLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="120dp"-->
+<!--                    android:layout_marginTop="4dp"-->
 
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    >
-                    <ImageButton
-                        android:id="@+id/btnAddImage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:src="@drawable/camera"
-                        />
-                </FrameLayout>
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    >-->
+<!--                    <ImageButton-->
+<!--                        android:id="@+id/btnAddImage"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:background="@android:color/transparent"-->
+<!--                        android:src="@drawable/camera"-->
+<!--                        />-->
+                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="8dp"
+                                    android:paddingTop="16dp"
+                                    android:paddingBottom="4dp"
+                                    android:text="Add Image"
+                                    android:textColor="#B0B0B0"
+                                    android:textSize="14sp"/>
+                <ImageButton
+                                        android:id="@+id/btnAddImage"
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        android:layout_gravity="center"
+                                        android:background="@android:color/transparent"
+                                        android:src="@drawable/camera"
+                                        />
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageViewReceipt"-->
+<!--                    android:layout_width="200dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:scaleType="centerCrop"-->
+<!--                    android:layout_marginTop="16dp"-->
+<!--                    android:background="@android:color/darker_gray" />-->
+
+                <Button
+                    android:id="@+id/btnCaptureImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Capture Image"
+                    android:textColor="@android:color/black"/>
+<!--                </FrameLayout>-->
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton

@@ -85,7 +85,8 @@ private fun fetchTransactions() {
                 val amount = document.getDouble("amount") ?: 0.0
                 val details = document.getString("details") ?: ""
                 val date = document.getString("date") ?: ""
-                transactions.add(Transaction(name, amount, details,date))
+                val image = document.getString("image") ?: ""
+                transactions.add(Transaction(name, amount, details,date, image))
             }
 
             adapter = TransactionAdapter(transactions) { transaction ->
@@ -96,6 +97,7 @@ private fun fetchTransactions() {
                     putExtra("amount", transaction.amount.toString())
                     putExtra("details", transaction.details)
                     putExtra("date", transaction.date)
+                    putExtra("image", transaction.image)
                 }
                 startActivity(intent)
             }
