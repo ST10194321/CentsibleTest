@@ -1,6 +1,7 @@
 package com.st10194321.centsibletest
 
 import TransactionAdapter
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,7 @@ import com.st10194321.centsibletest.databinding.ActivityTransactionBinding
 import com.st10194321.centsibletest.databinding.ActivityViewBugCatBinding
 import com.st10194321.centsibletest.R
 import com.st10194321.centsibletest.Transaction
+import com.st10194321.centsibletest.viewBugCat.Companion.EXTRA_CATEGORY
 
 class viewTrans : AppCompatActivity() {
 
@@ -81,12 +83,21 @@ private fun fetchTransactions() {
             for (document in documents) {
                 val name = document.getString("name") ?: ""
                 val amount = document.getDouble("amount") ?: 0.0
+                val details = document.getString("details") ?: ""
                 val date = document.getString("date") ?: ""
-                transactions.add(Transaction(name, amount, date))
+                transactions.add(Transaction(name, amount, details,date))
             }
 
             adapter = TransactionAdapter(transactions) { transaction ->
                 Toast.makeText(this, "Clicked: ${transaction.name}", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, TransactionDetailActivity::class.java).apply {
+                    //putExtra(EXTRA_CATEGORY, cat.name)
+                    putExtra("title", transaction.name)
+                    putExtra("amount", transaction.amount.toString())
+                    putExtra("details", transaction.details)
+                    putExtra("date", transaction.date)
+                }
+                startActivity(intent)
             }
             rvTransactions.layoutManager = LinearLayoutManager(this)
             rvTransactions.adapter = adapter
