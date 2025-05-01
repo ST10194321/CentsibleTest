@@ -1,24 +1,3 @@
-//package com.st10194321.centsibletest
-//
-//import android.os.Bundle
-//import androidx.activity.enableEdgeToEdge
-//import androidx.appcompat.app.AppCompatActivity
-//import androidx.core.view.ViewCompat
-//import androidx.core.view.WindowInsetsCompat
-//
-//class TransactionActivity : AppCompatActivity() {
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
-//        setContentView(R.layout.activity_transaction)
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
-//        }
-//    }
-//}
-
 package com.st10194321.centsibletest
 
 import android.os.Bundle
@@ -50,11 +29,13 @@ class TransactionActivity : AppCompatActivity() {
             val amountText = binding.etAmount.text.toString().trim()
             val amount = amountText.toDoubleOrNull()
 
+            //ensures name input is found
             if (name.isEmpty()) {
                 Toast.makeText(this, "Please enter a transaction name", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
+            //ensures amount input is found
             if (amount == null || amount <= 0.0) {
                 Toast.makeText(this, "Please enter a valid amount", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -66,6 +47,7 @@ class TransactionActivity : AppCompatActivity() {
                 "timestamp" to System.currentTimeMillis()
             )
 
+            //saves to firestore
             db.collection("users")
                 .document(user.uid)
                 .collection("transactions")

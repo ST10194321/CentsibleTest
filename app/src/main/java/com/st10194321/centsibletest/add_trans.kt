@@ -59,7 +59,7 @@ class add_trans : AppCompatActivity() {
             binding.spinnerCategory.adapter = it
         }
 
-        // Image capture
+        // Image capture ->> allows users to upload picture in every transaction
         captureImageButton = findViewById(R.id.btnCaptureImage)
         imageView = findViewById(R.id.btnCaptureImage)
         cameraLauncher = registerForActivityResult(
@@ -74,7 +74,7 @@ class add_trans : AppCompatActivity() {
             cameraLauncher.launch(null)
         }
 
-        // Load categories
+        // Load categories ->> allows users to pick from existing categories
         auth.currentUser?.uid?.let { uid ->
             db.collection("users").document(uid)
                 .collection("categories")
@@ -104,7 +104,7 @@ class add_trans : AppCompatActivity() {
             ).show()
         }
 
-        // Add transaction
+        // Add transaction and saves transactions to database
         binding.btnAddToCategory.setOnClickListener {
             val user = auth.currentUser
             if (user == null) {
@@ -129,7 +129,7 @@ class add_trans : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Build transaction map
+            // Build transaction
             val txn = mutableMapOf<String, Any>(
                 "name"      to name,
                 "amount"    to amount,

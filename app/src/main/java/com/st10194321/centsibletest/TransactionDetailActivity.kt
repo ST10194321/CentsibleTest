@@ -44,11 +44,12 @@ class TransactionDetailActivity : AppCompatActivity() {
 
             }
         }
-
+        //pulls and displays transaction details
         val detailsTextView = findViewById<TextView>(R.id.textTransactionDetails)
         detailsTextView.text = "Title: $title\nAmount: $amount\nDetails: $details\n" +
                 "Date: $date"
 
+        //back to previous page
         val btnBack = findViewById<ImageButton>(R.id.btnBack)
         btnBack.setOnClickListener {
             finish()

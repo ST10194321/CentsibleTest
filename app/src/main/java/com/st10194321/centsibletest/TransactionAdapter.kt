@@ -30,6 +30,7 @@ class TransactionAdapter(
     inner class TransactionViewHolder(private val binding: ItemTransactionBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+            //bonds the variables
         fun bind(transaction: Transaction) {
             binding.tvTransactionName.text = transaction.name
             binding.tvTransactionAmount.text = "R ${transaction.amount}"

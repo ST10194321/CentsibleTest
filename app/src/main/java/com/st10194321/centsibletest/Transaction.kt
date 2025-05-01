@@ -1,5 +1,6 @@
 package com.st10194321.centsibletest
 
+//Transaction model
 data class Transaction(
     val name: String,
     val amount: Double,

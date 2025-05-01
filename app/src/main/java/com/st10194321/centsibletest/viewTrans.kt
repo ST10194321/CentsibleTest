@@ -105,7 +105,7 @@ class viewTrans : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>) {}
         }
 
-        // back to Add screen
+        // Add screen
         btnAddTxn.setOnClickListener {
             startActivity(Intent(this, add_trans::class.java))
             finish()
@@ -132,7 +132,7 @@ class viewTrans : AppCompatActivity() {
                 ).show()
             }
     }
-
+// pulls transactions from firestore to show in recycler view
     private fun fetchTransactions(categoryName: String, limit: Long) {
         val uid = auth.currentUser?.uid ?: return
         db.collection("users")
@@ -150,7 +150,7 @@ class viewTrans : AppCompatActivity() {
                     val details = doc.getString("details") ?: ""
                     val date    = doc.getString("date") ?: ""
                     val image   = doc.getString("image") ?: ""
-                    // month from "dd/MM/yyyy"
+
                     val month = date.split("/").getOrNull(1)?.toIntOrNull() ?: 0
 
                     if (selectedMonthIndex == 0 || month == selectedMonthIndex) {
