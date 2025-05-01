@@ -27,6 +27,7 @@ class addBugCat : AppCompatActivity() {
         enableEdgeToEdge()
 
 
+        //binding for xml elements
         binding = ActivityAddBugCatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -38,9 +39,10 @@ class addBugCat : AppCompatActivity() {
         }
 
 
+        //seekbar for user to input amount
         binding.seekBarAmount.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(sb: SeekBar, prog: Int, fromUser: Boolean) {
-                // only overwrite if user isn't typing:
+
                 if (!binding.etAmountValue.isFocused) {
                     binding.etAmountValue.setText(prog.toString())
                 }
@@ -49,6 +51,7 @@ class addBugCat : AppCompatActivity() {
             override fun onStopTrackingTouch(sb: SeekBar) {}
         })
 
+        //an editable text for user to input specific amount
         binding.etAmountValue.addTextChangedListener { editable ->
             val str = editable.toString()
             val num = str.toIntOrNull()
@@ -61,6 +64,7 @@ class addBugCat : AppCompatActivity() {
             }
 
 
+        //allows user to choose a date
         binding.etOccurrence.setOnClickListener {
             val cal = Calendar.getInstance()
             DatePickerDialog(
@@ -75,6 +79,7 @@ class addBugCat : AppCompatActivity() {
         }
 
 
+        //adds category to user
         binding.btnAddCategory.setOnClickListener {
             val user = auth.currentUser
             if (user == null) {
@@ -83,6 +88,7 @@ class addBugCat : AppCompatActivity() {
             }
 
 
+            //assigning fields to details
             val name    = binding.etCategoryName.text.toString().trim()
             val details = binding.etCategoryDetails.text.toString().trim()
             val occ     = binding.etOccurrence.text.toString().trim()
@@ -92,12 +98,14 @@ class addBugCat : AppCompatActivity() {
                 "Saving" else "Expense"
 
 
+            //prompts user to enter name if empty
             if (name.isEmpty()) {
                 Toast.makeText(this, "Enter a category name", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
 
+            //fields for firestore
             val category = Category(
                 name       = name,
                 type       = type,
@@ -107,6 +115,8 @@ class addBugCat : AppCompatActivity() {
             )
 
 
+
+            //saves category in firestore in user collection
             db.collection("users")
                 .document(user.uid)
                 .collection("categories")

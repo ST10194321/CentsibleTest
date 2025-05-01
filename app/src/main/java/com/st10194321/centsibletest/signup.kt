@@ -35,8 +35,14 @@ class signup : AppCompatActivity() {
             insets
         }
 
+
         auth = FirebaseAuth.getInstance()
         db   = FirebaseFirestore.getInstance()
+
+        binding.btnBack.setOnClickListener {
+            val i = Intent(this, welcome::class.java)
+            startActivity(i)
+        }
 
         binding.btnSignUp.setOnClickListener {
             val email    = binding.etEmailUp.text.toString().trim()

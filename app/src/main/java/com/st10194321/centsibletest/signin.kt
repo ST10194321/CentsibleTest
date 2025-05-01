@@ -45,7 +45,9 @@ class signin : AppCompatActivity() {
              val i = Intent(this, welcome::class.java)
         startActivity(i)
        }
-
+        binding.tvSignUp.setOnClickListener {
+            startActivity(Intent(this, signup::class.java))
+        }
 
         binding.btnSignIn.setOnClickListener {
             val email = binding.etEmail.text.toString().trim()

@@ -89,7 +89,7 @@
                     android:id="@+id/tvOverallLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
+                    android:layout_marginStart="48dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/overall"
                     android:textColor="@android:color/white"
@@ -102,6 +102,7 @@
                     android:id="@+id/tvMonthLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
                     android:text="@string/february"
                     android:textColor="@android:color/white"
                     android:textSize="14sp"
@@ -109,22 +110,10 @@
                     app:layout_constraintTop_toBottomOf="@+id/tvOverallLabel" />
 
                 <TextView
-                    android:id="@+id/tvTotalLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="236dp"
-                    android:layout_marginBottom="44dp"
-                    android:text="Total"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toTopOf="@+id/pbBalance"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <TextView
                     android:id="@+id/tvTotalAmount"
                     android:layout_width="112dp"
                     android:layout_height="26dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="24dp"
                     android:text="R0.00"
                     android:textColor="@android:color/white"
                     android:textSize="20dp"
@@ -134,43 +123,56 @@
                     app:layout_constraintHorizontal_bias="0.89"
                     app:layout_constraintStart_toStartOf="parent" />
 
+                <TextView
+                    android:id="@+id/tvTotalLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="236dp"
+                    android:layout_marginBottom="52dp"
+                    android:text="Total"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toTopOf="@+id/pbBalance"
+                    app:layout_constraintStart_toStartOf="parent" />
+
                 <ProgressBar
                     android:id="@+id/pbBalance"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="280dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="20dp"
                     android:progress="75"
-                    android:progressBackgroundTint="@color/colorAccentGreen"
-                    android:progressTint="@color/colorAccentGreen"
+                    android:progressDrawable="@drawable/rounded_progress_bar"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.494"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvMonthLabel" />
-
-                <TextView
-                    android:id="@+id/tvBalanceLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/balance"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/pbBalance" />
 
                 <TextView
                     android:id="@+id/tvRemaining"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:text="R0.00"
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.112"
+                    app:layout_constraintHorizontal_bias="0.15"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvBalanceLabel" />
+
+                <TextView
+                    android:id="@+id/tvBalanceLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/balance"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pbBalance" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -252,7 +254,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.93" />
+        app:layout_constraintVertical_bias="0.949" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

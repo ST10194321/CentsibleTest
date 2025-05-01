@@ -41,29 +41,41 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+        //binding for xml elements
         tvTotalSpent = binding.cardOverall.findViewById(R.id.tvTotalSpent)
         tvTotalLeft  = binding.cardOverall.findViewById(R.id.tvTotalLeft)
         pbBalance    = binding.cardOverall.findViewById(R.id.pbBalance)
 
-        // buttons (unchanged)…
-        binding.btnNewBudCat.setOnClickListener { startActivity(Intent(this, addBugCat::class.java)) }
-        binding.btnViewBudCat.setOnClickListener { startActivity(Intent(this, viewBugCat::class.java)) }
-        binding.btnTrackBudCat.setOnClickListener { startActivity(Intent(this, viewgoals::class.java)) }
-        binding.btnAddTrans.setOnClickListener { startActivity(Intent(this, add_trans::class.java)) }
+        // buttons that take user to specfic page
+        binding.btnNewBudCat.setOnClickListener {
+            startActivity(Intent(this, addBugCat::class.java))
+        }
+        binding.btnViewBudCat.setOnClickListener {
+            startActivity(Intent(this, viewBugCat::class.java))
+        }
+        binding.btnTrackBudCat.setOnClickListener {
+            startActivity(Intent(this, viewgoals::class.java))
+        }
+        binding.btnAddTrans.setOnClickListener {
+            startActivity(Intent(this, add_trans::class.java))
+        }
 
 
         loadOverallStats()
 
+        //nav bar buttons
         binding.iconHome.setOnClickListener {
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
             finish()
         }
+        //nav bar buttons
         binding.iconProfile.setOnClickListener {
             val i = Intent(this, profile::class.java)
             startActivity(i)
             finish()
         }
+        //nav bar buttons
         binding.iconCategories.setOnClickListener {
             val i = Intent(this, viewBugCat::class.java)
             startActivity(i)
@@ -76,7 +88,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadOverallStats() {
         val uid = auth.currentUser?.uid ?: return
 
-        // 1) sum all category limits
+        //  sum all category limits
         db.collection("users").document(uid)
             .collection("categories")
             .get()
@@ -84,7 +96,7 @@ class MainActivity : AppCompatActivity() {
                 var totalLimit = 0L
                 catSnap.documents.forEach { totalLimit += it.getLong("amount") ?: 0L }
 
-                // 2) sum all transaction amounts
+                // sum all transaction amounts
                 db.collection("users").document(uid)
                     .collection("transactions")
                     .get()
