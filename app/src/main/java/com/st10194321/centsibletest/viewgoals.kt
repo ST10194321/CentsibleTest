@@ -25,7 +25,7 @@ class viewgoals : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityViewgoalsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        enableEdgeToEdge()
         // Navigate to the set goals screen
         binding.setGoalButton.setOnClickListener {
             val intent = Intent(this, setgoals::class.java)

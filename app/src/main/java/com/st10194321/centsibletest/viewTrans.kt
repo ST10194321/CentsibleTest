@@ -34,11 +34,11 @@ class viewTrans : AppCompatActivity() {
     private lateinit var pbBalance: ProgressBar
     private lateinit var btnAddTxn: Button
 
-    // filter state
+
     private var selectedMonthIndex = 0
     private lateinit var categoryName: String
 
-    // Firebase
+
     private val db   = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
 
@@ -47,14 +47,14 @@ class viewTrans : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_view_trans)
 
-        // edge-to-edge padding
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val sys = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(sys.left, sys.top, sys.right, sys.bottom)
             insets
         }
 
-        // bind views
+
         rvTransactions    = findViewById(R.id.rvTransactions)
         spinnerMonth      = findViewById(R.id.spinnerMonthFilter)
         tvOverallLabel    = findViewById(R.id.tvOverallLabel)
@@ -64,35 +64,41 @@ class viewTrans : AppCompatActivity() {
         pbBalance         = findViewById(R.id.pbBalance)
         btnAddTxn         = findViewById(R.id.btnAddTxn)
 
-        // get category
+
         categoryName = intent.getStringExtra(EXTRA_CATEGORY) ?: run {
             Toast.makeText(this, "No category specified", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
 
-        // set labels
+
         tvOverallLabel.text = categoryName
         tvMonthLabel.text =
             DateFormatSymbols().months[Calendar.getInstance().get(Calendar.MONTH)]
 
-        // 1) Setup spinner adapter (uses spinner_item.xml & spinner_dropdown_item.xml)
+
         val months = resources.getStringArray(R.array.month_filter_entries)
         val monthAdapter = ArrayAdapter(
             this,
-            R.layout.spinner_item,      // your custom TextView with white text
+            R.layout.spinner_item,
             months
         ).also { it.setDropDownViewResource(R.layout.spinner_dropdown_item) }
         spinnerMonth.adapter = monthAdapter
 
-        // 2) Re-fetch whenever a new month is chosen
+
         spinnerMonth.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>, view: View?, pos: Int, id: Long
             ) {
                 selectedMonthIndex = pos
+
+                // ← NEW: update the month shown in the card
+                val monthNames = resources.getStringArray(R.array.month_filter_entries)
+                tvMonthLabel.text = if (pos == 0) "All" else monthNames[pos]
+
                 loadCategoryLimit(categoryName)
             }
+
             override fun onNothingSelected(parent: AdapterView<*>) {}
         }
 
