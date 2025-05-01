@@ -49,6 +49,9 @@ class add_trans : AppCompatActivity() {
             insets
         }
 
+        //Author: John Cowan
+        //Accessibiltiy: https://stackoverflow.com/questions/65556362/android-kotlin-get-value-of-selected-spinner-item
+        //Date Accessed: 24/04/2025
         // Spinner setup for categories
         categoryAdapter = ArrayAdapter(this,
             R.layout.spinner_item, categories).also {
@@ -159,6 +162,10 @@ class add_trans : AppCompatActivity() {
             finish()
         }
     }
+
+//    Author: Mughira Dar
+//    Accessibilty: https://stackoverflow.com/questions/58955434/how-to-convert-base64-string-into-image-in-kotlin-android
+//    Date: 28/04/2025
 
     /** Returns a Base64 string or null if no image was captured */
     private fun convertImageToBase64(): String? {

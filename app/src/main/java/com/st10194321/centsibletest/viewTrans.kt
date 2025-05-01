@@ -85,6 +85,9 @@ class viewTrans : AppCompatActivity() {
         ).also { it.setDropDownViewResource(R.layout.spinner_dropdown_item) }
         spinnerMonth.adapter = monthAdapter
 
+//Author: John Cowan
+//Accessibiltiy: https://stackoverflow.com/questions/65556362/android-kotlin-get-value-of-selected-spinner-item
+//Date Accessed: 24/04/2025
 
         spinnerMonth.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(

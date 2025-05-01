@@ -4,6 +4,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.st10194321.centsibletest.Transaction
 import com.st10194321.centsibletest.databinding.ItemTransactionBinding
 
+//Author: Rakeshdash
+//Accessibilty: https://stackoverflow.com/questions/43012903/trying-to-create-a-simple-recyclerview-in-kotlin-but-the-adapter-is-not-applyin
+//Date Accessed: 28/04/2025
+
+
 class TransactionAdapter(
     private val transactions: List<Transaction>,
     private val onTransactionClick: (Transaction) -> Unit
