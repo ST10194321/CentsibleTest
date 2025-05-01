@@ -29,7 +29,11 @@ class profile : AppCompatActivity() {
 
         // Initialize views
 
-
+        binding.iconHome.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+            finish()
+        }
         // Handle Edit Profile click
         binding.tvEditProfile.setOnClickListener {
 

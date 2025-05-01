@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.Base64
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -32,7 +33,7 @@ class add_trans : AppCompatActivity() {
     private lateinit var categoryAdapter: ArrayAdapter<String>
     private val categories = mutableListOf<String>()
 
-    private lateinit var captureImageButton: Button
+    private lateinit var captureImageButton: ImageButton
     private lateinit var imageView: ImageView
 
     private var capturedBitmap: Bitmap? = null
@@ -60,7 +61,7 @@ class add_trans : AppCompatActivity() {
 
         // Image capture
         captureImageButton = findViewById(R.id.btnCaptureImage)
-        imageView = findViewById(R.id.btnAddImage)
+        imageView = findViewById(R.id.btnCaptureImage)
         cameraLauncher = registerForActivityResult(
             ActivityResultContracts.TakePicturePreview()
         ) { bitmap ->

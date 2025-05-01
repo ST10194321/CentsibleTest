@@ -24,6 +24,7 @@ class setgoals : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySetgoalsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        enableEdgeToEdge()
 
         binding.saveButton.setOnClickListener {
             val month = binding.monthSpinner.selectedItem.toString()
