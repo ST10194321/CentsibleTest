@@ -10,7 +10,6 @@
     android:background="@drawable/bg_curve">
 
     <!-- Back button -->
-
     <ImageButton
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"

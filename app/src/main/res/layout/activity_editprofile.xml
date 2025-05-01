@@ -6,6 +6,17 @@
     android:background="@drawable/bg_curve"
     android:padding="20dp">
 
+    <!-- Back button -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/btnback"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardOverall"
         android:layout_width="match_parent"

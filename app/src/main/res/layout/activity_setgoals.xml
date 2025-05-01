@@ -22,6 +22,16 @@
             app:cardCornerRadius="16dp"
             app:cardBackgroundColor="#25FFFFFF">
 
+            <!-- Back button -->
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/btnback"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <LinearLayout
                 android:orientation="vertical"
                 android:padding="16dp"
