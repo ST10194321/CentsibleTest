@@ -186,19 +186,22 @@
                     android:layout_marginTop="8dp">
 
                     <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_margin="8dp" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:src="@drawable/badge1"/>
 
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_margin="8dp" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:src="@drawable/badge2"/>
 
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_margin="8dp" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+
+                        android:src="@drawable/badge3" />
                 </LinearLayout>
 
 

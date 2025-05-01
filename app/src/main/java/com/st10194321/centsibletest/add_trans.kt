@@ -167,7 +167,7 @@ class add_trans : AppCompatActivity() {
 //    Accessibilty: https://stackoverflow.com/questions/58955434/how-to-convert-base64-string-into-image-in-kotlin-android
 //    Date: 28/04/2025
 
-    /** Returns a Base64 string or null if no image was captured */
+    // Returns a Base64 string or null if no image was captured
     private fun convertImageToBase64(): String? {
         val bmp = capturedBitmap ?: return null
         val stream = ByteArrayOutputStream()
