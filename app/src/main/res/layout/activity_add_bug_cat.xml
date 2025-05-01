@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/homeLayout"
@@ -8,11 +9,28 @@
     android:background="@drawable/bg_curve"
     tools:context=".addBugCat">
 
+    <!-- Back button -->
+
+    <!-- Main Card -->
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="22dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/btnback"
+        app:layout_constraintBottom_toTopOf="@+id/cardOverall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardOverall"
-        android:layout_width="360dp"
-        android:layout_height="822dp"
+        android:layout_width="362dp"
+        android:layout_height="717dp"
         android:layout_margin="24dp"
         app:cardBackgroundColor="#25FFFFFF"
         app:cardCornerRadius="20dp"
@@ -22,13 +40,14 @@
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.38"
         app:strokeWidth="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp">
+            android:layout_height="703dp"
+            android:padding="16dp"
+            tools:layout_editor_absoluteX="25dp"
+            tools:layout_editor_absoluteY="46dp">
 
             <TextView
                 android:id="@+id/tvCardTitle"
@@ -64,6 +83,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ivCardCurve">
 
+                <!-- Category Name -->
                 <TextView
                     android:id="@+id/tvCatLabel"
                     android:layout_width="wrap_content"
@@ -72,9 +92,7 @@
                     android:paddingBottom="5dp"
                     android:text="Category Name"
                     android:textColor="#B0B0B0"
-                    android:textSize="14dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textSize="14sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilCategoryName"
@@ -94,14 +112,13 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etCategoryName"
                         android:layout_width="match_parent"
-
                         android:layout_height="wrap_content"
                         android:inputType="textCapWords"
                         android:padding="20dp"
-                        android:textColor="@color/white" />
-
+                        android:textColor="@android:color/white" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Toggle Saving/Expense -->
                 <com.google.android.material.button.MaterialButtonToggleGroup
                     android:id="@+id/toggleButtonGroup"
                     android:layout_width="match_parent"
@@ -132,13 +149,13 @@
                         android:layout_weight="1"
                         android:text="Expense"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
+                        android:textColor="@android:color/white"
                         app:backgroundTint="@color/colorGreys"
                         app:cornerRadius="20dp"
                         app:strokeWidth="0dp" />
-
                 </com.google.android.material.button.MaterialButtonToggleGroup>
 
+                <!-- Category Details -->
                 <TextView
                     android:id="@+id/tvCatNameLabel"
                     android:layout_width="wrap_content"
@@ -147,10 +164,7 @@
                     android:paddingTop="10dp"
                     android:text="Category Details"
                     android:textColor="#B0B0B0"
-                    android:textSize="14dp"
-
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textSize="14sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilCategoryDetails"
@@ -174,10 +188,10 @@
                         android:layout_height="wrap_content"
                         android:inputType="textCapSentences"
                         android:padding="20dp"
-                        android:textColor="@color/white" />
-
+                        android:textColor="@android:color/white" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Amount SeekBar Group -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -190,7 +204,7 @@
                         android:layout_height="wrap_content"
                         android:text="Amount"
                         android:textColor="#B0B0B0"
-                        android:textSize="14dp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -199,8 +213,6 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="27dp"
-
                         app:boxStrokeColor="@color/outline_color"
                         app:layout_constraintBottom_toTopOf="@+id/seekBarAmount"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -214,7 +226,6 @@
                             android:gravity="center"
                             android:inputType="number"
                             android:text="2000"
-
                             android:textColor="@android:color/white"
                             android:textSize="13sp"
                             android:textStyle="bold" />
@@ -231,12 +242,11 @@
                         android:progressTint="@color/colorAccentGreen"
                         android:thumbTint="@color/colorAccentGreen"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvAmountLabel" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <!-- Occurrence Date -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilOccurrence"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -263,10 +273,9 @@
                         android:padding="20dp"
                         android:text="Choose Date"
                         android:textColor="@color/colorGreys" />
-
                 </com.google.android.material.textfield.TextInputLayout>
 
-
+                <!-- Add Category Button -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnAddCategory"
                     android:layout_width="match_parent"
@@ -274,12 +283,14 @@
                     android:layout_marginTop="32dp"
                     android:text="Add Category"
                     android:textAllCaps="false"
-                    android:textColor="#000000"
+                    android:textColor="@android:color/black"
                     android:textSize="18sp"
                     app:backgroundTint="@color/colorAccentGreen"
                     app:cornerRadius="20dp" />
-
             </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

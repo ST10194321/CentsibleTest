@@ -3,6 +3,7 @@ package com.st10194321.centsibletest
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -119,6 +120,10 @@ class addBugCat : AppCompatActivity() {
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Save failed: ${e.message}", Toast.LENGTH_LONG).show()
                 }
+        }
+        val btnBack = findViewById<ImageButton>(R.id.btnBack)
+        btnBack.setOnClickListener {
+            finish()
         }
     }
 }

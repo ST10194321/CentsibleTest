@@ -9,6 +9,18 @@
     tools:context=".viewTrans"
     android:background="@drawable/bg_curve">
 
+    <!-- Back button -->
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/btnback"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvAppNameW"
@@ -21,10 +33,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.024" />
+        app:layout_constraintVertical_bias="0.079" />
 
     <ImageView
         android:id="@+id/ivCurve"
@@ -33,10 +45,10 @@
         android:contentDescription="@string/decorative_curve"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.051"
+        app:layout_constraintVertical_bias="0.104"
         app:srcCompat="@drawable/curve" />
 
     <com.google.android.material.card.MaterialCardView
@@ -97,24 +109,36 @@
                     app:layout_constraintTop_toBottomOf="@+id/tvOverallLabel" />
 
                 <TextView
-                    android:id="@+id/tvTotalAmount"
+                    android:id="@+id/tvTotalLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:text="Total: R0.00"
+                    android:layout_marginStart="236dp"
+                    android:layout_marginBottom="44dp"
+                    android:text="Total"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toTopOf="@+id/pbBalance"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvTotalAmount"
+                    android:layout_width="112dp"
+                    android:layout_height="26dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="R0.00"
                     android:textColor="@android:color/white"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/pbBalance"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.83"
+                    app:layout_constraintHorizontal_bias="0.89"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <ProgressBar
                     android:id="@+id/pbBalance"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="280dp"
-                    android:layout_height="13dp"
+                    android:layout_height="30dp"
                     android:layout_marginTop="16dp"
                     android:progress="75"
                     android:progressBackgroundTint="@color/colorAccentGreen"
@@ -139,12 +163,12 @@
                     android:id="@+id/tvRemaining"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="R0.00 left"
+                    android:text="R0.00"
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.127"
+                    app:layout_constraintHorizontal_bias="0.112"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvBalanceLabel" />
 
@@ -228,7 +252,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.903" />
+        app:layout_constraintVertical_bias="0.93" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

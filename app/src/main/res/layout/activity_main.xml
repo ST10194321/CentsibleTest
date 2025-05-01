@@ -201,6 +201,7 @@
 
                         <TextView
                             style="@style/ActionCardDescription"
+                            android:layout_height="63dp"
                             android:text="@string/add_transaction_desc" />
 
                         <com.google.android.material.button.MaterialButton
@@ -241,6 +242,7 @@
 
                         <TextView
                             style="@style/ActionCardDescription"
+                            android:layout_height="49dp"
                             android:text="@string/view_insights_desc" />
 
                         <com.google.android.material.button.MaterialButton
@@ -303,7 +305,7 @@
                 android:id="@+id/iconCategories"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/arrowup"
+                android:src="@drawable/list"
                 android:clickable="true"
                 android:focusable="true"/>
             <TextView

@@ -3,12 +3,9 @@ package com.st10194321.centsibletest
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
 import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
@@ -52,6 +49,9 @@ class add_trans : AppCompatActivity() {
             insets
         }
 
+        //Author: John Cowan
+        //Accessibiltiy: https://stackoverflow.com/questions/65556362/android-kotlin-get-value-of-selected-spinner-item
+        //Date Accessed: 24/04/2025
         // Spinner setup for categories
         categoryAdapter = ArrayAdapter(this,
             R.layout.spinner_item, categories).also {
@@ -157,7 +157,15 @@ class add_trans : AppCompatActivity() {
                     Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
                 }
         }
+        val btnBack = findViewById<ImageButton>(R.id.btnBack)
+        btnBack.setOnClickListener {
+            finish()
+        }
     }
+
+//    Author: Mughira Dar
+//    Accessibilty: https://stackoverflow.com/questions/58955434/how-to-convert-base64-string-into-image-in-kotlin-android
+//    Date: 28/04/2025
 
     /** Returns a Base64 string or null if no image was captured */
     private fun convertImageToBase64(): String? {

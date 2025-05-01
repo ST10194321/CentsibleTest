@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.TextView
@@ -24,7 +25,6 @@ import java.util.Calendar
 
 class viewTrans : AppCompatActivity() {
 
-    // UI
     private lateinit var rvTransactions: RecyclerView
     private lateinit var spinnerMonth: Spinner
     private lateinit var tvOverallLabel: TextView
@@ -85,6 +85,9 @@ class viewTrans : AppCompatActivity() {
         ).also { it.setDropDownViewResource(R.layout.spinner_dropdown_item) }
         spinnerMonth.adapter = monthAdapter
 
+//Author: John Cowan
+//Accessibiltiy: https://stackoverflow.com/questions/65556362/android-kotlin-get-value-of-selected-spinner-item
+//Date Accessed: 24/04/2025
 
         spinnerMonth.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -92,7 +95,7 @@ class viewTrans : AppCompatActivity() {
             ) {
                 selectedMonthIndex = pos
 
-                // ← NEW: update the month shown in the card
+                //update the month shown in the card
                 val monthNames = resources.getStringArray(R.array.month_filter_entries)
                 tvMonthLabel.text = if (pos == 0) "All" else monthNames[pos]
 
@@ -147,7 +150,7 @@ class viewTrans : AppCompatActivity() {
                     val details = doc.getString("details") ?: ""
                     val date    = doc.getString("date") ?: ""
                     val image   = doc.getString("image") ?: ""
-                    // parse month from "dd/MM/yyyy"
+                    // month from "dd/MM/yyyy"
                     val month = date.split("/").getOrNull(1)?.toIntOrNull() ?: 0
 
                     if (selectedMonthIndex == 0 || month == selectedMonthIndex) {
@@ -158,8 +161,8 @@ class viewTrans : AppCompatActivity() {
 
                 // update UI
                 val remaining = (limit - total).coerceAtLeast(0.0)
-                tvRemaining.text   = "R%.2f left".format(remaining)
-                tvTotalAmount.text = "Total: R%.2f".format(total)
+                tvRemaining.text   = "R%.2f".format(remaining)
+                tvTotalAmount.text = "R%.2f".format(total)
                 val pct = if (limit == 0L) 0
                 else ((total / limit * 100).coerceIn(0.0, 100.0)).toInt()
                 pbBalance.progress = pct
@@ -183,6 +186,10 @@ class viewTrans : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             }
+        val btnBack = findViewById<ImageButton>(R.id.btnBack)
+        btnBack.setOnClickListener {
+            finish()
+        }
     }
 
     companion object {

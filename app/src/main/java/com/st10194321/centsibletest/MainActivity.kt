@@ -19,8 +19,6 @@ import java.util.Calendar
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
-    // new UI widgets
     private lateinit var tvTotalSpent: TextView
     private lateinit var tvTotalLeft: TextView
     private lateinit var pbBalance: ProgressBar
@@ -50,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         // buttons (unchanged)…
         binding.btnNewBudCat.setOnClickListener { startActivity(Intent(this, addBugCat::class.java)) }
         binding.btnViewBudCat.setOnClickListener { startActivity(Intent(this, viewBugCat::class.java)) }
-        binding.btnTrackBudCat.setOnClickListener { startActivity(Intent(this, viewTrans::class.java)) }
+        binding.btnTrackBudCat.setOnClickListener { startActivity(Intent(this, viewgoals::class.java)) }
         binding.btnAddTrans.setOnClickListener { startActivity(Intent(this, add_trans::class.java)) }
 
 
@@ -66,6 +64,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(i)
             finish()
         }
+        binding.iconCategories.setOnClickListener {
+            val i = Intent(this, viewBugCat::class.java)
+            startActivity(i)
+            finish()
+        }
+
     }
 
 

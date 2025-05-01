@@ -8,11 +8,24 @@
     android:background="@drawable/bg_curve"
     tools:context=".viewBugCat">
 
+    <!-- Back button -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/btnback"
+        app:layout_constraintBottom_toTopOf="@+id/cardOverall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.484" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardOverall"
-        android:layout_width="360dp"
-        android:layout_height="0dp"
+        android:layout_width="362dp"
+        android:layout_height="775dp"
         android:layout_margin="24dp"
         app:cardBackgroundColor="#25FFFFFF"
         app:cardCornerRadius="20dp"
