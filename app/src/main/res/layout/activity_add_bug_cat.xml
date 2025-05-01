@@ -9,10 +9,7 @@
     android:background="@drawable/bg_curve"
     tools:context=".addBugCat">
 
-    <!-- Back button -->
-
     <!-- Main Card -->
-
     <ImageButton
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"

@@ -67,6 +67,12 @@ class profile : AppCompatActivity() {
             startActivity(i)
             finish()
         }
+
+        binding.iconCategories.setOnClickListener {
+            val i = Intent(this, viewBugCat::class.java)
+            startActivity(i)
+            finish()
+        }
         // Handle Edit Profile click
         binding.tvEditProfile.setOnClickListener {
 
