@@ -43,6 +43,33 @@
             android:text="Max Goal:"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
+        <!-- goal_card.xml, inside the existing LinearLayout below tvMaxGoal -->
+        <ProgressBar
+            android:id="@+id/pbGoalProgress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:progressDrawable="@drawable/rounded_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginTop="12dp"
+            android:max="100"
+            android:progress="20"/>
+
+        <TextView
+            android:id="@+id/tvSpent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spent: R0.00"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tvLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Left: R0.00"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="4dp"/>
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>
 
