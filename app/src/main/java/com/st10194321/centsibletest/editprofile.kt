@@ -22,6 +22,7 @@ class editprofile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Set up view binding
         binding = ActivityEditprofileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         enableEdgeToEdge()
@@ -30,7 +31,7 @@ class editprofile : AppCompatActivity() {
         val db = FirebaseFirestore.getInstance()
         val uid = auth.currentUser?.uid
 
-        // Load user profile from Firestore
+        // Load current user data into fields
         if (uid != null) {
             db.collection("users").document(uid).get()
                 .addOnSuccessListener { document ->
@@ -45,7 +46,7 @@ class editprofile : AppCompatActivity() {
                 }
         }
 
-        // Save updated profile to Firestore
+        // Save updated user info to Firestore
         binding.saveButton.setOnClickListener {
             val updatedProfile = mapOf(
                 "firstName" to binding.editFirstName.text.toString(),
@@ -66,16 +67,24 @@ class editprofile : AppCompatActivity() {
                     }
             }
         }
+
+        // Navigation bar
         binding.iconHome.setOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
+
         binding.iconProfile.setOnClickListener {
-            val i = Intent(this, profile::class.java)
-            startActivity(i)
+            startActivity(Intent(this, profile::class.java))
             finish()
         }
+
+        binding.iconCategories.setOnClickListener {
+            startActivity(Intent(this, viewBugCat::class.java))
+            finish()
+        }
+
+        // Back button
         val btnBack = findViewById<ImageButton>(R.id.btnBack)
         btnBack.setOnClickListener {
             startActivity(Intent(this, profile::class.java))
@@ -83,4 +92,5 @@ class editprofile : AppCompatActivity() {
         }
     }
 }
+
 

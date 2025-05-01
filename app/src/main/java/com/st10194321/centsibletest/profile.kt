@@ -23,7 +23,6 @@ import java.io.ByteArrayOutputStream
 
 class profile : AppCompatActivity() {
 
-
     private lateinit var binding: ActivityProfileBinding
     private var capturedBitmap: Bitmap? = null
     private lateinit var cameraLauncher: ActivityResultLauncher<Void?>
@@ -34,15 +33,10 @@ class profile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_profile)
-
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
-
-        val db = FirebaseFirestore.getInstance()
-
+        // Load profile image from Firestore if available
         db.collection("users").document(uid).get()
             .addOnSuccessListener { document ->
                 if (document.exists()) {
@@ -58,57 +52,33 @@ class profile : AppCompatActivity() {
                 Toast.makeText(this, "Failed to load profile image: ${e.message}", Toast.LENGTH_SHORT).show()
             }
 
-
-
-        // Initialize views
-
+        // Navigation bar
         binding.iconHome.setOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
 
         binding.iconCategories.setOnClickListener {
-            val i = Intent(this, viewBugCat::class.java)
-            startActivity(i)
+            startActivity(Intent(this, viewBugCat::class.java))
             finish()
         }
-        // Handle Edit Profile click
-        binding.tvEditProfile.setOnClickListener {
 
-            val i = Intent(this, editprofile::class.java)
-            startActivity(i)
-
+        binding.iconProfile.setOnClickListener {
+            startActivity(Intent(this, profile::class.java))
+            finish()
         }
 
-        // Handle Set Goals click
+        // Edit profile screen
+        binding.tvEditProfile.setOnClickListener {
+            startActivity(Intent(this, editprofile::class.java))
+        }
+
+        // View goals screen
         binding.cardViewGoals.setOnClickListener {
             startActivity(Intent(this, viewgoals::class.java))
         }
 
-        // Handle Set Income click
-        binding.iconHome.setOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
-            finish()
-        }
-//            catsIcon.setOnClickListener {
-//                val i = Intent(this, categories::class.java)
-//                startActivity(i)
-//                finish()
-//           }
-//            reportsIcon.setOnClickListener {
-//                val i = Intent(this, reports::class.java)
-//                startActivity(i)
-//                finish()
-//            }
-
-        binding.iconProfile.setOnClickListener {
-            val i = Intent(this, profile::class.java)
-            startActivity(i)
-            finish()
-        }
-
+        // Logout
         binding.cardLogout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(this, signin::class.java)
@@ -117,6 +87,7 @@ class profile : AppCompatActivity() {
             finish()
         }
 
+        // Set up camera to take profile picture
         cameraLauncher = registerForActivityResult(
             ActivityResultContracts.TakePicturePreview()
         ) { bitmap ->
@@ -124,11 +95,10 @@ class profile : AppCompatActivity() {
                 capturedBitmap = bitmap
                 binding.profileImage.setImageBitmap(bitmap)
 
-                // Upload to Firestore after image is captured
+                // Upload captured image to Firestore
                 val base64 = convertImageToBase64()
                 if (base64 != null) {
                     val txn = mapOf("image" to base64)
-
                     db.collection("users").document(uid)
                         .set(txn, SetOptions.merge())
                         .addOnSuccessListener {
@@ -143,13 +113,13 @@ class profile : AppCompatActivity() {
             }
         }
 
+        // Launch camera on profile image click
         binding.profileImage.setOnClickListener {
             cameraLauncher.launch(null)
         }
-
-
     }
 
+    // Helper method to convert bitmap to base64 string
     private fun convertImageToBase64(): String? {
         val bmp = capturedBitmap ?: return null
         val stream = ByteArrayOutputStream()
@@ -157,6 +127,5 @@ class profile : AppCompatActivity() {
         val bytes = stream.toByteArray()
         return Base64.encodeToString(bytes, Base64.DEFAULT)
     }
-
-
 }
+

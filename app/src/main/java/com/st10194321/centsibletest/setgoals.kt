@@ -27,11 +27,13 @@ class setgoals : AppCompatActivity() {
         setContentView(binding.root)
         enableEdgeToEdge()
 
+        // Save goal to Firestore
         binding.saveButton.setOnClickListener {
             val month = binding.monthSpinner.selectedItem.toString()
             val minGoal = binding.minGoalEdit.text.toString().toIntOrNull()
             val maxGoal = binding.maxGoalEdit.text.toString().toIntOrNull()
 
+            // Validate input
             if (minGoal == null || maxGoal == null) {
                 Toast.makeText(this, "Please enter valid numbers.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -46,13 +48,12 @@ class setgoals : AppCompatActivity() {
             val db = FirebaseFirestore.getInstance()
             val goalsRef = db.collection("users").document(uid).collection("goals")
 
-            // First check if a goal already exists for this month
+            // Prevent duplicate goal entries for the same month
             goalsRef.whereEqualTo("month", month).get()
                 .addOnSuccessListener { snapshot ->
                     if (!snapshot.isEmpty) {
                         Toast.makeText(this, "You already set a goal for $month.", Toast.LENGTH_LONG).show()
                     } else {
-                        // Add new goal
                         val goalData = mapOf(
                             "month" to month,
                             "minimumgoal" to minGoal,
@@ -71,31 +72,28 @@ class setgoals : AppCompatActivity() {
                     Toast.makeText(this, "Error checking goals: ${e.message}", Toast.LENGTH_LONG).show()
                 }
         }
+
+        // Navigation Bar
         binding.iconHome.setOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
-//            catsIcon.setOnClickListener {
-//                val i = Intent(this, categories::class.java)
-//                startActivity(i)
-//                finish()
-//           }
-//            reportsIcon.setOnClickListener {
-//                val i = Intent(this, reports::class.java)
-//                startActivity(i)
-//                finish()
-//            }
 
         binding.iconProfile.setOnClickListener {
-            val i = Intent(this, profile::class.java)
-            startActivity(i)
+            startActivity(Intent(this, profile::class.java))
             finish()
         }
 
+        binding.iconCategories.setOnClickListener {
+            startActivity(Intent(this, viewBugCat::class.java))
+            finish()
+        }
+
+        // Back button
         val btnBack = findViewById<ImageButton>(R.id.btnBack)
         btnBack.setOnClickListener {
             finish()
         }
     }
 }
+
