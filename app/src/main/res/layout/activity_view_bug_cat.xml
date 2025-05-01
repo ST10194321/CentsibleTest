@@ -9,8 +9,6 @@
     tools:context=".viewBugCat">
 
     <!-- Back button -->
-
-
     <ImageButton
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"

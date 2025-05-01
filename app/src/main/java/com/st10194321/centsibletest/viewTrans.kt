@@ -25,7 +25,6 @@ import java.util.Calendar
 
 class viewTrans : AppCompatActivity() {
 
-    // UI
     private lateinit var rvTransactions: RecyclerView
     private lateinit var spinnerMonth: Spinner
     private lateinit var tvOverallLabel: TextView
@@ -93,7 +92,7 @@ class viewTrans : AppCompatActivity() {
             ) {
                 selectedMonthIndex = pos
 
-                // ← NEW: update the month shown in the card
+                //update the month shown in the card
                 val monthNames = resources.getStringArray(R.array.month_filter_entries)
                 tvMonthLabel.text = if (pos == 0) "All" else monthNames[pos]
 
@@ -148,7 +147,7 @@ class viewTrans : AppCompatActivity() {
                     val details = doc.getString("details") ?: ""
                     val date    = doc.getString("date") ?: ""
                     val image   = doc.getString("image") ?: ""
-                    // parse month from "dd/MM/yyyy"
+                    // month from "dd/MM/yyyy"
                     val month = date.split("/").getOrNull(1)?.toIntOrNull() ?: 0
 
                     if (selectedMonthIndex == 0 || month == selectedMonthIndex) {
