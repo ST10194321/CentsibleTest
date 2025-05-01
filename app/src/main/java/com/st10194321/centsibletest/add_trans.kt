@@ -157,6 +157,10 @@ class add_trans : AppCompatActivity() {
                     Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
                 }
         }
+        val btnBack = findViewById<ImageButton>(R.id.btnBack)
+        btnBack.setOnClickListener {
+            finish()
+        }
     }
 
     /** Returns a Base64 string or null if no image was captured */

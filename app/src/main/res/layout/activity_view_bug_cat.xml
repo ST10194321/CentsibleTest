@@ -8,6 +8,16 @@
     android:background="@drawable/bg_curve"
     tools:context=".viewBugCat">
 
+    <!-- Back button -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/btnback"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardOverall"
