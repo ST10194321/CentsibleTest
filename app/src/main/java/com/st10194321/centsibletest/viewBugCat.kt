@@ -66,6 +66,7 @@ class viewBugCat : AppCompatActivity() {
 
         val btnBack = findViewById<ImageButton>(R.id.btnBack)
         btnBack.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
 

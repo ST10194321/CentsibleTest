@@ -64,6 +64,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(i)
             finish()
         }
+        binding.iconCategories.setOnClickListener {
+            val i = Intent(this, viewBugCat::class.java)
+            startActivity(i)
+            finish()
+        }
+
     }
 
 
