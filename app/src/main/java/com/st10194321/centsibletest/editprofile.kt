@@ -56,7 +56,7 @@ class editprofile : AppCompatActivity() {
                     .set(updatedProfile, SetOptions.merge())
                     .addOnSuccessListener {
                         Toast.makeText(this, "Profile updated successfully", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, MainActivity::class.java))
+                        startActivity(Intent(this, profile::class.java))
                         finish()
                     }
                     .addOnFailureListener { e ->
