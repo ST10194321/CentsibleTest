@@ -17,7 +17,6 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import com.google.firebase.storage.FirebaseStorage
 import com.st10194321.centsibletest.databinding.ActivityMainBinding
 import com.st10194321.centsibletest.databinding.ActivityProfileBinding
 import java.io.ByteArrayOutputStream
