@@ -37,6 +37,13 @@ cd centsibletest
 ```
 The app will launch on your emulator or connected device.
 
+### Tech Stack
+- **Language**: Kotlin + XML
+- **Database**: RoomDB
+- **Authentication**: Firebase Authentication
+- **Storage**: Firebase Firestore
+- **Version Control**: GitHub 
+
 ## Usage
 
 Follow these steps to get started with Centsible:
