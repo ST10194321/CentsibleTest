@@ -159,8 +159,8 @@ class viewTrans : AppCompatActivity() {
 
                 // update UI
                 val remaining = (limit - total).coerceAtLeast(0.0)
-                tvRemaining.text   = "R%.2f left".format(remaining)
-                tvTotalAmount.text = "Total: R%.2f".format(total)
+                tvRemaining.text   = "R%.2f".format(remaining)
+                tvTotalAmount.text = "R%.2f".format(total)
                 val pct = if (limit == 0L) 0
                 else ((total / limit * 100).coerceIn(0.0, 100.0)).toInt()
                 pbBalance.progress = pct

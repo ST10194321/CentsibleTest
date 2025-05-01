@@ -230,7 +230,8 @@
 
                         <ImageView
                             android:layout_width="20dp"
-                            android:layout_height="23dp" />
+                            android:layout_height="23dp"
+                            android:src="@drawable/logout"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -284,7 +285,7 @@
                 android:id="@+id/iconCategories"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/arrowup"
+                android:src="@drawable/list"
                 android:clickable="true"
                 android:focusable="true"/>
             <TextView

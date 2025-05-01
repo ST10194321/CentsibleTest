@@ -36,18 +36,19 @@
     <string name="start_your_budget_desc">The benefits of multiple budget categories</string>
 
     <string name="add_transaction_title">Add a transaction</string>
-    <string name="add_transaction_desc">Enter your latest expense or income</string>
+    <string name="add_transaction_desc">Enter your latest expense or income
+     </string>
 
     <string name="view_your_budget_title">View your budget</string>
     <string name="view_your_budget_desc">Take a look at your budgets</string>
 
-    <string name="view_insights_title">View Insights</string>
-    <string name="view_insights_desc">An in-depth look at your finances</string>
+    <string name="view_insights_title">View Goals</string>
+    <string name="view_insights_desc">Take a look at your budget goals</string>
 
     <string name="new_budget_category_button">New Budget Category</string>
     <string name="add_transaction_button">Add Transaction</string>
     <string name="view_budget_category_button">View Budget Category</string>
-    <string name="track_budget_button">Track Budget</string>
+    <string name="track_budget_button">View Goals</string>
 
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
