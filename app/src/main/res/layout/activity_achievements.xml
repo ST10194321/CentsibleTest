@@ -23,11 +23,63 @@
         <GridLayout
             android:id="@+id/achievementGrid"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="150dp"
             android:columnCount="3"
             android:rowCount="2"
             android:alignmentMode="alignMargins"
             android:useDefaultMargins="true">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:src="@drawable/badge1"
+                android:contentDescription="Badge 1"
+                android:layout_gravity="center"/>
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:src="@drawable/badge2"
+                android:contentDescription="Badge 2"
+                android:layout_gravity="center"/>
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:src="@drawable/badge3"
+                android:contentDescription="Badge 3"
+                />
+
+        </GridLayout>
+        <GridLayout
+            android:id="@+id/achievementGrid2"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:columnCount="3"
+            android:rowCount="1"
+            android:alignmentMode="alignMargins"
+            android:useDefaultMargins="true">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:src="@drawable/badge1"
+                android:contentDescription="Badge 1"
+                android:layout_gravity="center"/>
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:src="@drawable/badge2"
+                android:contentDescription="Badge 2"
+                android:layout_gravity="center"/>
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:src="@drawable/badge3"
+                android:contentDescription="Badge 3" />
+
         </GridLayout>
     </LinearLayout>
 
