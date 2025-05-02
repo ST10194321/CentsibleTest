@@ -87,6 +87,8 @@ class profile : AppCompatActivity() {
             finish()
         }
 
+        // Accessibilty: https://developer.android.com/media/camera/camera-deprecated/photobasics#kotlin
+        // Date: 01/05/2025
         // Set up camera to take profile picture
         cameraLauncher = registerForActivityResult(
             ActivityResultContracts.TakePicturePreview()
@@ -119,6 +121,9 @@ class profile : AppCompatActivity() {
         }
     }
 
+    //    Author: Mughira Dar
+    //    Accessibilty: https://stackoverflow.com/questions/58955434/how-to-convert-base64-string-into-image-in-kotlin-android
+    //    Date: 28/04/2025
     // Helper method to convert bitmap to base64 string
     private fun convertImageToBase64(): String? {
         val bmp = capturedBitmap ?: return null
