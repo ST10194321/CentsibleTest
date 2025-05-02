@@ -77,12 +77,6 @@ Follow these steps to get started with Centsible:
 6. **Earn Badges & Notifications**  
    - Reach milestones (e.g., “Under Budget 3 Months”) to earn badges.  
    - Receive push notifications when you’re nearing your budget limit.
-  
-## License
-
-This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for details.
-
----
 
 
 ### Documentation
