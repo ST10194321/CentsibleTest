@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Base64
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -17,6 +18,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Source
 import com.st10194321.centsibletest.databinding.ActivityAddTransBinding
 import java.io.ByteArrayOutputStream
 import java.util.*
@@ -49,9 +51,6 @@ class add_trans : AppCompatActivity() {
             insets
         }
 
-        //Author: John Cowan
-        //Accessibiltiy: https://stackoverflow.com/questions/65556362/android-kotlin-get-value-of-selected-spinner-item
-        //Date Accessed: 24/04/2025
         // Spinner setup for categories
         categoryAdapter = ArrayAdapter(this,
             R.layout.spinner_item, categories).also {
@@ -90,7 +89,6 @@ class add_trans : AppCompatActivity() {
                 }
         }
 
-
         // Date picker
         binding.etTxnDate.setOnClickListener {
             val cal = Calendar.getInstance()
@@ -113,15 +111,15 @@ class add_trans : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val name     = binding.etTxnName.text.toString().trim()
-            val amountStr= binding.etTxnAmount.text.toString().trim()
-            val details  = binding.etTxnDetails.text.toString().trim()
-            val category = binding.spinnerCategory.selectedItem.toString()
-            val date     = binding.etTxnDate.text.toString().trim()
+            val name      = binding.etTxnName.text.toString().trim()
+            val amountStr = binding.etTxnAmount.text.toString().trim()
+            val details   = binding.etTxnDetails.text.toString().trim()
+            val category  = binding.spinnerCategory.selectedItem.toString()
+            val date      = binding.etTxnDate.text.toString().trim()
 
-            // Validate required fields
+            // Validate
             if (name.isEmpty() || amountStr.isEmpty() || date.isEmpty()) {
-                Toast.makeText(this, "Please complete all required fields: name, amount, date", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please complete all required fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             val amount = amountStr.toDoubleOrNull()
@@ -130,7 +128,7 @@ class add_trans : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Build transaction map
+            // Build the map
             val txn = mutableMapOf<String, Any>(
                 "name"      to name,
                 "amount"    to amount,
@@ -139,34 +137,40 @@ class add_trans : AppCompatActivity() {
                 "date"      to date,
                 "timestamp" to System.currentTimeMillis()
             )
-
-
             convertImageToBase64()?.let { base64 ->
                 txn["image"] = base64
             }
 
-
+            // Write it
             db.collection("users").document(user.uid)
                 .collection("transactions")
                 .add(txn)
-                .addOnSuccessListener {
-                    Toast.makeText(this, "Transaction added!", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
+                .addOnSuccessListener { docRef ->
+                    Log.d("add_trans", "Local write OK, doc ID=${docRef.id}")
+                    // Now wait for the server to confirm
+                    db.waitForPendingWrites()
+                        .addOnSuccessListener {
+                            Log.d("add_trans", "Server ACK received")
+                            Toast.makeText(this, "Transaction saved!", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this, MainActivity::class.java))
+                            finish()
+                        }
+                        .addOnFailureListener { e ->
+                            Log.e("add_trans", "Error syncing to server", e)
+                            Toast.makeText(this, "Save error: ${e.message}", Toast.LENGTH_LONG).show()
+                        }
                 }
                 .addOnFailureListener { e ->
+                    Log.e("add_trans", "Local write failed", e)
                     Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
                 }
         }
-        val btnBack = findViewById<ImageButton>(R.id.btnBack)
-        btnBack.setOnClickListener {
+
+        // Back arrow
+        findViewById<ImageButton>(R.id.btnBack).setOnClickListener {
             finish()
         }
     }
-
-//    Author: Mughira Dar
-//    Accessibilty: https://stackoverflow.com/questions/58955434/how-to-convert-base64-string-into-image-in-kotlin-android
-//    Date: 28/04/2025
 
     // Returns a Base64 string or null if no image was captured
     private fun convertImageToBase64(): String? {
