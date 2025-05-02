@@ -19,11 +19,16 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardOverall"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
+        android:layout_width="340dp"
+        android:layout_height="536dp"
         android:layout_above="@id/bottomNavigation"
-        android:layout_margin="24dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="131dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="137dp"
         app:cardBackgroundColor="#25FFFFFF"
         app:cardCornerRadius="20dp"
         app:cardElevation="8dp"
@@ -49,47 +54,47 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="24dp"
                         android:text="Edit Profile"
                         android:textColor="#FFFFFF"
                         android:textSize="24sp"
-                        android:textStyle="bold"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="24dp" />
+                        android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/editFirstName"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:layout_marginBottom="16dp"
                         android:hint="Edit First Name"
                         android:textColor="#FFFFFF"
-                        android:textColorHint="#AAAAAA"
-                        android:layout_marginBottom="16dp"
-                        android:id="@+id/editFirstName"/>
+                        android:textColorHint="#AAAAAA" />
 
                     <EditText
+                        android:id="@+id/editLastName"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:layout_marginBottom="16dp"
                         android:hint="Edit Last Name"
                         android:textColor="#FFFFFF"
-                        android:textColorHint="#AAAAAA"
-                        android:layout_marginBottom="16dp"
-                        android:id="@+id/editLastName"/>
+                        android:textColorHint="#AAAAAA" />
 
                     <EditText
+                        android:id="@+id/editPhoneNumber"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:layout_marginBottom="24dp"
                         android:hint="Edit Phone Number"
                         android:inputType="phone"
                         android:textColor="#FFFFFF"
-                        android:textColorHint="#AAAAAA"
-                        android:layout_marginBottom="24dp"
-                        android:id="@+id/editPhoneNumber"/>
+                        android:textColorHint="#AAAAAA" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:orientation="horizontal"
+                        android:layout_marginBottom="24dp"
                         android:gravity="center"
-                        android:layout_marginBottom="24dp">
+                        android:orientation="horizontal">
 
                         <ImageView
                             android:layout_width="24dp"
@@ -214,3 +219,8 @@
     </LinearLayout>
 
 </RelativeLayout>
+    <!--
+       Author: Lars Vogel(Vogella Tutorials)
+       Accessibiltiy:https://www.vogella.com/tutorials/android.html
+       Date Accessed: 02/05/2025
+       -->

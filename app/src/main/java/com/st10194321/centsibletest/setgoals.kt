@@ -27,7 +27,7 @@ class setgoals : AppCompatActivity() {
             val minGoal = binding.minGoalEdit.text.toString().toIntOrNull()
             val maxGoal = binding.maxGoalEdit.text.toString().toIntOrNull()
 
-            // Validate input
+            // Validates input
             if (minGoal == null || maxGoal == null) {
                 Toast.makeText(this, "Please enter valid numbers.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -42,7 +42,7 @@ class setgoals : AppCompatActivity() {
             val db = FirebaseFirestore.getInstance()
             val goalsRef = db.collection("users").document(uid).collection("goals")
 
-            // Prevent duplicate goal entries for the same month
+            // Prevents duplicate goal entries for the same month
             goalsRef.whereEqualTo("month", month).get()
                 .addOnSuccessListener { snapshot ->
                     if (!snapshot.isEmpty) {
@@ -56,6 +56,8 @@ class setgoals : AppCompatActivity() {
                         goalsRef.add(goalData)
                             .addOnSuccessListener {
                                 Toast.makeText(this, "Goal saved for $month", Toast.LENGTH_SHORT).show()
+                                val i = Intent(this, viewgoals::class.java)
+                                startActivity(i)
                             }
                             .addOnFailureListener { e ->
                                 Toast.makeText(this, "Failed: ${e.message}", Toast.LENGTH_LONG).show()
@@ -65,6 +67,9 @@ class setgoals : AppCompatActivity() {
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Error checking goals: ${e.message}", Toast.LENGTH_LONG).show()
                 }
+            //Author: John Cowan
+            //Accessibiltiy: https://stackoverflow.com/questions/65556362/android-kotlin-get-value-of-selected-spinner-item
+            //Date Accessed: 24/04/2025
         }
 
         // Navigation Bar

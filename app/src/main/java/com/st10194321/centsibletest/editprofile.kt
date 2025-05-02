@@ -41,6 +41,9 @@ class editprofile : AppCompatActivity() {
                     Toast.makeText(this, "Failed to load profile:\n${e.message}", Toast.LENGTH_LONG).show()
                 }
         }
+        //Author: Firebase Documentation Team
+        // Accessibiltiy: https://firebase.google.com/docs/firestore/query-data/get-data#get_a_document
+        // Date Accessed: 20/04/2025
 
         // Save updated user info to Firestore
         binding.saveButton.setOnClickListener {

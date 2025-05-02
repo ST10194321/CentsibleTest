@@ -56,6 +56,13 @@ class viewgoals : AppCompatActivity() {
             finish()
         }
     }
+    //Author: Firebase Documentation Team
+    //Accessibiltiy: https://firebase.google.com/docs/firestore/query-data/get-data?platform=android
+    //Date Accessed: 20/04/2025
+    //
+    //Author: Android Developers
+    //Accessibiltiy: https://developer.android.com/reference/java/text/DateFormatSymbols
+    //Date Accessed: 12/04/2025
 
     // Load goals and calculate transaction data per month
     private fun loadGoals() {
@@ -144,6 +151,10 @@ class viewgoals : AppCompatActivity() {
                         }
                 }
             }
+            //Author: Firebase Documentation Team
+            //Accessibiltiy: https://firebase.google.com/docs/firestore/query-data/get-data?platform=android
+            //Date Accessed: 13/04/2025
+
             .addOnFailureListener { e ->
                 Toast.makeText(
                     this,

@@ -37,5 +37,8 @@ private lateinit var btnReg:Button
             val i = Intent(this, signupD::class.java)
             startActivity(i)
         }
+        //Author: Android Developers
+        //Accessibiltiy: https://developer.android.com/reference/android/view/View#setOnClickListener(android.view.View.OnClickListener)
+        //Date Accessed: 15/04/2025
     }
 }

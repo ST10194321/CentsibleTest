@@ -2,6 +2,7 @@ package com.st10194321.centsibletest
 
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.widget.Toast
@@ -9,11 +10,19 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.textfield.TextInputEditText
+import com.st10194321.centsibletest.databinding.ActivitySignupBinding
 import com.st10194321.centsibletest.databinding.ActivitySignupDBinding
+import java.sql.Date
+import java.util.Locale
 
-private lateinit var binding: ActivitySignupDBinding
+
 
 class signupD : AppCompatActivity() {
+
+    // view binding
+    private lateinit var binding: ActivitySignupDBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,11 +35,8 @@ class signupD : AppCompatActivity() {
             insets
         }
 
-        //leads to the sign up page
-        binding.btnFoward.setOnClickListener {
-            val i = Intent(this, signup::class.java)
-            startActivity(i)
-        }
+
+
 
         //leads back to the welcome page
         binding.btnBackUp.setOnClickListener {
@@ -39,6 +45,7 @@ class signupD : AppCompatActivity() {
             finish()
         }
 
+        // date‑of‑birth picker
         binding.etDOB.setOnClickListener {
             val cal = Calendar.getInstance()
             DatePickerDialog(
@@ -52,7 +59,11 @@ class signupD : AppCompatActivity() {
             ).show()
         }
 
+//Author: Chetan R
+//Accessibiltiy: https://stackoverflow.com/questions/14933330/datepicker-how-to-popup-datepicker-when-entering-edittext
+//Date Accessed: 21/04/2025
 
+        //pass personal details data to signup
         binding.btnContinue.setOnClickListener {
             val firstName = binding.etUp.text.toString().trim()
             val lastName  = binding.etPasswordUp.text.toString().trim()

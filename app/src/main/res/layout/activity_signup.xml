@@ -198,19 +198,10 @@ android:textColor="@color/white"
         app:layout_constraintVertical_bias="0.002"
         app:srcCompat="@drawable/curve" />
 
-    <ImageButton
-        android:id="@+id/btnFoward"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:src="@drawable/btnback"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.984" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--
+       Author: Lars Vogel(Vogella Tutorials)
+       Accessibiltiy:https://www.vogella.com/tutorials/android.html
+       Date Accessed: 02/05/2025
+       -->

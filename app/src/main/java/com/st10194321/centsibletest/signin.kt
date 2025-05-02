@@ -2,36 +2,42 @@ package com.st10194321.centsibletest
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
 import com.st10194321.centsibletest.databinding.ActivitySigninBinding
+
 import kotlinx.coroutines.launch
 import org.mindrot.jbcrypt.BCrypt
 
 
 class signin : AppCompatActivity() {
-
+    // view binding
     private lateinit var binding: ActivitySigninBinding
+    // Firebase auth
     private lateinit var auth: FirebaseAuth
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_signin)
 
+        // init auth
         auth = FirebaseAuth.getInstance()
 
         binding = ActivitySigninBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //forward button goes to main screen
-        binding.btnFoward.setOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
-        }
+
 
         //back button goes to previous screen
         binding.btnBack.setOnClickListener {
@@ -44,6 +50,7 @@ class signin : AppCompatActivity() {
             startActivity(Intent(this, signup::class.java))
         }
 
+        // sign‑in logic
         binding.btnSignIn.setOnClickListener {
             val email = binding.etEmail.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
@@ -60,6 +67,7 @@ class signin : AppCompatActivity() {
                         Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this, MainActivity::class.java))
                     } else {
+                        //roomdb login
                         lifecycleScope.launch {
                             val localUser = AppDatabase
                                 .getDatabase(this@signin)
@@ -75,6 +83,14 @@ class signin : AppCompatActivity() {
                                     Toast.LENGTH_LONG
                                 ).show()
                             }
+                            //Author: Firebase Documentation Team
+                        // Accessibiltiy: https://firebase.google.com/docs/firestore/query-data/get-data?platform=android
+                        // Date Accessed: 10/04/2025
+
+                            //Author: Damien Miller (jBCrypt)
+                        // Accessibiltiy: https://www.mindrot.org/projects/jBCrypt/
+                        // Date Accessed: 10/04/2025
+
                         }
                     }
                 }
@@ -83,3 +99,6 @@ class signin : AppCompatActivity() {
 
         }
     }
+//Author: Firebase Documentation Team
+//Accessibiltiy: https://firebase.google.com/docs/auth/android/manage-users#sign_in
+//Date Accessed: 10/04/2025

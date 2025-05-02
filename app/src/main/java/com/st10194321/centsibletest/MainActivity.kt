@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         tvTotalLeft  = binding.cardOverall.findViewById(R.id.tvTotalLeft)
         pbBalance    = binding.cardOverall.findViewById(R.id.pbBalance)
 
-        // buttons that take user to specfic page
+        // buttons that take user to specific page
         binding.btnNewBudCat.setOnClickListener {
             startActivity(Intent(this, addBugCat::class.java))
         }

@@ -28,7 +28,7 @@
         android:id="@+id/ivCurve"
         android:layout_width="151dp"
         android:layout_height="20dp"
-        android:contentDescription="@string/decorative_curve"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.157"
@@ -366,3 +366,8 @@
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!--
+       Author: Lars Vogel(Vogella Tutorials)
+       Accessibiltiy:https://www.vogella.com/tutorials/android.html
+       Date Accessed: 02/05/2025
+       -->

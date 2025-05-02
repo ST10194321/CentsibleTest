@@ -49,3 +49,9 @@
             app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
+
+    <!--
+       Author: Lars Vogel(Vogella Tutorials)
+       Accessibiltiy:https://www.vogella.com/tutorials/android.html
+       Date Accessed: 02/05/2025
+       -->

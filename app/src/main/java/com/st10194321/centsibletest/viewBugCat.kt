@@ -17,6 +17,7 @@ class viewBugCat : AppCompatActivity() {
     companion object {
         const val EXTRA_CATEGORY = "EXTRA_CATEGORY"
     }
+    // view binding
     private lateinit var binding: ActivityViewBugCatBinding
     private val auth by lazy { FirebaseAuth.getInstance() }
     private val db   by lazy { FirebaseFirestore.getInstance() }
@@ -32,6 +33,11 @@ class viewBugCat : AppCompatActivity() {
         binding.rvCategories.apply {
             layoutManager = LinearLayoutManager(this@viewBugCat)
         }
+
+        //Author: Firebase Documentation Team
+        //Accessibiltiy: https://firebase.google.com/docs/firestore/query-data/get-data?platform=android
+        //Date Accessed: 20/04/2025
+
 
 
         val uid = auth.currentUser?.uid ?: return
@@ -56,6 +62,7 @@ class viewBugCat : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Failed to load: ${e.message}", Toast.LENGTH_SHORT).show()
             }
+
 
         //leads to the add category page
         binding.btnAddCategory.setOnClickListener {

@@ -54,7 +54,7 @@ class viewTrans : AppCompatActivity() {
             insets
         }
 
-
+        // bind XML views
         rvTransactions    = findViewById(R.id.rvTransactions)
         spinnerMonth      = findViewById(R.id.spinnerMonthFilter)
         tvOverallLabel    = findViewById(R.id.tvOverallLabel)
@@ -65,6 +65,7 @@ class viewTrans : AppCompatActivity() {
         btnAddTxn         = findViewById(R.id.btnAddTxn)
 
 
+        // get category name from intent
         categoryName = intent.getStringExtra(EXTRA_CATEGORY) ?: run {
             Toast.makeText(this, "No category specified", Toast.LENGTH_SHORT).show()
             finish()
@@ -72,11 +73,13 @@ class viewTrans : AppCompatActivity() {
         }
 
 
+        // set default labels
         tvOverallLabel.text = categoryName
         tvMonthLabel.text =
             DateFormatSymbols().months[Calendar.getInstance().get(Calendar.MONTH)]
 
 
+        // populate month filter spinner
         val months = resources.getStringArray(R.array.month_filter_entries)
         val monthAdapter = ArrayAdapter(
             this,
@@ -89,6 +92,7 @@ class viewTrans : AppCompatActivity() {
 //Accessibiltiy: https://stackoverflow.com/questions/65556362/android-kotlin-get-value-of-selected-spinner-item
 //Date Accessed: 24/04/2025
 
+        // spinner selection listener
         spinnerMonth.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>, view: View?, pos: Int, id: Long
@@ -105,7 +109,7 @@ class viewTrans : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>) {}
         }
 
-        // Add screen
+        // “add transaction” button
         btnAddTxn.setOnClickListener {
             startActivity(Intent(this, add_trans::class.java))
             finish()
@@ -187,6 +191,11 @@ class viewTrans : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             }
+    //Author: Firebase Documentation Team
+  //Accessibiltiy: https://firebase.google.com/docs/firestore/query-data/get-data#custom_objects
+  //Date Accessed: 24/04/2025
+
+    //back button
         val btnBack = findViewById<ImageButton>(R.id.btnBack)
         btnBack.setOnClickListener {
             finish()

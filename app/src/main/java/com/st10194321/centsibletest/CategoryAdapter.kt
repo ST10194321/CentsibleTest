@@ -12,6 +12,7 @@ class CategoryAdapter(
     private val onClick: (Category) -> Unit
 ) : RecyclerView.Adapter<CategoryAdapter.VH>() {
 
+
     inner class VH(view: View) : RecyclerView.ViewHolder(view) {
         private val icon    = view.findViewById<ImageView>(R.id.ivIcon)
         private val name    = view.findViewById<TextView>(R.id.tvName)
