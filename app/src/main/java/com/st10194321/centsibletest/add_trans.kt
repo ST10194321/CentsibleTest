@@ -121,7 +121,7 @@ class add_trans : AppCompatActivity() {
 
             // Validate required fields
             if (name.isEmpty() || amountStr.isEmpty() || date.isEmpty()) {
-                Toast.makeText(this, "Please complete all required fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please complete all required fields: name, amount, date", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             val amount = amountStr.toDoubleOrNull()

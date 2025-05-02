@@ -10,6 +10,14 @@
     app:cardBackgroundColor="#1E1E1E"
     android:clickable="true"
     android:focusable="true">
+    <Button
+        android:id="@+id/btnDeleteGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:textColor="@android:color/black"
+        android:layout_gravity="end"
+        android:layout_marginTop="8dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
