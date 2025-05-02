@@ -14,6 +14,12 @@ Key Features
 - **Budget Goals** – Define monthly min/max limits and receive timely alerts.   
 - **Gamification** – Badges, progress bars, and notifications to keep you motivated.
 
+## Demo Video
+
+🎥 [Click here to watch the Demo](https://youtu.be/irYLi_9jh4k)
+
+
+
 ## Installation
 
 ### Prerequisites
