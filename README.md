@@ -83,7 +83,7 @@ This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for d
 
 Link to detailed docs or a GitHub Pages site:
 
-- [User Guide](https://your-username.github.io/centsibletest/user-guide)  
+- [User Guide](https://st10194321.github.io/centsibletest/user-guide)  
 
 
 ### Changelog
@@ -95,6 +95,11 @@ Maintain a **CHANGELOG.md** to track releases:
 ### Added
 - Initial release with core budgeting features.
 ```
+## Contributers
+Ayushkar Ramkissoon: ST10036346
+Ethan Pillay: ST10258615
+José Gonzalves: ST10194321
+Quellon Naicker: ST10340880
 
 ## Conclusion
 
