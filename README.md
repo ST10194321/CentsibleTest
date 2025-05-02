@@ -1,3 +1,4 @@
+![Centsible Banner](images/banner.jpg)
 Centsible - Budget Tracker App
 ------------------------------------------------------
 
@@ -18,6 +19,13 @@ Key Features
 
 🎥 [Click here to watch the Demo](https://youtu.be/irYLi_9jh4k)
 
+## Screenshots
+
+| Welcome | Home  | Category |
+|-----------|------------------|-------------------|
+| ![](images/welcome.png) | ![](images/home.png) | ![](images/category.png) |
+
+---
 
 
 ## Installation
