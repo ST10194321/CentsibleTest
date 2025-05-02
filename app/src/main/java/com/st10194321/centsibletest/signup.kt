@@ -39,11 +39,13 @@ class signup : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         db   = FirebaseFirestore.getInstance()
 
+        //leads back to the welcome page
         binding.btnBack.setOnClickListener {
             val i = Intent(this, welcome::class.java)
             startActivity(i)
         }
 
+        //saves and stores credentials in firebase auth
         binding.btnSignUp.setOnClickListener {
             val email    = binding.etEmailUp.text.toString().trim()
             val password = binding.etPasswordUp.text.toString().trim()

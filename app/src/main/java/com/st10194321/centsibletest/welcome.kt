@@ -26,10 +26,13 @@ private lateinit var btnReg:Button
         btnLog = findViewById(R.id.btnLog)
         btnReg = findViewById(R.id.btnReg)
 
+        //Leads to login page
         btnLog.setOnClickListener {
                  val i = Intent(this, signin::class.java)
                startActivity(i)
              }
+
+        //Leads to signup page
         btnReg.setOnClickListener {
             val i = Intent(this, signupD::class.java)
             startActivity(i)

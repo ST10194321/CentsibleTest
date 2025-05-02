@@ -57,11 +57,12 @@ class viewBugCat : AppCompatActivity() {
                 Toast.makeText(this, "Failed to load: ${e.message}", Toast.LENGTH_SHORT).show()
             }
 
-
+        //leads to the add category page
         binding.btnAddCategory.setOnClickListener {
             startActivity(Intent(this, addBugCat::class.java))
         }
 
+        //leads back to the main page
         val btnBack = findViewById<ImageButton>(R.id.btnBack)
         btnBack.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))

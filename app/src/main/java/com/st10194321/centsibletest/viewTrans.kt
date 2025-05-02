@@ -112,6 +112,7 @@ class viewTrans : AppCompatActivity() {
         }
     }
 
+    //retrieves category limit
     private fun loadCategoryLimit(categoryName: String) {
         val uid = auth.currentUser?.uid ?: return
         db.collection("users")
