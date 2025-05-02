@@ -96,10 +96,10 @@ Maintain a **CHANGELOG.md** to track releases:
 - Initial release with core budgeting features.
 ```
 ## Contributers
-Ayushkar Ramkissoon: ST10036346
-Ethan Pillay: ST10258615
-José Gonzalves: ST10194321
-Quellon Naicker: ST10340880
+- Ayushkar Ramkissoon: ST10036346
+- Ethan Pillay: ST10258615
+- José Gonzalves: ST10194321
+- Quellon Naicker: ST10340880
 
 ## Conclusion
 
