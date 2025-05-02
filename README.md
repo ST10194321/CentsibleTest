@@ -83,7 +83,7 @@ This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for d
 
 Link to detailed docs or a GitHub Pages site:
 
-- [User Guide](https://github.com/ST10194321/CentsibleTest/user-guide.git)  
+- [User Guide](https://github.com/ST10194321/CentsibleTest/user-guide.pdf.git)  
 
 
 ### Changelog
