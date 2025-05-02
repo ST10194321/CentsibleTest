@@ -19,8 +19,9 @@ import org.mindrot.jbcrypt.BCrypt
 
 
 class signin : AppCompatActivity() {
-
+    // view binding
     private lateinit var binding: ActivitySigninBinding
+    // Firebase auth
     private lateinit var auth: FirebaseAuth
 
 
@@ -30,25 +31,26 @@ class signin : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_signin)
 
+        // init auth
         auth = FirebaseAuth.getInstance()
 
         binding = ActivitySigninBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnFoward.setOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
-        }
 
 
+        //back button goes to previous screen
         binding.btnBack.setOnClickListener {
              val i = Intent(this, welcome::class.java)
         startActivity(i)
        }
+
+        //sign up button goes to sign up screen
         binding.tvSignUp.setOnClickListener {
             startActivity(Intent(this, signup::class.java))
         }
 
+        // sign‑in logic
         binding.btnSignIn.setOnClickListener {
             val email = binding.etEmail.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
@@ -58,13 +60,14 @@ class signin : AppCompatActivity() {
                     .show()
                 return@setOnClickListener
             }
-
+            //checks user with registry credentials stored in firesbase auth
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this, MainActivity::class.java))
                     } else {
+                        //roomdb login
                         lifecycleScope.launch {
                             val localUser = AppDatabase
                                 .getDatabase(this@signin)
@@ -80,29 +83,22 @@ class signin : AppCompatActivity() {
                                     Toast.LENGTH_LONG
                                 ).show()
                             }
+                            //Author: Firebase Documentation Team
+                        // Accessibiltiy: https://firebase.google.com/docs/firestore/query-data/get-data?platform=android
+                        // Date Accessed: 10/04/2025
+
+                            //Author: Damien Miller (jBCrypt)
+                        // Accessibiltiy: https://www.mindrot.org/projects/jBCrypt/
+                        // Date Accessed: 10/04/2025
+
                         }
                     }
                 }
 
         }
 
-       /*     val db = AppDatabase.getDatabase(this)
-            lifecycleScope.launch {
-                val user = db.userDao().getUserByEmail(email)
-                if (user != null && BCrypt.checkpw(password, user.password)) {
-                    Toast.makeText(this@signin, "Signed In Successfully", Toast.LENGTH_SHORT).show()
-                    // Navigate to the main activity after successful sign-in
-                    val intent = Intent(this@signin, MainActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(this@signin, "Sign In Failed. Invalid credentials.", Toast.LENGTH_LONG).show()
-                }
-            } */
-
-
-
-
-
-
         }
     }
+//Author: Firebase Documentation Team
+//Accessibiltiy: https://firebase.google.com/docs/auth/android/manage-users#sign_in
+//Date Accessed: 10/04/2025

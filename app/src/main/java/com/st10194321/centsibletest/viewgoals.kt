@@ -3,12 +3,14 @@ package com.st10194321.centsibletest
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -56,6 +58,13 @@ class viewgoals : AppCompatActivity() {
             finish()
         }
     }
+    //Author: Firebase Documentation Team
+    //Accessibiltiy: https://firebase.google.com/docs/firestore/query-data/get-data?platform=android
+    //Date Accessed: 20/04/2025
+    //
+    //Author: Android Developers
+    //Accessibiltiy: https://developer.android.com/reference/java/text/DateFormatSymbols
+    //Date Accessed: 12/04/2025
 
     // Load goals and calculate transaction data per month
     private fun loadGoals() {
@@ -78,6 +87,45 @@ class viewgoals : AppCompatActivity() {
                         binding.goalsContainer,
                         false
                     )
+
+                    val docId = g.id  // ID of the goal document in Firestore
+                    val btnDelete = card.findViewById<Button>(R.id.btnDeleteGoal)
+
+//                    // Handle delete button click
+//                    btnDelete.setOnClickListener {
+//                        db.collection("users").document(uid)
+//                            .collection("goals").document(docId)
+//                            .delete()
+//                            .addOnSuccessListener {
+//                                Toast.makeText(this, "Goal deleted", Toast.LENGTH_SHORT).show()
+//                                binding.goalsContainer.removeView(card) // Remove from UI
+//                            }
+//                            .addOnFailureListener { e ->
+//                                Toast.makeText(this, "Error deleting goal: ${e.message}", Toast.LENGTH_SHORT).show()
+//                            }
+//                    }
+
+                    btnDelete.setOnClickListener {
+                        AlertDialog.Builder(this)
+                            .setTitle("Delete Goal")
+                            .setMessage("Are you sure you want to delete this goal?")
+                            .setPositiveButton("Yes") { _, _ ->
+                                db.collection("users").document(uid)
+                                    .collection("goals").document(docId)
+                                    .delete()
+                                    .addOnSuccessListener {
+                                        Toast.makeText(this, "Goal deleted", Toast.LENGTH_SHORT).show()
+                                        binding.goalsContainer.removeView(card) // Remove from UI
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Toast.makeText(this, "Error deleting goal: ${e.message}", Toast.LENGTH_SHORT).show()
+                                    }
+                            }
+                            .setNegativeButton("No", null)
+                            .show()
+                    }
+
+
 
                     // Get references to views inside the goal card
                     val tvMonth  = card.findViewById<TextView>(R.id.tvMonth)
@@ -144,6 +192,10 @@ class viewgoals : AppCompatActivity() {
                         }
                 }
             }
+            //Author: Firebase Documentation Team
+            //Accessibiltiy: https://firebase.google.com/docs/firestore/query-data/get-data?platform=android
+            //Date Accessed: 13/04/2025
+
             .addOnFailureListener { e ->
                 Toast.makeText(
                     this,

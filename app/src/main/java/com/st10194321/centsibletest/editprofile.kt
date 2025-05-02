@@ -2,14 +2,10 @@ package com.st10194321.centsibletest
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -45,6 +41,9 @@ class editprofile : AppCompatActivity() {
                     Toast.makeText(this, "Failed to load profile:\n${e.message}", Toast.LENGTH_LONG).show()
                 }
         }
+        //Author: Firebase Documentation Team
+        // Accessibiltiy: https://firebase.google.com/docs/firestore/query-data/get-data#get_a_document
+        // Date Accessed: 20/04/2025
 
         // Save updated user info to Firestore
         binding.saveButton.setOnClickListener {

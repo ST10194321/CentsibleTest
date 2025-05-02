@@ -59,9 +59,7 @@ class add_trans : AppCompatActivity() {
             binding.spinnerCategory.adapter = it
         }
 
-        // Accessibilty: https://developer.android.com/media/camera/camera-deprecated/photobasics#kotlin
-        // Date: 01/05/2025
-        // Image capture ->> allows users to upload picture in every transaction
+        // Image capture
         captureImageButton = findViewById(R.id.btnCaptureImage)
         imageView = findViewById(R.id.btnCaptureImage)
         cameraLauncher = registerForActivityResult(
@@ -76,7 +74,7 @@ class add_trans : AppCompatActivity() {
             cameraLauncher.launch(null)
         }
 
-        // Load categories ->> allows users to pick from existing categories
+        // Load categories
         auth.currentUser?.uid?.let { uid ->
             db.collection("users").document(uid)
                 .collection("categories")
@@ -92,6 +90,7 @@ class add_trans : AppCompatActivity() {
                 }
         }
 
+
         // Date picker
         binding.etTxnDate.setOnClickListener {
             val cal = Calendar.getInstance()
@@ -106,7 +105,7 @@ class add_trans : AppCompatActivity() {
             ).show()
         }
 
-        // Add transaction and saves transactions to database
+        // Add transaction
         binding.btnAddToCategory.setOnClickListener {
             val user = auth.currentUser
             if (user == null) {
@@ -122,7 +121,7 @@ class add_trans : AppCompatActivity() {
 
             // Validate required fields
             if (name.isEmpty() || amountStr.isEmpty() || date.isEmpty()) {
-                Toast.makeText(this, "Please complete all required fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please complete all required fields: name, amount, date", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             val amount = amountStr.toDoubleOrNull()
@@ -131,7 +130,7 @@ class add_trans : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Build transaction
+            // Build transaction map
             val txn = mutableMapOf<String, Any>(
                 "name"      to name,
                 "amount"    to amount,

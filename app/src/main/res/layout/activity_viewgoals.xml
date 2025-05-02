@@ -6,7 +6,7 @@
     android:padding="16dp"
     android:background="@drawable/bg_curve">
 
-    <!-- Back button -->
+
     <ImageButton
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,6 +35,7 @@
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp" />
+
         <Button
             android:id="@+id/setGoalButton"
             android:layout_width="match_parent"
@@ -157,3 +158,9 @@
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>
+
+    <!--
+       Author: Lars Vogel(Vogella Tutorials)
+       Accessibiltiy:https://www.vogella.com/tutorials/android.html
+       Date Accessed: 02/05/2025
+       -->

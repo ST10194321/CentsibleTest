@@ -13,15 +13,19 @@ import com.st10194321.centsibletest.databinding.ActivitySignupBinding
 
 class signup : AppCompatActivity() {
 
+    // view binding
     private lateinit var binding: ActivitySignupBinding
+    // firebase and firestore
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
 
+    // personal details passed from previous screen
     val firstName by lazy { intent.getStringExtra("FIRST_NAME") ?: "" }
     val lastName  by lazy { intent.getStringExtra("LAST_NAME")  ?: "" }
     val phone     by lazy { intent.getStringExtra("PHONE")      ?: "" }
     val dob       by lazy { intent.getStringExtra("DOB")        ?: "" }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,14 +40,17 @@ class signup : AppCompatActivity() {
         }
 
 
+        // init firebase and firestore
         auth = FirebaseAuth.getInstance()
         db   = FirebaseFirestore.getInstance()
 
+        //leads back to the welcome page
         binding.btnBack.setOnClickListener {
             val i = Intent(this, welcome::class.java)
             startActivity(i)
         }
 
+        //saves and stores credentials in firebase auth
         binding.btnSignUp.setOnClickListener {
             val email    = binding.etEmailUp.text.toString().trim()
             val password = binding.etPasswordUp.text.toString().trim()
@@ -59,11 +66,13 @@ class signup : AppCompatActivity() {
             }
 
 
+            // create firebase auth user
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         val uid = auth.currentUser!!.uid
 
+                        // profile data to store in Firestore
                         val profile = mapOf(
                             "firstName" to firstName,
                             "lastName"  to lastName,
@@ -72,6 +81,7 @@ class signup : AppCompatActivity() {
                             "email"     to email
                         )
 
+                        // save profile in room as well
                         db.collection("users")
                             .document(uid)
                             .set(profile)
@@ -83,6 +93,9 @@ class signup : AppCompatActivity() {
                             .addOnFailureListener { e ->
                                 Toast.makeText(this, "Profile save failed:\n${e.message}", Toast.LENGTH_LONG).show()
                             }
+                        //Author: AndroidDevelopers
+                        //Accessibiltiy: https://developer.android.com/training/data-storage/room/accessing-data#kotlin
+                        //Date Accessed: 12/04/2025
                     } else {
                         Toast.makeText(
                             this,
@@ -91,6 +104,9 @@ class signup : AppCompatActivity() {
                         ).show()
                     }
                 }
+            //Author: Firebase Documentation Team
+            //Accessibiltiy: https://firebase.google.com/docs/auth/android/manage-users#sign_in
+            //Date Accessed: 23/04/2025
         }
     }
 }

@@ -43,6 +43,10 @@ class TransactionDetailActivity : AppCompatActivity() {
                 e.printStackTrace()
 
             }
+
+//    Author: Mughira Dar
+//    Accessibilty: https://stackoverflow.com/questions/58955434/how-to-convert-base64-string-into-image-in-kotlin-android
+//    Date: 28/04/2025
         }
         //pulls and displays transaction details
         val detailsTextView = findViewById<TextView>(R.id.textTransactionDetails)

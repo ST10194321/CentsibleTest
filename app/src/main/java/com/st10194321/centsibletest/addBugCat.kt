@@ -62,7 +62,9 @@ class addBugCat : AppCompatActivity() {
                 }
             }
             }
-
+//Author: Kotlin Documentation Team
+//Accessibiltiy: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.ranges/coerce-in.html
+//Date Accessed: 21/04/2025
 
         //allows user to choose a date
         binding.etOccurrence.setOnClickListener {
@@ -77,7 +79,9 @@ class addBugCat : AppCompatActivity() {
                 cal.get(Calendar.DAY_OF_MONTH)
             ).show()
         }
-
+//Author: Chetan R
+//Accessibiltiy: https://stackoverflow.com/questions/14933330/datepicker-how-to-popup-datepicker-when-entering-edittext
+//Date Accessed: 21/04/2025
 
         //adds category to user
         binding.btnAddCategory.setOnClickListener {

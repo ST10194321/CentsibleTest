@@ -17,9 +17,12 @@ import com.st10194321.centsibletest.databinding.ActivitySignupDBinding
 import java.sql.Date
 import java.util.Locale
 
-private lateinit var binding: ActivitySignupDBinding
+
 
 class signupD : AppCompatActivity() {
+
+    // view binding
+    private lateinit var binding: ActivitySignupDBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,17 +35,17 @@ class signupD : AppCompatActivity() {
             insets
         }
 
-        binding.btnFoward.setOnClickListener {
-            val i = Intent(this, signup::class.java)
-            startActivity(i)
-        }
 
+
+
+        //leads back to the welcome page
         binding.btnBackUp.setOnClickListener {
             val i = Intent(this, welcome::class.java)
             startActivity(i)
             finish()
         }
 
+        // date‑of‑birth picker
         binding.etDOB.setOnClickListener {
             val cal = Calendar.getInstance()
             DatePickerDialog(
@@ -56,7 +59,11 @@ class signupD : AppCompatActivity() {
             ).show()
         }
 
+//Author: Chetan R
+//Accessibiltiy: https://stackoverflow.com/questions/14933330/datepicker-how-to-popup-datepicker-when-entering-edittext
+//Date Accessed: 21/04/2025
 
+        //pass personal details data to signup
         binding.btnContinue.setOnClickListener {
             val firstName = binding.etUp.text.toString().trim()
             val lastName  = binding.etPasswordUp.text.toString().trim()

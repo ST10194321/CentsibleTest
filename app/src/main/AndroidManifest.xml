@@ -37,9 +37,6 @@
             android:name=".viewTrans"
             android:exported="false" />
         <activity
-            android:name=".TransactionActivity"
-            android:exported="false" />
-        <activity
             android:name=".viewBugCat"
             android:exported="false" />
         <activity

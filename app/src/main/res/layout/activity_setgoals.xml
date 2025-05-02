@@ -6,12 +6,25 @@
     android:background="@drawable/bg_curve"
     android:padding="20dp">
 
+    <!-- Back button -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/btnback"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <ScrollView
         android:id="@+id/scrollContent"
         android:layout_above="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true">
+
+
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -22,31 +35,22 @@
             app:cardCornerRadius="16dp"
             app:cardBackgroundColor="#25FFFFFF">
 
-            <!-- Back button -->
-            <ImageButton
-                android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:src="@drawable/btnback"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
-                android:orientation="vertical"
-                android:padding="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="24dp"
                     android:text="Set Goals"
                     android:textColor="#FFFFFF"
                     android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="24dp"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/monthSpinner"
@@ -54,49 +58,49 @@
                     android:layout_height="50dp"
                     android:layout_marginBottom="16dp"
                     android:backgroundTint="#444"
+                    android:entries="@array/month_array"
                     android:popupBackground="#2C2C2C"
-                    android:theme="@style/ThemeOverlay.AppCompat.Dark"
-                    android:entries="@array/month_array"/>
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark" />
 
                 <EditText
                     android:id="@+id/minGoalEdit"
-                    android:hint="Min Goal"
-                    android:textColorHint="#AAAAAA"
-                    android:textColor="#FFFFFF"
-                    android:layout_marginBottom="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:backgroundTint="#444" />
+                    android:layout_marginBottom="16dp"
+                    android:backgroundTint="#444"
+                    android:hint="Min Goal"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#AAAAAA" />
 
                 <EditText
                     android:id="@+id/maxGoalEdit"
-                    android:hint="Max Goal"
-                    android:textColorHint="#AAAAAA"
-                    android:textColor="#FFFFFF"
-                    android:layout_marginBottom="24dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:backgroundTint="#444" />
+                    android:layout_marginBottom="24dp"
+                    android:backgroundTint="#444"
+                    android:hint="Max Goal"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#AAAAAA" />
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:text="Why set goals?"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="8dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textStyle="bold" />
 
                 <EditText
-                    android:text="Setting your monthly goals helps you budget by having predefined limits to improve your financial health by being financially strict"
-                    android:textColor="#FFFFFF"
-                    android:backgroundTint="#333333"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
+                    android:layout_marginBottom="24dp"
+                    android:backgroundTint="#333333"
+                    android:enabled="false"
                     android:gravity="top|start"
                     android:padding="10dp"
-                    android:enabled="false"
-                    android:layout_marginBottom="24dp" />
+                    android:text="Setting your monthly goals helps you budget by having predefined limits to improve your financial health by being financially strict"
+                    android:textColor="#FFFFFF" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -220,3 +224,8 @@
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
+    <!--
+       Author: Lars Vogel(Vogella Tutorials)
+       Accessibiltiy:https://www.vogella.com/tutorials/android.html
+       Date Accessed: 02/05/2025
+       -->
