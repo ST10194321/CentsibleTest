@@ -21,9 +21,9 @@ Key Features
 
 ## Screenshots
 
-| Welcome | Home  | Category |
-|-----------|------------------|-------------------|
-| ![](images/welcome.png) | ![](images/home.png) | ![](images/category.png) |
+| Welcome | Home  | Category | Profile |
+|-----------|------------------|-------------------|-------------------|
+| ![](images/welcome.png) | ![](images/home.png) | ![](images/category.png) |![](images/profile.png) |
 
 ---
 
