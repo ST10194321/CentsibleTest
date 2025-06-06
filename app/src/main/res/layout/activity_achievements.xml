@@ -23,62 +23,90 @@
         <GridLayout
             android:id="@+id/achievementGrid"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:columnCount="3"
-            android:rowCount="2"
-            android:alignmentMode="alignMargins"
-            android:useDefaultMargins="true">
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="150dp"
-                android:src="@drawable/badge1"
-                android:contentDescription="Badge 1"
-                android:layout_gravity="center"/>
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="150dp"
-                android:src="@drawable/badge2"
-                android:contentDescription="Badge 2"
-                android:layout_gravity="center"/>
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="150dp"
-                android:src="@drawable/badge3"
-                android:contentDescription="Badge 3"
-                />
-
-        </GridLayout>
-        <GridLayout
-            android:id="@+id/achievementGrid2"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="200dp"
             android:columnCount="3"
             android:rowCount="1"
             android:alignmentMode="alignMargins"
             android:useDefaultMargins="true">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="8dp">
+                <ImageView
+                    android:id="@+id/ivFirstSteps"
+                    android:layout_width="116dp"
+                    android:layout_height="150dp"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:contentDescription="Badge 3"
+                    android:src="@drawable/badge3"
+                    android:alpha="0.4" />
+                    <TextView
+                        android:id="@+id/tvFirstStepsLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="First Steps"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        android:paddingTop="4dp"
+                        android:alpha="0.4"/>
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="8dp">
+                <ImageView
+                    android:id="@+id/ivBudgetBeginner"
+                    android:layout_width="116dp"
+                    android:layout_height="150dp"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:contentDescription="Badge 3"
+                    android:src="@drawable/badge3"
+                    android:alpha="0.4"/>
+                <TextView
+                    android:id="@+id/tvBudgetBeginnerLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Budget Beginner"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp"
+                    android:paddingTop="4dp"
+                    android:alpha="0.4"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ivSmartSpender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="8dp">
             <ImageView
-                android:layout_width="100dp"
+                android:layout_width="116dp"
                 android:layout_height="150dp"
-                android:src="@drawable/badge1"
-                android:contentDescription="Badge 1"
-                android:layout_gravity="center"/>
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="150dp"
-                android:src="@drawable/badge2"
-                android:contentDescription="Badge 2"
-                android:layout_gravity="center"/>
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="150dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:contentDescription="Badge 3"
                 android:src="@drawable/badge3"
-                android:contentDescription="Badge 3" />
+                android:alpha="0.4"/>
+                <TextView
+                    android:id="@+id/tvSmartSpenderLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Smart Spender"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp"
+                    android:paddingTop="4dp"
+                    android:alpha="0.4"/>
+            </LinearLayout>
 
         </GridLayout>
     </LinearLayout>
