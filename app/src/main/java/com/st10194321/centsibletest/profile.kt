@@ -1,10 +1,15 @@
 package com.st10194321.centsibletest
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Base64
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
@@ -14,6 +19,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.st10194321.centsibletest.databinding.ActivityProfileBinding
+import com.st10194321.centsibletest.CurrencyRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 
 class profile : AppCompatActivity() {
@@ -21,16 +30,69 @@ class profile : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
     private var capturedBitmap: Bitmap? = null
     private lateinit var cameraLauncher: ActivityResultLauncher<Void?>
-    val auth = FirebaseAuth.getInstance()
-    val db = FirebaseFirestore.getInstance()
-    val uid = auth.currentUser!!.uid
+    private lateinit var spinnerCurrency: Spinner
+
+    // Firebase
+    private val auth = FirebaseAuth.getInstance()
+    private val db   = FirebaseFirestore.getInstance()
+    private val uid  = auth.currentUser!!.uid
+
+    // SharedPreferences for “selected_currency”
+    private val PREFS_NAME = "centsible_prefs"
+    private val KEY_SEL_CURRENCY = "selected_currency"
+    private lateinit var prefs: SharedPreferences
+
+    // Hard‐code the currencies you want to support:
+    private val availableCurrencies = listOf("ZAR", "USD", "EUR", "GBP")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Make sure CurrencyRepository has been initialized in Application.onCreate()
+        // (or you can call it here if you never did it elsewhere):
+        CurrencyRepository.initialize(applicationContext)
+
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         enableEdgeToEdge()
+
+        prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+
+        // ====== BIND THE NEW SPINNER ======
+        spinnerCurrency = findViewById(R.id.spinnerCurrency)
+        val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            availableCurrencies
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerCurrency.adapter = adapter
+
+        // Pre‐select the saved currency (or default to "ZAR")
+        val saved = prefs.getString(KEY_SEL_CURRENCY, "ZAR")
+        val pos = availableCurrencies.indexOf(saved).coerceAtLeast(0)
+        spinnerCurrency.setSelection(pos)
+
+        spinnerCurrency.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>, view: View?, position: Int, id: Long
+            ) {
+                val chosen = availableCurrencies[position]
+                // Save it
+                prefs.edit().putString(KEY_SEL_CURRENCY, chosen).apply()
+
+                // Immediately fetch fresh rates in the background
+                CoroutineScope(Dispatchers.IO).launch {
+                    CurrencyRepository.get().fetchLatestRates()
+                }
+                // You might also want to refresh any open screens, e.g. rebind transaction lists
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // no‐op
+            }
+        }
+        // ====== END SPINNER LOGIC ======
 
         // Load profile image from Firestore if available
         db.collection("users").document(uid).get()
@@ -53,13 +115,12 @@ class profile : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
-
         binding.iconCategories.setOnClickListener {
             startActivity(Intent(this, viewBugCat::class.java))
             finish()
         }
-
         binding.iconProfile.setOnClickListener {
+            // Already here, but if you want to refresh:
             startActivity(Intent(this, profile::class.java))
             finish()
         }
@@ -83,8 +144,6 @@ class profile : AppCompatActivity() {
             finish()
         }
 
-        // Accessibilty: https://developer.android.com/media/camera/camera-deprecated/photobasics#kotlin
-        // Date: 01/05/2025
         // Set up camera to take profile picture
         cameraLauncher = registerForActivityResult(
             ActivityResultContracts.TakePicturePreview()
@@ -92,22 +151,7 @@ class profile : AppCompatActivity() {
             if (bitmap != null) {
                 capturedBitmap = bitmap
                 binding.profileImage.setImageBitmap(bitmap)
-
-                // Upload captured image to Firestore
-                val base64 = convertImageToBase64()
-                if (base64 != null) {
-                    val txn = mapOf("image" to base64)
-                    db.collection("users").document(uid)
-                        .set(txn, SetOptions.merge())
-                        .addOnSuccessListener {
-                            Toast.makeText(this, "Profile Image added", Toast.LENGTH_SHORT).show()
-                            startActivity(Intent(this, profile::class.java))
-                            finish()
-                        }
-                        .addOnFailureListener { e ->
-                            Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
-                        }
-                }
+                uploadProfileImage()
             }
         }
 
@@ -117,16 +161,24 @@ class profile : AppCompatActivity() {
         }
     }
 
-    //    Author: Mughira Dar
-    //    Accessibilty: https://stackoverflow.com/questions/58955434/how-to-convert-base64-string-into-image-in-kotlin-android
-    //    Date: 28/04/2025
-    // Helper method to convert bitmap to base64 string
-    private fun convertImageToBase64(): String? {
-        val bmp = capturedBitmap ?: return null
+    /** Convert capturedBitmap → Base64, then save under “image” field in Firestore. */
+    private fun uploadProfileImage() {
+        val bmp = capturedBitmap ?: return
         val stream = ByteArrayOutputStream()
         bmp.compress(Bitmap.CompressFormat.JPEG, 50, stream)
         val bytes = stream.toByteArray()
-        return Base64.encodeToString(bytes, Base64.DEFAULT)
+        val base64 = Base64.encodeToString(bytes, Base64.DEFAULT)
+        val txn = mapOf("image" to base64)
+        db.collection("users").document(uid)
+            .set(txn, SetOptions.merge())
+            .addOnSuccessListener {
+                Toast.makeText(this, "Profile Image added", Toast.LENGTH_SHORT).show()
+                // Refresh this Activity to see changes
+                startActivity(Intent(this, profile::class.java))
+                finish()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+            }
     }
 }
-

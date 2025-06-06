@@ -1,6 +1,5 @@
 package com.st10194321.centsibletest
 
-import TransactionAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -23,6 +22,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.text.DateFormatSymbols
 import java.util.Calendar
 
+import com.st10194321.centsibletest.formatInSelectedCurrency
+
 class viewTrans : AppCompatActivity() {
 
     private lateinit var rvTransactions: RecyclerView
@@ -34,19 +35,19 @@ class viewTrans : AppCompatActivity() {
     private lateinit var pbBalance: ProgressBar
     private lateinit var btnAddTxn: Button
 
-
     private var selectedMonthIndex = 0
     private lateinit var categoryName: String
-
 
     private val db   = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // (If you haven’t initialized CurrencyRepository elsewhere, do it here:)
+        // CurrencyRepository.initialize(applicationContext)
+
         enableEdgeToEdge()
         setContentView(R.layout.activity_view_trans)
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val sys = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -64,7 +65,6 @@ class viewTrans : AppCompatActivity() {
         pbBalance         = findViewById(R.id.pbBalance)
         btnAddTxn         = findViewById(R.id.btnAddTxn)
 
-
         // get category name from intent
         categoryName = intent.getStringExtra(EXTRA_CATEGORY) ?: run {
             Toast.makeText(this, "No category specified", Toast.LENGTH_SHORT).show()
@@ -72,12 +72,10 @@ class viewTrans : AppCompatActivity() {
             return
         }
 
-
         // set default labels
         tvOverallLabel.text = categoryName
         tvMonthLabel.text =
             DateFormatSymbols().months[Calendar.getInstance().get(Calendar.MONTH)]
-
 
         // populate month filter spinner
         val months = resources.getStringArray(R.array.month_filter_entries)
@@ -88,18 +86,13 @@ class viewTrans : AppCompatActivity() {
         ).also { it.setDropDownViewResource(R.layout.spinner_dropdown_item) }
         spinnerMonth.adapter = monthAdapter
 
-//Author: John Cowan
-//Accessibiltiy: https://stackoverflow.com/questions/65556362/android-kotlin-get-value-of-selected-spinner-item
-//Date Accessed: 24/04/2025
-
-        // spinner selection listener
         spinnerMonth.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>, view: View?, pos: Int, id: Long
             ) {
                 selectedMonthIndex = pos
 
-                //update the month shown in the card
+                // update the month shown in the card
                 val monthNames = resources.getStringArray(R.array.month_filter_entries)
                 tvMonthLabel.text = if (pos == 0) "All" else monthNames[pos]
 
@@ -116,7 +109,7 @@ class viewTrans : AppCompatActivity() {
         }
     }
 
-    //retrieves category limit
+    // retrieves category limit (in ZAR) and then fetches transactions
     private fun loadCategoryLimit(categoryName: String) {
         val uid = auth.currentUser?.uid ?: return
         db.collection("users")
@@ -127,7 +120,7 @@ class viewTrans : AppCompatActivity() {
             .get()
             .addOnSuccessListener { snap ->
                 val limit = snap.documents.firstOrNull()?.getLong("amount") ?: 0L
-                fetchTransactions(categoryName, limit)
+                fetchTransactions(categoryName, limit.toDouble())
             }
             .addOnFailureListener { e ->
                 Toast.makeText(
@@ -137,8 +130,9 @@ class viewTrans : AppCompatActivity() {
                 ).show()
             }
     }
-// pulls transactions from firestore to show in recycler view
-    private fun fetchTransactions(categoryName: String, limit: Long) {
+
+    // pulls transactions from Firestore to show in RecyclerView
+    private fun fetchTransactions(categoryName: String, limitInZar: Double) {
         val uid = auth.currentUser?.uid ?: return
         db.collection("users")
             .document(uid)
@@ -147,11 +141,11 @@ class viewTrans : AppCompatActivity() {
             .get()
             .addOnSuccessListener { docs ->
                 val list = mutableListOf<Transaction>()
-                var total = 0.0
+                var totalSpentZar = 0.0
 
                 for (doc in docs) {
                     val name    = doc.getString("name") ?: ""
-                    val amount  = doc.getDouble("amount") ?: 0.0
+                    val amountZar  = doc.getDouble("amount") ?: 0.0
                     val details = doc.getString("details") ?: ""
                     val date    = doc.getString("date") ?: ""
                     val image   = doc.getString("image") ?: ""
@@ -159,17 +153,20 @@ class viewTrans : AppCompatActivity() {
                     val month = date.split("/").getOrNull(1)?.toIntOrNull() ?: 0
 
                     if (selectedMonthIndex == 0 || month == selectedMonthIndex) {
-                        total += amount
-                        list.add(Transaction(name, amount, details, date, image))
+                        totalSpentZar += amountZar
+                        list.add(Transaction(name, amountZar, details, date, image))
                     }
                 }
 
-                // update UI
-                val remaining = (limit - total).coerceAtLeast(0.0)
-                tvRemaining.text   = "R%.2f".format(remaining)
-                tvTotalAmount.text = "R%.2f".format(total)
-                val pct = if (limit == 0L) 0
-                else ((total / limit * 100).coerceIn(0.0, 100.0)).toInt()
+                // Calculate remaining in ZAR
+                val remainingZar = (limitInZar - totalSpentZar).coerceAtLeast(0.0)
+
+                // NOW convert to selected currency for display:
+                tvRemaining.text   = formatInSelectedCurrency(remainingZar)
+                tvTotalAmount.text = formatInSelectedCurrency(totalSpentZar)
+
+                val pct = if (limitInZar == 0.0) 0
+                else ((totalSpentZar / limitInZar * 100).coerceIn(0.0, 100.0)).toInt()
                 pbBalance.progress = pct
 
                 // show filtered list
@@ -191,11 +188,8 @@ class viewTrans : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             }
-    //Author: Firebase Documentation Team
-  //Accessibiltiy: https://firebase.google.com/docs/firestore/query-data/get-data#custom_objects
-  //Date Accessed: 24/04/2025
 
-    //back button
+        // back button
         val btnBack = findViewById<ImageButton>(R.id.btnBack)
         btnBack.setOnClickListener {
             finish()

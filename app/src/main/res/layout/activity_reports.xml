@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/reportsRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_curve"
+    tools:background="#FF0C0C0C"
+    android:fillViewport="true"
+    android:padding="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Back button -->
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/btnback"
+            android:background="@android:color/transparent"
+            android:contentDescription="Back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tvReportsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reports"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/btnBack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Month picker -->
+        <LinearLayout
+            android:id="@+id/monthPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/tvReportsTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageButton
+                android:id="@+id/btnPrevMonth"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_arrow_left_white"
+                android:background="@android:color/transparent"
+                android:contentDescription="Previous Month" />
+
+            <TextView
+                android:id="@+id/tvCurrentMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="February 2025"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp" />
+
+            <ImageButton
+                android:id="@+id/btnNextMonth"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/arrow_right"
+                android:background="@android:color/transparent"
+                android:contentDescription="Next Month" />
+        </LinearLayout>
+
+        <!-- ─────── Pie Chart Card ─────── -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardPieContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="@color/cardview_dark_background"
+            tools:cardBackgroundColor="#FF1C1C1E"
+            app:cardCornerRadius="16dp"
+            app:cardUseCompatPadding="false"
+            app:cardPreventCornerOverlap="false"
+            app:layout_constraintTop_toBottomOf="@id/monthPicker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- PieChart -->
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center_horizontal" />
+
+                <!-- Legend container: two rows of two items each -->
+                <LinearLayout
+                    android:id="@+id/pieLegendContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="16dp"
+                    android:paddingTop="8dp">
+
+                    <!-- ─ First legend row ─ (Food + Car) -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        android:padding="4dp">
+
+                        <!-- Food cell -->
+                        <LinearLayout
+                            android:id="@+id/cellFood"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="4dp">
+
+                            <ImageView
+                                android:id="@+id/dotFood"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:background="@drawable/ic_legend_dot_orange" />
+
+                            <TextView
+                                android:id="@+id/tvLegendFood"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Food 4K"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp"
+                                android:layout_marginStart="8dp" />
+                        </LinearLayout>
+
+                        <!-- Car cell -->
+                        <LinearLayout
+                            android:id="@+id/cellCar"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="4dp">
+
+                            <ImageView
+                                android:id="@+id/dotCar"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:background="@drawable/ic_legend_dot_blue" />
+
+                            <TextView
+                                android:id="@+id/tvLegendCar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Car 6.2K"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp"
+                                android:layout_marginStart="8dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- ─ Second legend row ─ (Medical + Saving) -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp"
+                        android:weightSum="2"
+                        android:padding="4dp">
+
+                        <!-- Medical cell -->
+                        <LinearLayout
+                            android:id="@+id/cellMedical"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="4dp">
+
+                            <ImageView
+                                android:id="@+id/dotMedical"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:background="@drawable/ic_legend_dot_red" />
+
+                            <TextView
+                                android:id="@+id/tvLegendMedical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Medical 1.5K"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp"
+                                android:layout_marginStart="8dp" />
+                        </LinearLayout>
+
+                        <!-- Saving cell -->
+                        <LinearLayout
+                            android:id="@+id/cellSaving"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="4dp">
+
+                            <ImageView
+                                android:id="@+id/dotSaving"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:background="@drawable/ic_legend_dot_green" />
+
+                            <TextView
+                                android:id="@+id/tvLegendSaving"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Saving 7K"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp"
+                                android:layout_marginStart="8dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- ─────── Bar Chart Card ─────── -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardBarContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:cardBackgroundColor="@color/cardview_dark_background"
+            tools:cardBackgroundColor="#FF1C1C1E"
+            app:cardCornerRadius="16dp"
+            app:cardUseCompatPadding="false"
+            app:cardPreventCornerOverlap="false"
+            app:layout_constraintTop_toBottomOf="@id/cardPieContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Bar chart legend (static) -->
+                <LinearLayout
+                    android:id="@+id/barChartLegend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:src="@drawable/ic_legend_dot_green"
+                        android:layout_gravity="center_vertical" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Budget"
+                        android:textColor="#A0FFFFFF"
+                        android:textSize="12sp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="16dp" />
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:src="@drawable/ic_legend_dot_red"
+                        android:layout_gravity="center_vertical" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Expense"
+                        android:textColor="#A0FFFFFF"
+                        android:textSize="12sp"
+                        android:layout_marginStart="4dp" />
+                </LinearLayout>
+
+                <!-- First BarChart (Budget vs Expense) -->
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:padding="4dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- ─────── Goals Chart Card ─────── -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardGoalsContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:cardBackgroundColor="@color/cardview_dark_background"
+            tools:cardBackgroundColor="#FF1C1C1E"
+            app:cardCornerRadius="16dp"
+            app:cardUseCompatPadding="false"
+            app:cardPreventCornerOverlap="false"
+            app:layout_constraintTop_toBottomOf="@id/cardBarContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Goals title -->
+                <TextView
+                    android:id="@+id/tvGoalsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Goals (Min vs Max)"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Second BarChart (Min vs Max goals) -->
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChartGoals"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:padding="4dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- ─────── Bottom Summary Row ─────── -->
+        <LinearLayout
+            android:id="@+id/bottomSummaryContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginTop="16dp"
+            android:paddingBottom="16dp"
+            app:layout_constraintTop_toBottomOf="@id/cardGoalsContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Total Budget pill -->
+            <LinearLayout
+                android:id="@+id/llTotalBudget"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/rounded_green_background"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/arrowup"
+                    android:contentDescription="Total Budget Icon" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="8dp">
+
+                    <TextView
+                        android:id="@+id/tvTotalBudgetLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Budget"
+                        android:textColor="@color/black"
+                        tools:textColor="#FF333333"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvTotalBudgetValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$4,600.00"
+                        android:textColor="@color/black"
+                        tools:textColor="#FF000000"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Total Expense pill -->
+            <LinearLayout
+                android:id="@+id/llTotalExpense"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/rounded_red_background"
+                android:padding="12dp"
+                android:layout_marginStart="8dp">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/arrowup"
+                    android:contentDescription="Total Expense Icon" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="8dp">
+
+                    <TextView
+                        android:id="@+id/tvTotalExpenseLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Expense"
+                        android:textColor="@color/black"
+                        tools:textColor="#FF333333"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvTotalExpenseValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$1,498.66"
+                        android:textColor="@color/black"
+                        tools:textColor="#FF000000"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
