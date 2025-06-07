@@ -207,6 +207,7 @@
                 android:id="@+id/tvTxHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
                 android:text="Transactions"
                 android:textColor="@color/white"
                 android:textSize="20dp"
@@ -225,20 +226,56 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvTxHeader" />
 
-            <Spinner
-                android:id="@+id/spinnerMonthFilter"
-                android:layout_width="159dp"
-                android:layout_height="39dp"
-                android:layout_marginStart="168dp"
-                android:entries="@array/month_filter_entries"
-                android:popupBackground="#000000"
-
-                android:spinnerMode="dropdown"
-                android:textColor="@android:color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <LinearLayout
+                android:id="@+id/dateFilterLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:padding="16dp"
+                android:gravity="center"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/rvTransactions" >
+
+                <TextView
+                    android:id="@+id/tvStartDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Start Date"
+                    android:padding="8dp"
+                    android:layout_marginEnd="8dp" />
+
+                <TextView
+                    android:id="@+id/tvEndDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="End Date"
+                    android:padding="8dp"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/btnApplyFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Filter" />
+            </LinearLayout>
+
+
+            <!--            <Spinner-->
+<!--                android:id="@+id/spinnerMonthFilter"-->
+<!--                android:layout_width="159dp"-->
+<!--                android:layout_height="39dp"-->
+<!--                android:layout_marginStart="168dp"-->
+<!--                android:entries="@array/month_filter_entries"-->
+<!--                android:popupBackground="#000000"-->
+
+<!--                android:spinnerMode="dropdown"-->
+<!--                android:textColor="@android:color/white"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintVertical_bias="0.0" />-->
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
