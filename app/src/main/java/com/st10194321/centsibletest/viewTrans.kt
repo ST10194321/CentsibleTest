@@ -96,35 +96,9 @@ class viewTrans : AppCompatActivity() {
             DateFormatSymbols().months[Calendar.getInstance().get(Calendar.MONTH)]
 
 
-//        // populate month filter spinner
-//        val months = resources.getStringArray(R.array.month_filter_entries)
-//        val monthAdapter = ArrayAdapter(
-//            this,
-//            R.layout.spinner_item,
-//            months
-//        ).also { it.setDropDownViewResource(R.layout.spinner_dropdown_item) }
-//        spinnerMonth.adapter = monthAdapter
-
 //Author: John Cowan
 //Accessibiltiy: https://stackoverflow.com/questions/65556362/android-kotlin-get-value-of-selected-spinner-item
 //Date Accessed: 24/04/2025
-
-//        // spinner selection listener
-//        spinnerMonth.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(
-//                parent: AdapterView<*>, view: View?, pos: Int, id: Long
-//            ) {
-//                selectedMonthIndex = pos
-//
-//                //update the month shown in the card
-//                val monthNames = resources.getStringArray(R.array.month_filter_entries)
-//                tvMonthLabel.text = if (pos == 0) "All" else monthNames[pos]
-//
-//                loadCategoryLimit(categoryName)
-//            }
-//
-//            override fun onNothingSelected(parent: AdapterView<*>) {}
-//        }
 
         // “add transaction” button
         btnAddTxn.setOnClickListener {
@@ -228,8 +202,14 @@ class viewTrans : AppCompatActivity() {
                 val remaining = (limit - total).coerceAtLeast(0.0)
                 tvRemaining.text = "R%.2f".format(remaining)
                 tvTotalAmount.text = "R%.2f".format(total)
-                val pct = if (limit == 0L) 0 else ((total / limit * 100).coerceIn(0.0, 100.0)).toInt()
-                pbBalance.progress = pct
+                if (limit == 0L) {
+                    pbBalance.max = 100
+                    pbBalance.progress = 100 // Full bar
+                } else {
+                    val pct = ((total / limit) * 100).coerceIn(0.0, 100.0).toInt()
+                    pbBalance.progress = pct
+                }
+
 
                 rvTransactions.layoutManager = LinearLayoutManager(this)
                 rvTransactions.adapter = TransactionAdapter(list) { txn ->
@@ -257,17 +237,6 @@ class viewTrans : AppCompatActivity() {
         }
 
     }
-
-//    private fun loadTransactions(month: String) {
-//        val index = resources.getStringArray(R.array.month_filter_entries).indexOf(month)
-//        if (index != -1) {
-//            selectedMonthIndex = index
-//            spinnerMonth.setSelection(index)
-//            loadCategoryLimit(categoryName)
-//        }
-//    }
-
-
     companion object {
         const val EXTRA_CATEGORY = "EXTRA_CATEGORY"
     }
