@@ -9,6 +9,7 @@ import android.util.Base64
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -31,6 +32,7 @@ class profile : AppCompatActivity() {
     private var capturedBitmap: Bitmap? = null
     private lateinit var cameraLauncher: ActivityResultLauncher<Void?>
     private lateinit var spinnerCurrency: Spinner
+    val achivements : achievements = achievements()
 
     // Firebase
     private val auth = FirebaseAuth.getInstance()
@@ -55,6 +57,29 @@ class profile : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         enableEdgeToEdge()
+
+        if (uid != null) {
+            db.collection("users").document(uid)
+                .collection("achievements")
+                .get()
+                .addOnSuccessListener { snapshot ->
+                    for (doc in snapshot.documents) {
+                        val name = doc.getString("name") ?: continue
+
+                        when (name) {
+                            "First Steps" -> {
+                                findViewById<ImageView>(R.id.ivFirstStepsProfile).visibility = View.VISIBLE
+                            }
+                            "Budget Beginner" -> {
+                                findViewById<ImageView>(R.id.ivBudgetBeginnerProfile).visibility = View.VISIBLE
+                            }
+                            "Smart Spender" -> {
+                                findViewById<ImageView>(R.id.ivSmartSpenderProfile).visibility = View.VISIBLE
+                            }
+                        }
+                    }
+                }
+        }
 
         prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
 

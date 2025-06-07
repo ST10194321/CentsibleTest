@@ -20,8 +20,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvTotalLeft: TextView
     private lateinit var pbBalance: ProgressBar
 
+
     private val db   = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
+    var aM:AchievementManager = AchievementManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,6 +86,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadOverallStats() {
         val uid = auth.currentUser?.uid ?: return
+        aM.checkBudgetBeginner(this,uid)
+        aM.checkSmartSpender(this,uid)
 
         // sum all category limits (in ZAR)
         db.collection("users").document(uid)

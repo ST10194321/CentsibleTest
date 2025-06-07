@@ -55,7 +55,7 @@ class achievements : AppCompatActivity() {
             finish()
         }
     }
-    private fun loadAchievements(uid: String) {
+    fun loadAchievements(uid: String) {
         val achievementViews = mapOf(
             "First Steps" to binding.ivFirstSteps,
             "Budget Beginner" to binding.ivBudgetBeginner,
