@@ -49,7 +49,11 @@ class viewBugCat : AppCompatActivity() {
 
                 val list = snap.documents.mapNotNull {
                     it.toObject(Category::class.java)
-                }
+                }.toMutableList()
+
+                // Add a dummy category for "All Transactions"
+                val allTransactionsCategory = Category(name = "All Transactions")
+                list.add(0, allTransactionsCategory)
 
                 binding.rvCategories.adapter = CategoryAdapter(list) { cat ->
                     Toast.makeText(this, "Clicked ${cat.name}", Toast.LENGTH_SHORT).show()

@@ -20,7 +20,7 @@ class addBugCat : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddBugCatBinding
     private val auth by lazy { FirebaseAuth.getInstance() }
-    private val db   by lazy { FirebaseFirestore.getInstance() }
+    private val db by lazy { FirebaseFirestore.getInstance() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,13 +40,14 @@ class addBugCat : AppCompatActivity() {
 
 
         //seekbar for user to input amount
-        binding.seekBarAmount.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
+        binding.seekBarAmount.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(sb: SeekBar, prog: Int, fromUser: Boolean) {
 
                 if (!binding.etAmountValue.isFocused) {
                     binding.etAmountValue.setText(prog.toString())
                 }
             }
+
             override fun onStartTrackingTouch(sb: SeekBar) {}
             override fun onStopTrackingTouch(sb: SeekBar) {}
         })
@@ -58,10 +59,10 @@ class addBugCat : AppCompatActivity() {
             if (num != null) {
                 val value = num.coerceIn(0, binding.seekBarAmount.max)
                 if (binding.seekBarAmount.progress != value) {
-                     binding.seekBarAmount.progress = value
+                    binding.seekBarAmount.progress = value
                 }
             }
-            }
+        }
 //Author: Kotlin Documentation Team
 //Accessibiltiy: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.ranges/coerce-in.html
 //Date Accessed: 21/04/2025
@@ -93,12 +94,12 @@ class addBugCat : AppCompatActivity() {
 
 
             //assigning fields to details
-            val name    = binding.etCategoryName.text.toString().trim()
+            val name = binding.etCategoryName.text.toString().trim()
             val details = binding.etCategoryDetails.text.toString().trim()
-            val occ     = binding.etOccurrence.text.toString().trim()
+            val occ = binding.etOccurrence.text.toString().trim()
             val amtText = binding.etAmountValue.text.toString().removePrefix("R")
-            val amount  = amtText.toLongOrNull() ?: 0L
-            val type    = if (binding.toggleButtonGroup.checkedButtonId == R.id.btnSaving)
+            val amount = amtText.toLongOrNull() ?: 0L
+            val type = if (binding.toggleButtonGroup.checkedButtonId == R.id.btnSaving)
                 "Saving" else "Expense"
 
 
@@ -111,13 +112,12 @@ class addBugCat : AppCompatActivity() {
 
             //fields for firestore
             val category = Category(
-                name       = name,
-                type       = type,
-                details    = details,
-                amount     = amount,
+                name = name,
+                type = type,
+                details = details,
+                amount = amount,
                 occurrence = occ
             )
-
 
 
             //saves category in firestore in user collection

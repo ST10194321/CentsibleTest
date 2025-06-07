@@ -61,7 +61,24 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/background_glow" />
 
+                <TextView
+                    android:id="@+id/tvCurrencyLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Display Currency"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:layout_marginTop="24dp" />
 
+                <Spinner
+                    android:id="@+id/spinnerCurrency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:spinnerMode="dropdown"
+                    android:popupBackground="#2C2C2C"
+                    android:textColor="@android:color/white"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark" />
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardEditProfile"
                     android:layout_width="match_parent"

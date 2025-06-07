@@ -1,3 +1,4 @@
+![Centsible Banner](images/banner.jpg)
 Centsible - Budget Tracker App
 ------------------------------------------------------
 
@@ -13,6 +14,19 @@ Key Features
 - **Transaction Logging** – Track expenses by date, time, description, category, and photo.  
 - **Budget Goals** – Define monthly min/max limits and receive timely alerts.   
 - **Gamification** – Badges, progress bars, and notifications to keep you motivated.
+
+## Demo Video
+
+🎥 [Click here to watch the Demo](https://youtu.be/irYLi_9jh4k)
+
+## Screenshots
+
+| Welcome | Home  | Category | Profile |
+|-----------|------------------|-------------------|-------------------|
+| ![](images/welcome.png) | ![](images/home.png) | ![](images/category.png) |![](images/profile.png) |
+
+---
+
 
 ## Installation
 
@@ -71,19 +85,13 @@ Follow these steps to get started with Centsible:
 6. **Earn Badges & Notifications**  
    - Reach milestones (e.g., “Under Budget 3 Months”) to earn badges.  
    - Receive push notifications when you’re nearing your budget limit.
-  
-## License
-
-This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for details.
-
----
 
 
 ### Documentation
 
 Link to detailed docs or a GitHub Pages site:
 
-- [User Guide](https://your-username.github.io/centsibletest/user-guide)  
+- [User Guide](https://github.com/ST10194321/CentsibleTest/blob/main/user-guide.pdf)  
 
 
 ### Changelog
@@ -95,6 +103,11 @@ Maintain a **CHANGELOG.md** to track releases:
 ### Added
 - Initial release with core budgeting features.
 ```
+## Contributers
+- Ayushkar Ramkissoon: ST10036346
+- Ethan Pillay: ST10258615
+- José Gonzalves: ST10194321
+- Quellon Naicker: ST10340880
 
 ## Conclusion
 

@@ -11,6 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.st10194321.centsibletest.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.st10194321.centsibletest.formatInSelectedCurrency
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,18 +19,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvTotalSpent: TextView
     private lateinit var tvTotalLeft: TextView
     private lateinit var pbBalance: ProgressBar
-    val achievementManager = AchievementManager(this)
 
-    // Firebase
     private val db   = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // (If you haven’t already done so in an Application subclass, initialize here:)
+        CurrencyRepository.initialize(applicationContext)
+
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.homeLayout) { v, insets ->
             val sys = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -37,8 +38,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-
-        //binding for xml elements
+        // bind XML elements
         tvTotalSpent = binding.cardOverall.findViewById(R.id.tvTotalSpent)
         tvTotalLeft  = binding.cardOverall.findViewById(R.id.tvTotalLeft)
         pbBalance    = binding.cardOverall.findViewById(R.id.pbBalance)
@@ -57,62 +57,60 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, add_trans::class.java))
         }
 
-
         loadOverallStats()
 
-        //nav bar buttons
+        // nav bar buttons
         binding.iconHome.setOnClickListener {
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
             finish()
         }
-        //nav bar buttons
         binding.iconProfile.setOnClickListener {
             val i = Intent(this, profile::class.java)
             startActivity(i)
             finish()
         }
-        //nav bar buttons
         binding.iconCategories.setOnClickListener {
             val i = Intent(this, viewBugCat::class.java)
             startActivity(i)
             finish()
         }
-
+        binding.iconReports.setOnClickListener {
+            val i = Intent(this, reports::class.java)
+            startActivity(i)
+            finish()
+        }
     }
-
 
     private fun loadOverallStats() {
         val uid = auth.currentUser?.uid ?: return
 
-        achievementManager.checkBudgetBeginner(this, uid)
-        achievementManager.checkSmartSpender(this, uid)
-
-        //  sum all category limits
+        // sum all category limits (in ZAR)
         db.collection("users").document(uid)
             .collection("categories")
             .get()
             .addOnSuccessListener { catSnap ->
-                var totalLimit = 0L
-                catSnap.documents.forEach { totalLimit += it.getLong("amount") ?: 0L }
+                var totalLimitZar = 0L
+                catSnap.documents.forEach { totalLimitZar += it.getLong("amount") ?: 0L }
 
-                // sum all transaction amounts
+                // sum all transaction amounts (in ZAR)
                 db.collection("users").document(uid)
                     .collection("transactions")
                     .get()
                     .addOnSuccessListener { txSnap ->
-                        var totalSpent = 0.0
+                        var totalSpentZar = 0.0
                         txSnap.documents.forEach {
-                            totalSpent += it.getDouble("amount") ?: 0.0
+                            totalSpentZar += it.getDouble("amount") ?: 0.0
                         }
 
+                        val totalLeftZar = (totalLimitZar.toDouble() - totalSpentZar).coerceAtLeast(0.0)
 
-                        val totalLeft = (totalLimit - totalSpent).coerceAtLeast(0.0)
-                        tvTotalSpent.text = "R%.2f".format(totalSpent)
-                        tvTotalLeft.text  = "R%.2f".format(totalLeft)
+                        // NOW convert for display:
+                        tvTotalSpent.text = formatInSelectedCurrency(totalSpentZar)
+                        tvTotalLeft.text  = formatInSelectedCurrency(totalLeftZar)
 
-                        val pct = if (totalLimit == 0L) 0
-                        else ((totalSpent / totalLimit * 100)
+                        val pct = if (totalLimitZar == 0L) 0
+                        else ((totalSpentZar / totalLimitZar * 100)
                             .coerceIn(0.0, 100.0)).toInt()
                         pbBalance.progress = pct
                     }

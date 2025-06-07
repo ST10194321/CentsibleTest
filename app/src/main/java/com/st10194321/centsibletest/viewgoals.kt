@@ -17,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.st10194321.centsibletest.databinding.ActivityViewgoalsBinding
 import java.text.DateFormatSymbols
 import java.util.Calendar
+import com.st10194321.centsibletest.formatInSelectedCurrency
 
 class viewgoals : AppCompatActivity() {
     private lateinit var binding: ActivityViewgoalsBinding
@@ -25,6 +26,9 @@ class viewgoals : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // (If not already done in Application class:)
+        // CurrencyRepository.initialize(applicationContext)
+
         binding = ActivityViewgoalsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         enableEdgeToEdge()
@@ -58,13 +62,6 @@ class viewgoals : AppCompatActivity() {
             finish()
         }
     }
-    //Author: Firebase Documentation Team
-    //Accessibiltiy: https://firebase.google.com/docs/firestore/query-data/get-data?platform=android
-    //Date Accessed: 20/04/2025
-    //
-    //Author: Android Developers
-    //Accessibiltiy: https://developer.android.com/reference/java/text/DateFormatSymbols
-    //Date Accessed: 12/04/2025
 
     // Load goals and calculate transaction data per month
     private fun loadGoals() {
@@ -78,8 +75,8 @@ class viewgoals : AppCompatActivity() {
             .addOnSuccessListener { goalsSnap ->
                 for (g in goalsSnap.documents) {
                     val month   = g.getString("month") ?: continue
-                    val minGoal = (g.getLong("minimumgoal") ?: 0L).toDouble()
-                    val maxGoal = (g.getLong("maximumgoal") ?: 0L).toDouble()
+                    val minGoalZar = (g.getLong("minimumgoal") ?: 0L).toDouble()
+                    val maxGoalZar = (g.getLong("maximumgoal") ?: 0L).toDouble()
 
                     // Inflate a new goal card layout for each goal
                     val card = layoutInflater.inflate(
@@ -90,20 +87,6 @@ class viewgoals : AppCompatActivity() {
 
                     val docId = g.id  // ID of the goal document in Firestore
                     val btnDelete = card.findViewById<Button>(R.id.btnDeleteGoal)
-
-//                    // Handle delete button click
-//                    btnDelete.setOnClickListener {
-//                        db.collection("users").document(uid)
-//                            .collection("goals").document(docId)
-//                            .delete()
-//                            .addOnSuccessListener {
-//                                Toast.makeText(this, "Goal deleted", Toast.LENGTH_SHORT).show()
-//                                binding.goalsContainer.removeView(card) // Remove from UI
-//                            }
-//                            .addOnFailureListener { e ->
-//                                Toast.makeText(this, "Error deleting goal: ${e.message}", Toast.LENGTH_SHORT).show()
-//                            }
-//                    }
 
                     btnDelete.setOnClickListener {
                         AlertDialog.Builder(this)
@@ -125,8 +108,6 @@ class viewgoals : AppCompatActivity() {
                             .show()
                     }
 
-
-
                     // Get references to views inside the goal card
                     val tvMonth  = card.findViewById<TextView>(R.id.tvMonth)
                     val tvMin    = card.findViewById<TextView>(R.id.tvMinGoal)
@@ -135,13 +116,13 @@ class viewgoals : AppCompatActivity() {
                     val tvSpent  = card.findViewById<TextView>(R.id.tvSpent)
                     val tvLeft   = card.findViewById<TextView>(R.id.tvLeft)
 
-                    // Set the goal info into the UI
+                    // Set the (static) goal info into the UI, but converting amounts:
                     tvMonth.text  = month
-                    tvMin.text    = "Min Goal: R%.2f".format(minGoal)
-                    tvMax.text    = "Max Goal: R%.2f".format(maxGoal)
-                    tvSpent.text  = "Spent: R0.00"  // Default until loaded
-                    tvLeft.text   = "Left: R%.2f".format(maxGoal)  // Initially assume none spent
-                    pb.progress   = 0  // Progress bar is empty initially
+                    tvMin.text    = "Min Goal: ${formatInSelectedCurrency(minGoalZar)}"
+                    tvMax.text    = "Max Goal: ${formatInSelectedCurrency(maxGoalZar)}"
+                    tvSpent.text  = "Spent: ${formatInSelectedCurrency(0.0)}"
+                    tvLeft.text   = "Left: ${formatInSelectedCurrency(maxGoalZar)}"
+                    pb.progress   = 0
 
                     // Add the goal card to the container
                     binding.goalsContainer.addView(card)
@@ -159,7 +140,7 @@ class viewgoals : AppCompatActivity() {
                         .collection("transactions")
                         .get()
                         .addOnSuccessListener { txSnap ->
-                            var spent = 0.0
+                            var spentZar = 0.0
 
                             // Loop through each transaction to match with current goal's month
                             for (tx in txSnap.documents) {
@@ -169,18 +150,18 @@ class viewgoals : AppCompatActivity() {
                                 }
                                 val txMonth = monthNames[cal.get(Calendar.MONTH)]
                                 if (txMonth.equals(month, ignoreCase = true)) {
-                                    spent += tx.getDouble("amount") ?: 0.0
+                                    spentZar += tx.getDouble("amount") ?: 0.0
                                 }
                             }
 
-                            // Calculate remaining budget and percentage spent
-                            val left = (maxGoal - spent).coerceAtLeast(0.0)
-                            val pct  = if (maxGoal == 0.0) 0
-                            else ((spent / maxGoal * 100).coerceIn(0.0, 100.0)).toInt()
+                            // Calculate remaining budget in ZAR and percentage spent
+                            val leftZar = (maxGoalZar - spentZar).coerceAtLeast(0.0)
+                            val pct     = if (maxGoalZar == 0.0) 0
+                            else ((spentZar / maxGoalZar * 100).coerceIn(0.0, 100.0)).toInt()
 
-                            // Update UI with calculated values
-                            tvSpent.text = "Spent: R%.2f".format(spent)
-                            tvLeft.text  = "Left: R%.2f".format(left)
+                            // Update UI with converted values:
+                            tvSpent.text = "Spent: ${formatInSelectedCurrency(spentZar)}"
+                            tvLeft.text  = "Left: ${formatInSelectedCurrency(leftZar)}"
                             pb.progress  = pct
                         }
                         .addOnFailureListener { e ->
@@ -192,10 +173,6 @@ class viewgoals : AppCompatActivity() {
                         }
                 }
             }
-            //Author: Firebase Documentation Team
-            //Accessibiltiy: https://firebase.google.com/docs/firestore/query-data/get-data?platform=android
-            //Date Accessed: 13/04/2025
-
             .addOnFailureListener { e ->
                 Toast.makeText(
                     this,
@@ -205,4 +182,3 @@ class viewgoals : AppCompatActivity() {
             }
     }
 }
-
