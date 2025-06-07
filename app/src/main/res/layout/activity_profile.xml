@@ -175,7 +175,9 @@
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:layout_marginTop="32dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:focusable="true"/>
 
 
                 <LinearLayout
@@ -183,7 +185,10 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
 
                     <ImageView
                         android:layout_width="wrap_content"

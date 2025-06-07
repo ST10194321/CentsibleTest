@@ -16,12 +16,23 @@ class achievements : AppCompatActivity() {
     val auth = FirebaseAuth.getInstance()
     val db = FirebaseFirestore.getInstance()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_achievements)
 
 
+        binding = ActivityAchievementsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val uid = auth.currentUser?.uid
+        if (uid != null) {
+            loadAchievements(uid)
+
+            // Call achievement checks
+
+
+        }
 
         // Navigate to Home screen
         binding.iconHome.setOnClickListener {
@@ -48,7 +59,13 @@ class achievements : AppCompatActivity() {
         val achievementViews = mapOf(
             "First Steps" to binding.ivFirstSteps,
             "Budget Beginner" to binding.ivBudgetBeginner,
-            "Smart Spender" to binding.ivSmartSpender
+            "Smart Spender" to binding.ivSmartSpender,
+
+        )
+        val textViews = mapOf(
+            "First Steps" to binding.tvFirstStepsLabel,
+            "Budget Beginner" to binding.tvBudgetBeginnerLabel,
+            "Smart Spender" to binding.tvSmartSpenderLabel
         )
 
         db.collection("users").document(uid).collection("achievements")
@@ -56,7 +73,8 @@ class achievements : AppCompatActivity() {
             .addOnSuccessListener { snap ->
                 for (doc in snap.documents) {
                     val name = doc.getString("name") ?: continue
-                    achievementViews[name]?.alpha = 1.0f // Highlight unlocked
+                    achievementViews[name]?.alpha = 1.0f
+                    textViews[name]?.alpha = 1.0f// Highlight unlocked
                 }
             }
             .addOnFailureListener {

@@ -59,6 +59,8 @@ class add_trans : AppCompatActivity() {
             binding.spinnerCategory.adapter = it
         }
 
+        // Accessibilty: https://developer.android.com/media/camera/camera-deprecated/photobasics#kotlin
+        // Date: 01/05/2025
         // Image capture
         captureImageButton = findViewById(R.id.btnCaptureImage)
         imageView = findViewById(R.id.btnCaptureImage)

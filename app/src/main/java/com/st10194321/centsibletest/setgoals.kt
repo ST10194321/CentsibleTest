@@ -26,6 +26,7 @@ class setgoals : AppCompatActivity() {
             val month = binding.monthSpinner.selectedItem.toString()
             val minGoal = binding.minGoalEdit.text.toString().toIntOrNull()
             val maxGoal = binding.maxGoalEdit.text.toString().toIntOrNull()
+            val achievementManager = AchievementManager(this)
 
             // Validates input
             if (minGoal == null || maxGoal == null) {
@@ -34,6 +35,9 @@ class setgoals : AppCompatActivity() {
             }
 
             val uid = FirebaseAuth.getInstance().currentUser?.uid
+            if (uid != null) {
+                achievementManager.checkForFirstSteps(this, uid)
+            }
             if (uid == null) {
                 Toast.makeText(this, "User not signed in.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener

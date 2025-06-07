@@ -53,7 +53,10 @@ class profile : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
-
+        binding.achievementsLabel.setOnClickListener{
+            startActivity(Intent(this, achievements::class.java))
+            finish()
+        }
         binding.iconCategories.setOnClickListener {
             startActivity(Intent(this, viewBugCat::class.java))
             finish()

@@ -19,28 +19,8 @@ class AchievementManager(private val context: Context) {
     /**
      * Unlocks an achievement for the current user, if not already unlocked.
      */
-    private fun unlockAchievement(name: String, description: String) {
-        if (uid == null) return
 
-        val achievementRef = db.collection("users")
-            .document(uid)
-            .collection("achievements")
-            .document(name)
-
-        achievementRef.get().addOnSuccessListener { doc ->
-            if (!doc.exists()) {
-                val data = mapOf(
-                    "description" to description,
-                    "unlockedAt" to System.currentTimeMillis()
-                )
-                achievementRef.set(data).addOnSuccessListener {
-                    Toast.makeText(context, "🏆 Achievement Unlocked: $name", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
     private fun awardAchievement(context: Context, uid: String, name: String) {
-        val db = FirebaseFirestore.getInstance()
         val achievementRef = db.collection("users").document(uid)
             .collection("achievements").document(name)
 
@@ -56,21 +36,26 @@ class AchievementManager(private val context: Context) {
         }
     }
 
+    fun checkAllAchievements(context: Context, uid: String) {
+        checkForFirstSteps(context, uid)
+        checkBudgetBeginner(context, uid)
+        checkSmartSpender(context, uid)
+    }
 
-        fun checkForFirstSteps(context: Context, uid: String) {
-            db.collection("users").document(uid)
-                .collection("goals")
-                .get()
-                .addOnSuccessListener { goalsSnap ->
-                    if (!goalsSnap.isEmpty) {
-                        awardAchievement(context, uid, "First Steps")
-                    }
+    fun checkForFirstSteps(context: Context, uid: String) {
+        db.collection("users").document(uid)
+            .collection("goals")
+            .get()
+            .addOnSuccessListener { goalsSnap ->
+                if (!goalsSnap.isEmpty) {
+                    awardAchievement(context, uid, "First Steps")
                 }
-        }
+            }
+    }
 
         // 🥈 Budget Beginner – Complete one month within your max goal
-        fun checkBudgetBeginner() {
-            if (uid == null) return
+        fun checkBudgetBeginner(context : Context,uid: String) {
+
 
             db.collection("users").document(uid)
                 .collection("goals")
@@ -113,7 +98,7 @@ class AchievementManager(private val context: Context) {
         }
 
         // 🥉 Smart Spender – Spend less than your minimum goal
-        private fun checkSmartSpender(context : Context,uid: String) {
+        fun checkSmartSpender(context : Context,uid: String) {
             val monthNames = DateFormatSymbols().months
 
             // Step 1: Load all goals

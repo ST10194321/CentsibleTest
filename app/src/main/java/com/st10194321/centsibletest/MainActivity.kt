@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvTotalSpent: TextView
     private lateinit var tvTotalLeft: TextView
     private lateinit var pbBalance: ProgressBar
+    val achievementManager = AchievementManager(this)
 
     // Firebase
     private val db   = FirebaseFirestore.getInstance()
@@ -83,6 +84,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadOverallStats() {
         val uid = auth.currentUser?.uid ?: return
+
+        achievementManager.checkBudgetBeginner(this, uid)
+        achievementManager.checkSmartSpender(this, uid)
 
         //  sum all category limits
         db.collection("users").document(uid)
