@@ -32,10 +32,7 @@ class signin : AppCompatActivity() {
         binding = ActivitySigninBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Navigation buttons
-        binding.btnFoward.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-        }
+
 
         binding.btnBack.setOnClickListener {
             startActivity(Intent(this, welcome::class.java))
