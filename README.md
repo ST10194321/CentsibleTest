@@ -22,8 +22,12 @@ Key Features
 ## Screenshots
 
 | Welcome | Home  | Category | Profile |
-|-----------|------------------|-------------------|-------------------|
+|-----------|------------------|-------------------------|-------------------|
 | ![](images/welcome.png) | ![](images/home.png) | ![](images/category.png) |![](images/profile.png) |
+
+| Graphs | Health  | Currency | Acheivements |
+|-----------|------------------|-------------------|-------------------|
+| ![](images/reports.png) | ![](images/health.png) | ![](images/currency.png) |![](images/acheive.png) |
 
 ---
 
