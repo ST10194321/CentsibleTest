@@ -6,6 +6,7 @@
     android:id="@+id/activity_health_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:background="@drawable/bg_curve"
     android:padding="20dp"
     tools:context=".HealthActivity">
@@ -148,8 +149,8 @@
             <!-- 3) Tips List -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/tipsRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="351dp"
+                android:layout_height="520dp"
                 android:layout_marginTop="12dp"
                 android:paddingHorizontal="8dp"
                 tools:listitem="@layout/item_tip" />
@@ -157,7 +158,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Bottom Navigation Bar (same as before) -->
     <LinearLayout
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
@@ -168,7 +168,100 @@
         android:weightSum="4"
         android:padding="4dp">
 
-        <!-- ... nav items ... -->
+        <LinearLayout
+            android:id="@+id/iconHome1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/iconHome"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/home"
+                android:clickable="true"
+                android:focusable="true"/>
+            <TextView
+                android:id="@+id/textHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/iconCategories1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/iconCategories"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/list"
+                android:clickable="true"
+                android:focusable="true"/>
+            <TextView
+                android:id="@+id/textCategories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Categories"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/iconReports1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/iconReports"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/money"
+                android:clickable="true"
+                android:focusable="true"/>
+            <TextView
+                android:id="@+id/textReports"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reports"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/iconProfile1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/iconProfile"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/user"
+                android:clickable="true"
+                android:focusable="true"/>
+            <TextView
+                android:id="@+id/textProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp" />
+        </LinearLayout>
 
     </LinearLayout>
 </RelativeLayout>

@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".viewTrans"
-    android:background="@drawable/bg_curve">
+    android:background="@drawable/bg_curve"
+    tools:context=".viewTrans">
 
-    <!-- Back button -->
     <ImageButton
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
@@ -26,277 +24,270 @@
         style="@style/HeadingTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Budget Progress"
         android:textColor="@android:color/white"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.079" />
+        app:layout_constraintTop_toBottomOf="@id/btnBack" />
 
     <ImageView
         android:id="@+id/ivCurve"
         android:layout_width="240dp"
         android:layout_height="26dp"
         android:contentDescription="@string/decorative_curve"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.104"
+        app:layout_constraintTop_toBottomOf="@id/tvAppNameW"
         app:srcCompat="@drawable/curve" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardOverall"
-        android:layout_width="370dp"
-        android:layout_height="241dp"
-        android:layout_margin="24dp"
-        android:layout_marginTop="26dp"
-        app:cardBackgroundColor="#25FFFFFF"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="8dp"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivCurve"
-        app:layout_constraintVertical_bias="0"
-        app:strokeWidth="0dp">
+        app:layout_constraintTop_toBottomOf="@+id/ivCurve">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="249dp"
-            android:padding="18dp"
-          >
+            android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/balanceSectionLayout"
-                android:layout_width="377dp"
-                android:layout_height="273dp"
-                android:background="@drawable/card2"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardOverall"
+                android:layout_width="370dp"
+                android:layout_height="241dp"
+                android:layout_margin="24dp"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="#25FFFFFF"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.526"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0">
+                app:strokeWidth="0dp">
 
-                <TextView
-                    android:id="@+id/tvOverallLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="48dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/overall"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="249dp"
+                    android:padding="18dp">
 
-                <TextView
-                    android:id="@+id/tvMonthLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:text="@string/february"
-                    android:textColor="@android:color/white"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="@+id/tvOverallLabel"
-                    app:layout_constraintTop_toBottomOf="@+id/tvOverallLabel" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/balanceSectionLayout"
+                        android:layout_width="377dp"
+                        android:layout_height="273dp"
+                        android:background="@drawable/card2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.526"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0">
 
-                <TextView
-                    android:id="@+id/tvTotalAmount"
-                    android:layout_width="112dp"
-                    android:layout_height="26dp"
-                    android:layout_marginBottom="24dp"
-                    android:text="R0.00"
-                    android:textColor="@android:color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/pbBalance"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.89"
-                    app:layout_constraintStart_toStartOf="parent" />
+                        <TextView
+                            android:id="@+id/tvOverallLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="48dp"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/overall"
+                            android:textColor="@android:color/white"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tvTotalLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="236dp"
-                    android:layout_marginBottom="52dp"
-                    android:text="Total"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toTopOf="@+id/pbBalance"
-                    app:layout_constraintStart_toStartOf="parent" />
+                        <TextView
+                            android:id="@+id/tvMonthLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:text="@string/february"
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="@+id/tvOverallLabel"
+                            app:layout_constraintTop_toBottomOf="@+id/tvOverallLabel" />
 
-                <ProgressBar
-                    android:id="@+id/pbBalance"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="280dp"
-                    android:layout_height="10dp"
-                    android:layout_marginTop="20dp"
-                    android:progress="75"
-                    android:progressDrawable="@drawable/rounded_progress_bar"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.494"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvMonthLabel" />
+                        <TextView
+                            android:id="@+id/tvTotalAmount"
+                            android:layout_width="112dp"
+                            android:layout_height="26dp"
+                            android:layout_marginBottom="24dp"
+                            android:text="R0.00"
+                            android:textColor="@android:color/white"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@+id/pbBalance"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.89"
+                            app:layout_constraintStart_toStartOf="parent" />
 
-                <TextView
-                    android:id="@+id/tvRemaining"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="R0.00"
-                    android:textColor="@android:color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.15"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvBalanceLabel" />
+                        <TextView
+                            android:id="@+id/tvTotalLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="236dp"
+                            android:layout_marginBottom="52dp"
+                            android:text="Total"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toTopOf="@+id/pbBalance"
+                            app:layout_constraintStart_toStartOf="parent" />
 
-                <TextView
-                    android:id="@+id/tvBalanceLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="48dp"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/balance"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/pbBalance" />
+                        <ProgressBar
+                            android:id="@+id/pbBalance"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="280dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="20dp"
+                            android:progress="75"
+                            android:progressDrawable="@drawable/rounded_progress_bar"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.494"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvMonthLabel" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+                        <TextView
+                            android:id="@+id/tvRemaining"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="R0.00"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.15"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvBalanceLabel" />
 
+                        <TextView
+                            android:id="@+id/tvBalanceLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="48dp"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/balance"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/pbBalance" />
 
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardTransactions"
-        android:layout_width="364dp"
-        android:layout_height="379dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="72dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="8dp"
-        app:cardBackgroundColor="#25FFFFFF"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardOverall"
-        app:strokeWidth="0dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            android:padding="20dp">
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
 
 
-            <TextView
-                android:id="@+id/tvTxHeader"
-                android:layout_width="wrap_content"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardTransactions"
+                android:layout_width="364dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Transactions"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                android:textStyle="bold"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="#25FFFFFF"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/cardOverall"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:id="@+id/tvTxHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Transactions"
+                        android:textColor="@color/white"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/dateFilterLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvTxHeader">
+
+                        <TextView
+                            android:id="@+id/tvStartDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+
+                            android:padding="8dp"
+                            android:text="Start Date"
+                            android:textColor="@android:color/white" />
+
+                        <TextView
+                            android:id="@+id/tvEndDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:padding="8dp"
+                            android:text="End Date"
+                            android:textColor="@android:color/white" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnApplyFilter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Filter"
+                            android:textColor="@color/black"
+                            app:backgroundTint="@color/colorAccentGreen"
+                            app:cornerRadius="10dp" />
+                    </LinearLayout>
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvTransactions"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvTransactions"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:nestedScrollingEnabled="false"
+                        app:layout_constrainedHeight="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dateFilterLayout" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAddTxn"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:text="Add Transaction"
+                android:textColor="@color/black"
+                app:backgroundTint="@color/colorAccentGreen"
+                app:cornerRadius="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvTxHeader" />
+                app:layout_constraintTop_toBottomOf="@id/cardTransactions"
+                app:layout_constraintWidth_percent="0.8" />
 
-            <LinearLayout
-                android:id="@+id/dateFilterLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10dp"
-                android:padding="16dp"
-                android:gravity="center"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/rvTransactions" >
-
-                <TextView
-                    android:id="@+id/tvStartDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Start Date"
-                    android:padding="8dp"
-                    android:layout_marginEnd="8dp" />
-
-                <TextView
-                    android:id="@+id/tvEndDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="End Date"
-                    android:padding="8dp"
-                    android:layout_marginEnd="8dp" />
-
-                <Button
-                    android:id="@+id/btnApplyFilter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Filter" />
-            </LinearLayout>
-
-
-            <!--            <Spinner-->
-<!--                android:id="@+id/spinnerMonthFilter"-->
-<!--                android:layout_width="159dp"-->
-<!--                android:layout_height="39dp"-->
-<!--                android:layout_marginStart="168dp"-->
-<!--                android:entries="@array/month_filter_entries"-->
-<!--                android:popupBackground="#000000"-->
-
-<!--                android:spinnerMode="dropdown"-->
-<!--                android:textColor="@android:color/white"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintVertical_bias="0.0" />-->
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <Button
-        android:id="@+id/btnAddTxn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="20"
-        android:text="Add Transaction"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.949" />
-
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-    <!--
-       Author: Lars Vogel(Vogella Tutorials)
-       Accessibiltiy:https://www.vogella.com/tutorials/android.html
-       Date Accessed: 02/05/2025
-       -->
-

@@ -62,6 +62,26 @@ class MainActivity : AppCompatActivity() {
         loadOverallStats()
 
         // nav bar buttons
+        binding.iconHome1.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+            finish()
+        }
+        binding.iconProfile1.setOnClickListener {
+            val i = Intent(this, profile::class.java)
+            startActivity(i)
+            finish()
+        }
+        binding.iconCategories1.setOnClickListener {
+            val i = Intent(this, viewBugCat::class.java)
+            startActivity(i)
+            finish()
+        }
+        binding.iconReports1.setOnClickListener {
+            val i = Intent(this, reports::class.java)
+            startActivity(i)
+            finish()
+        }
         binding.iconHome.setOnClickListener {
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)

@@ -72,14 +72,34 @@ class editprofile : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
+        binding.iconHome1.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
 
         binding.iconProfile.setOnClickListener {
+            startActivity(Intent(this, profile::class.java))
+            finish()
+        }
+        binding.iconProfile1.setOnClickListener {
             startActivity(Intent(this, profile::class.java))
             finish()
         }
 
         binding.iconCategories.setOnClickListener {
             startActivity(Intent(this, viewBugCat::class.java))
+            finish()
+        }
+        binding.iconCategories1.setOnClickListener {
+            startActivity(Intent(this, viewBugCat::class.java))
+            finish()
+        }
+        binding.iconReports.setOnClickListener {
+            startActivity(Intent(this, reports::class.java))
+            finish()
+        }
+        binding.iconReports.setOnClickListener {
+            startActivity(Intent(this, reports::class.java))
             finish()
         }
 

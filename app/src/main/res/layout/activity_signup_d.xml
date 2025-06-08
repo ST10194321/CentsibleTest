@@ -5,10 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".signupD"
     android:background="@drawable/bg_curve"
-
-    android:padding="16dp">
+    android:fitsSystemWindows="true"  tools:context=".signupD">
 
     <ImageButton
         android:id="@+id/btnBackUp"
@@ -16,237 +14,167 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:src="@drawable/btnback"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="16dp"  android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.018" />
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <ScrollView
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:fillViewport="true"
+    app:layout_constraintTop_toBottomOf="@id/btnBackUp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
 
-    <TextView
-        android:id="@+id/tvSignUp"
-        style="@style/HeadingTextStyle"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sign_up"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.222"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.107" />
+        android:orientation="vertical"
+        android:paddingStart="16dp"  android:paddingEnd="16dp"
+        android:paddingTop="8dp"  android:paddingBottom="16dp">
 
-    <TextView
+        <TextView
+            android:id="@+id/tvSignUp"
+            style="@style/HeadingTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/sign_up"
+            android:textSize="50sp"
+            android:textStyle="bold" />
+
+
+
+        <TextView
         android:id="@+id/tvSubHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/start_your_budgeting_journey"
         android:textColor="@color/colorGreys"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.236"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.183" />
+        android:layout_marginTop="8dp" />
 
-    <TextView
-        android:id="@+id/tvEmailLabelUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="First Name"
-        android:textColor="@color/colorGreys"
-        android:textSize="14sp"
-        android:textStyle="bold"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.267" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilEmailUp"
-        style="@style/CustomTextInputStyle"
-        android:layout_width="327dp"
-        android:layout_height="wrap_content"
-        android:hint="Enter Your First Name"
-        android:textColorHint="@color/colorGrey"
-        app:layout_constraintTop_toBottomOf="@id/tvEmailLabelUp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="4dp"
-        >
-
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etUp"
-            android:textColor="@color/white"
-            android:layout_width="327dp"
+        <TextView
+            android:id="@+id/tvEmailLabelUp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:padding="20dp"
-            app:boxStrokeColor="@color/outline_color"
+            android:text="First Name"
+            android:textColor="@color/colorGreys"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp" /> <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEmailUp"
+            style="@style/CustomTextInputStyle"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="Enter Your First Name"
+            android:textColorHint="@color/colorGrey"
+            android:layout_marginTop="4dp"
+            app:boxStrokeColor="@color/outline_color">
 
-            />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etUp"
+                android:textColor="@color/white"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:padding="20dp" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-
-    <TextView
-        android:id="@+id/tvPasswordLabelUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="20dp"
-        android:text="Last Name"
-        android:textColor="@color/colorGreys"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tilEmailUp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilPasswordUp"
-        style="@style/CustomTextInputStyle"
-        android:layout_width="327dp"
-        android:layout_height="wrap_content"
-
-        android:hint="Enter Your Last Name"
-        android:textColorHint="@color/colorGrey"
-        app:layout_constraintTop_toBottomOf="@id/tvPasswordLabelUp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="4dp"
-        app:boxStrokeColor="@color/outline_color">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPasswordUp"
-            android:textColor="@color/white"
-            android:layout_width="327dp"
+        <TextView
+            android:id="@+id/tvPasswordLabelUp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Last Name"
+            android:textColor="@color/colorGreys"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
-            android:padding="20dp" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPasswordUp"
+            style="@style/CustomTextInputStyle"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="Enter Your Last Name"
+            android:textColorHint="@color/colorGrey"
+            android:layout_marginTop="4dp"
+            app:boxStrokeColor="@color/outline_color">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPasswordUp"
+                android:textColor="@color/white"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:padding="20dp" />
 
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/tvPhoneLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Phone Number"
-        android:textColor="@color/colorGreys"
-        android:textSize="14sp"
-        android:textStyle="bold"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.136"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilPhoneUp"
-        style="@style/CustomTextInputStyle"
-        android:layout_width="327dp"
-        android:layout_height="wrap_content"
-
-        android:hint="Enter Your Phone Number"
-        android:textColorHint="@color/colorGrey"
-        app:layout_constraintTop_toBottomOf="@id/tvPhoneLabel"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="4dp"
-        app:boxStrokeColor="@color/outline_color">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPhoneUp"
-            android:textColor="@color/white"
-            android:layout_width="327dp"
+        <TextView
+            android:id="@+id/tvPhoneLabel"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-android:inputType="phone"
-            android:padding="20dp" />
+            android:text="Phone Number"
+            android:textColor="@color/colorGreys"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPhoneUp"
+            style="@style/CustomTextInputStyle"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="Enter Your Phone Number"
+            android:textColorHint="@color/colorGrey"
+            android:layout_marginTop="4dp"
+            app:boxStrokeColor="@color/outline_color">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPhoneUp"
+                android:textColor="@color/white"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:padding="20dp" />
 
-    <TextView
-        android:id="@+id/tvDOBLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Date of Birth"
-        android:textColor="@color/colorGreys"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.128"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tilPhoneUp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilDOB"
-        style="@style/CustomTextInputStyle"
-        android:layout_width="327dp"
-        android:layout_height="wrap_content"
-        android:hint="Select Your Date of Birth"
-        android:textColorHint="@color/colorGrey"
-        app:layout_constraintTop_toBottomOf="@id/tvDOBLabel"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="4dp"
-        app:boxStrokeColor="@color/outline_color">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etDOB"
-            android:layout_width="327dp"
+        <TextView
+            android:id="@+id/tvDOBLabel"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:focusable="false"
-            android:textColor="@color/white"
-            android:clickable="true"
-            android:cursorVisible="false"
-            android:inputType="date"
-            android:padding="20dp" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="20dp"
+            android:text="Date of Birth"
+            android:textColor="@color/colorGreys"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btnContinue"
-        style="@style/CustomButtonStyle"
-        android:layout_width="327dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Continue"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDOB"
+            style="@style/CustomTextInputStyle"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="Select Your Date of Birth"
+            android:textColorHint="@color/colorGrey"
+            android:layout_marginTop="4dp"
+            app:boxStrokeColor="@color/outline_color">
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tilDOB" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDOB"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:focusable="false"
+                android:textColor="@color/white"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:inputType="date"
+                android:padding="20dp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <Button
+            android:id="@+id/btnContinue"
+            style="@style/CustomButtonStyle"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Continue"
+            android:textColor="@color/black" />
 
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="189dp"
-        android:layout_height="11dp"
-        android:layout_marginTop="136dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.002"
-        app:srcCompat="@drawable/curve" />
-
+    </LinearLayout>
+</ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-    <!--
-       Author: Lars Vogel(Vogella Tutorials)
-       Accessibiltiy:https://www.vogella.com/tutorials/android.html
-       Date Accessed: 02/05/2025
-       -->

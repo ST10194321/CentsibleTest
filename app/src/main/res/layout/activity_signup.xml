@@ -5,203 +5,157 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".signin"
     android:background="@drawable/bg_curve"
+    android:fitsSystemWindows="true"  tools:context=".signin"> <ImageButton
+    android:id="@+id/btnBack"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:src="@drawable/btnback"
+    android:layout_marginStart="16dp"  android:layout_marginTop="16dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 
-    android:padding="16dp">
-
-    <ImageButton
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:src="@drawable/btnback"
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.018" />
+        app:layout_constraintTop_toBottomOf="@id/btnBack">
 
-
-    <TextView
-        android:id="@+id/tvSignUp"
-        style="@style/HeadingTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sign_up"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.222"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.107" />
-
-    <TextView
-        android:id="@+id/tvSubHeading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/start_your_budgeting_journey"
-        android:textColor="@color/colorGreys"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.236"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.183" />
-
-    <TextView
-        android:id="@+id/tvEmailLabelUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/email"
-        android:textColor="@color/colorGreys"
-        android:textSize="14sp"
-        android:textStyle="bold"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.267" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilEmailUp"
-        style="@style/CustomTextInputStyle"
-        android:layout_width="327dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/enter_your_email"
-        android:textColorHint="@color/colorGrey"
-        app:layout_constraintTop_toBottomOf="@id/tvEmailLabelUp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="4dp"
-        >
-
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etEmailUp"
-android:textColor="@color/white"
-            android:layout_width="327dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:padding="20dp"
-            app:boxStrokeColor="@color/outline_color"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp">
 
-            />
+            <TextView
+                android:id="@+id/tvSignUp"
+                style="@style/HeadingTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/sign_up"
+                android:textSize="50sp"
+                android:textStyle="bold" />
 
-    </com.google.android.material.textfield.TextInputLayout>
 
 
-    <TextView
-        android:id="@+id/tvPasswordLabelUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/password"
-        android:textColor="@color/colorGreys"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tilEmailUp" />
+            <TextView
+                android:id="@+id/tvSubHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/start_your_budgeting_journey"
+                android:textColor="@color/colorGreys"
+                android:textSize="14sp" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilPasswordUp"
-        style="@style/CustomTextInputStyle"
-        android:layout_width="327dp"
-        android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/tvEmailLabelUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/email"
+                android:textColor="@color/colorGreys"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-        android:hint="@string/enter_your_password"
-        android:textColorHint="@color/colorGrey"
-        app:layout_constraintTop_toBottomOf="@id/tvPasswordLabelUp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilEmailUp"
+                style="@style/CustomTextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/enter_your_email"
+                android:textColorHint="@color/colorGrey"
+                app:boxStrokeColor="@color/outline_color">
 
-        android:layout_marginTop="4dp"
-        app:boxStrokeColor="@color/outline_color">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmailUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:padding="20dp"
+                    android:textColor="@color/white" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPasswordUp"
-            android:textColor="@color/colorGreys"
-            android:layout_width="327dp"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:padding="20dp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </com.google.android.material.textfield.TextInputLayout>
-    <TextView
-        android:id="@+id/tvConPasswordLabelUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="28dp"
-        android:text="Confirm Password"
-        android:textColor="@color/colorGreys"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tilPasswordUp" />
+            <TextView
+                android:id="@+id/tvPasswordLabelUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/password"
+                android:textColor="@color/colorGreys"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilConPasswordUp"
-        style="@style/CustomTextInputStyle"
-        android:layout_width="327dp"
-        android:layout_height="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilPasswordUp"
+                style="@style/CustomTextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/enter_your_password"
+                android:textColorHint="@color/colorGrey"
+                app:boxStrokeColor="@color/outline_color">
 
-        android:hint="Confirm Your Password"
-        android:textColorHint="@color/colorGrey"
-        app:layout_constraintTop_toBottomOf="@id/tvConPasswordLabelUp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPasswordUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:padding="20dp"
+                    android:textColor="@color/colorGreys" />
 
-        android:layout_marginTop="4dp"
-        app:boxStrokeColor="@color/outline_color">
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etConPasswordUp"
-            android:textColor="@color/colorGreys"
-            android:layout_width="327dp"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:padding="20dp" />
+            <TextView
+                android:id="@+id/tvConPasswordLabelUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Confirm Password"
+                android:textColor="@color/colorGreys"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilConPasswordUp"
+                style="@style/CustomTextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="Confirm Your Password"
+                android:textColorHint="@color/colorGrey"
+                app:boxStrokeColor="@color/outline_color">
 
-    <Button
-        android:id="@+id/btnSignUp"
-        style="@style/CustomButtonStyle"
-        android:layout_width="327dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/sign_up"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etConPasswordUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:padding="20dp"
+                    android:textColor="@color/colorGreys" />
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tilConPasswordUp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="189dp"
-        android:layout_height="11dp"
-        android:layout_marginTop="136dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.002"
-        app:srcCompat="@drawable/curve" />
+            <Button
+                android:id="@+id/btnSignUp"
+                style="@style/CustomButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/sign_up"
+                android:textColor="@color/black" />
 
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-    <!--
-       Author: Lars Vogel(Vogella Tutorials)
-       Accessibiltiy:https://www.vogella.com/tutorials/android.html
-       Date Accessed: 02/05/2025
-       -->

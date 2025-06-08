@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_curve"
+    android:fitsSystemWindows="true"
     tools:context=".profile">
 
 
@@ -312,6 +313,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
+            android:id="@+id/iconHome1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -335,6 +337,7 @@
 
 
         <LinearLayout
+            android:id="@+id/iconCategories1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -358,6 +361,7 @@
 
 
         <LinearLayout
+            android:id="@+id/iconReports1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -381,6 +385,7 @@
 
 
         <LinearLayout
+            android:id="@+id/iconProfile1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

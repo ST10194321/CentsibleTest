@@ -32,7 +32,7 @@
         app:layout_constraintHorizontal_bias="0.229"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.196"
+        app:layout_constraintVertical_bias="0.212"
         app:srcCompat="@drawable/curve" />
 
     <ImageView
@@ -53,13 +53,28 @@
         android:layout_height="wrap_content"
         android:text="EASY TRACKING"
         android:textColor="@color/colorGreys"
-
+        android:fontFamily="@font/inter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.582" />
+        app:layout_constraintVertical_bias="0.596" />
+
+    <TextView
+        android:id="@+id/tvF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter"
+        android:text=" future"
+        android:textColor="@color/colorAccentGreen"
+        android:textSize="29dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.688"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.645" />
 
     <TextView
         android:id="@+id/tvC"
@@ -68,31 +83,18 @@
         android:text="Control your"
         android:textColor="@color/white"
         android:textSize="29dp"
+        android:fontFamily="@font/inter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.175"
+        app:layout_constraintHorizontal_bias="0.096"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.621" />
-
-    <TextView
-        android:id="@+id/tvF"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=" future"
-        android:textColor="@color/colorAccentGreen"
-        android:textSize="29dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.668"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.621" />
+        app:layout_constraintVertical_bias="0.645" />
 
     <TextView
         android:id="@+id/tvText"
-        android:layout_width="337dp"
-        android:layout_height="100dp"
+        android:layout_width="312dp"
+        android:layout_height="104dp"
         android:fontFamily="@font/inter"
         android:justificationMode="inter_word"
         android:text="@string/finance_text"
@@ -101,15 +103,16 @@
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintHorizontal_bias="0.424"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.729" />
+        app:layout_constraintVertical_bias="0.791" />
 
     <Button
         android:id="@+id/btnReg"
         android:layout_width="327dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorAccentGreen"
         android:elevation="4dp"
         android:text="Register Now"
         android:textColor="@color/black"
@@ -117,22 +120,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.865" />
+        app:layout_constraintVertical_bias="0.896" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLog"
         android:layout_width="327dp"
         android:layout_height="wrap_content"
-        android:text="Already have an account"
-        app:strokeColor="@color/colorAccentGreen"
-        app:strokeWidth="2dp"
-        app:cornerRadius="20dp"
         android:backgroundTint="@color/black"
+        android:text="Already have an account"
+        android:textColor="@color/colorAccentGreen"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.951"/>
+        app:layout_constraintVertical_bias="0.971"
+        app:strokeColor="@color/colorAccentGreen"
+        app:strokeWidth="2dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

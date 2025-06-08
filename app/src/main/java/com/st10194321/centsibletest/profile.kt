@@ -156,6 +156,19 @@ class profile : AppCompatActivity() {
             startActivity(Intent(this, profile::class.java))
             finish()
         }
+        binding.iconHome1.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+        binding.iconCategories1.setOnClickListener {
+            startActivity(Intent(this, viewBugCat::class.java))
+            finish()
+        }
+        binding.iconProfile1.setOnClickListener {
+            // Already here, but if you want to refresh:
+            startActivity(Intent(this, profile::class.java))
+            finish()
+        }
 
         // Edit profile screen
         binding.tvEditProfile.setOnClickListener {

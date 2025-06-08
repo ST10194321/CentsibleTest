@@ -1,5 +1,6 @@
 package com.st10194321.centsibletest
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -24,8 +25,46 @@ class HealthActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnBack.setOnClickListener { finish() }
+        binding.iconHome.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+        binding.iconHome1.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+
+        binding.iconProfile.setOnClickListener {
+            startActivity(Intent(this, profile::class.java))
+            finish()
+        }
+        binding.iconProfile1.setOnClickListener {
+            startActivity(Intent(this, profile::class.java))
+            finish()
+        }
+
+        binding.iconCategories.setOnClickListener {
+            startActivity(Intent(this, viewBugCat::class.java))
+            finish()
+        }
+        binding.iconCategories1.setOnClickListener {
+            startActivity(Intent(this, viewBugCat::class.java))
+            finish()
+        }
+        binding.iconReports.setOnClickListener {
+            startActivity(Intent(this, reports::class.java))
+            finish()
+        }
+        binding.iconReports.setOnClickListener {
+            startActivity(Intent(this, reports::class.java))
+            finish()
+        }
+
+
         loadFinancialHealth()
+
     }
+
 
     private fun loadFinancialHealth() {
         val uid = FirebaseAuth.getInstance().currentUser?.uid

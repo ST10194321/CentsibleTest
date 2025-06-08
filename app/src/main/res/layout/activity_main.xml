@@ -19,271 +19,286 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintVertical_bias="0.018" />
 
-    <ImageView
-        android:id="@+id/ivCurve"
-        android:layout_width="151dp"
-        android:layout_height="20dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.073"
-        app:srcCompat="@drawable/curve" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardOverall"
-        android:layout_width="357dp"
-        android:layout_height="702dp"
-        android:layout_margin="24dp"
-        app:cardBackgroundColor="#25FFFFFF"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="8dp"
-        app:layout_constraintBottom_toBottomOf="@id/bottomNavigation"
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.442"
-        app:strokeWidth="0dp">
+        app:layout_constraintTop_toBottomOf="@+id/tvAppNameW"
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp">
+            android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/balanceSectionLayout"
-                android:layout_width="350dp"
-                android:layout_height="250dp"
-                android:background="@drawable/card2"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardOverall"
+                android:layout_width="357dp"
+                android:layout_height="702dp"
+                android:layout_margin="24dp"
+                app:cardBackgroundColor="#25FFFFFF"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.52"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0">
 
-                <TextView
-                    android:id="@+id/tvOverallLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/overall"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp">
 
-
-                <TextView
-                    android:id="@+id/tvTotalLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="216dp"
-                    android:layout_marginTop="28dp"
-                    android:text="Total"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/balanceSectionLayout" />
-
-                <TextView
-                    android:id="@+id/tvTotalSpent"
-                    android:layout_width="96dp"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="216dp"
-                    android:layout_marginBottom="20dp"
-                    android:text="R0.00"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/pbBalance"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <ProgressBar
-                    android:id="@+id/pbBalance"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="280dp"
-                    android:layout_height="10dp"
-                    android:layout_marginTop="32dp"
-                    android:progress="75"
-                    android:progressDrawable="@drawable/rounded_progress_bar"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvOverallLabel" />
-
-                <TextView
-                    android:id="@+id/tvBalanceLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/balance"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/pbBalance" />
-
-                <TextView
-                    android:id="@+id/tvTotalLeft"
-                    android:layout_width="146dp"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="168dp"
-                    android:text="R0.00"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvBalanceLabel" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <GridLayout
-                android:id="@+id/gridActions"
-                android:layout_width="332dp"
-                android:layout_height="460dp"
-                android:columnCount="2"
-                android:rowCount="2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0">
-
-                <com.google.android.material.card.MaterialCardView style="@style/ActionCardStyle">
-
-                    <LinearLayout style="@style/ActionCardLinearLayout">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/balanceSectionLayout"
+                        android:layout_width="350dp"
+                        android:layout_height="250dp"
+                        android:background="@drawable/card2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.52"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0">
 
                         <TextView
-                            style="@style/ActionCardTitle"
-                            android:text="@string/start_your_budget_title" />
-
-                        <TextView
-                            style="@style/ActionCardDescription"
-                            android:text="@string/start_your_budget_desc" />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnNewBudCat"
-                            style="@style/CustomButtonStyle"
-                            android:layout_width="119dp"
+                            android:id="@+id/tvOverallLabel"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="28dp"
-                            android:text="New Category"
-                            android:textColor="@color/black"
-                            android:textSize="12dp"
+                            android:layout_marginStart="36dp"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/overall"
+                            android:textColor="@android:color/white"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
+
+                        <TextView
+                            android:id="@+id/tvTotalLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="216dp"
+                            android:layout_marginTop="28dp"
+                            android:text="Total"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/balanceSectionLayout" />
+
+                        <TextView
+                            android:id="@+id/tvTotalSpent"
+                            android:layout_width="96dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="216dp"
+                            android:layout_marginBottom="20dp"
+                            android:text="R0.00"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/pbBalance"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <ProgressBar
+                            android:id="@+id/pbBalance"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="280dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="32dp"
+                            android:progress="75"
+                            android:progressDrawable="@drawable/rounded_progress_bar"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvOverallLabel" />
+
+                        <TextView
+                            android:id="@+id/tvBalanceLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="36dp"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/balance"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/pbBalance" />
+
+                        <TextView
+                            android:id="@+id/tvTotalLeft"
+                            android:layout_width="146dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="168dp"
+                            android:text="R0.00"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvBalanceLabel" />
 
-                            app:layout_constraintStart_toStartOf="parent" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.card.MaterialCardView style="@style/ActionCardStyle">
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <LinearLayout style="@style/ActionCardLinearLayout">
+                    <GridLayout
+                        android:id="@+id/gridActions"
+                        android:layout_width="332dp"
+                        android:layout_height="460dp"
+                        android:columnCount="2"
+                        android:rowCount="2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0">
 
-                        <TextView
-                            style="@style/ActionCardTitle"
-                            android:text="@string/add_transaction_title" />
+                        <com.google.android.material.card.MaterialCardView style="@style/ActionCardStyle">
 
-                        <TextView
-                            style="@style/ActionCardDescription"
-                            android:layout_height="63dp"
-                            android:text="@string/add_transaction_desc" />
+                            <LinearLayout style="@style/ActionCardLinearLayout">
 
-                        <com.google.android.material.button.MaterialButton
+                                <TextView
+                                    style="@style/ActionCardTitle"
+                                    android:text="@string/start_your_budget_title" />
 
-                            android:id="@+id/btnAddTrans"
-                            style="@style/ActionCardButton"
-                            android:layout_width="117dp"
-                            android:text="@string/add_transaction_button" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
+                                <TextView
+                                    style="@style/ActionCardDescription"
+                                    android:text="@string/start_your_budget_desc" />
 
-                <com.google.android.material.card.MaterialCardView style="@style/ActionCardStyle">
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnNewBudCat"
+                                    style="@style/CustomButtonStyle"
+                                    android:layout_width="119dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="28dp"
+                                    android:text="New Category"
+                                    android:textColor="@color/black"
+                                    android:textSize="12dp"
 
-                    <LinearLayout style="@style/ActionCardLinearLayout">
+                                    android:textStyle="bold"
+                                    app:layout_constraintEnd_toEndOf="parent"
 
-                        <TextView
-                            style="@style/ActionCardTitle"
-                            android:text="@string/view_your_budget_title" />
+                                    app:layout_constraintStart_toStartOf="parent" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
 
-                        <TextView
-                            style="@style/ActionCardDescription"
-                            android:text="@string/view_your_budget_desc" />
+                        <com.google.android.material.card.MaterialCardView style="@style/ActionCardStyle">
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnViewBudCat"
-                            style="@style/ActionCardButton"
-                            android:text="@string/view_budget_category_button" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
+                            <LinearLayout style="@style/ActionCardLinearLayout">
 
-                <com.google.android.material.card.MaterialCardView style="@style/ActionCardStyle">
+                                <TextView
+                                    style="@style/ActionCardTitle"
+                                    android:text="@string/add_transaction_title" />
 
-                    <LinearLayout style="@style/ActionCardLinearLayout">
+                                <TextView
+                                    style="@style/ActionCardDescription"
+                                    android:layout_height="63dp"
+                                    android:text="@string/add_transaction_desc" />
 
-                        <TextView
-                            style="@style/ActionCardTitle"
-                            android:text="@string/view_insights_title" />
+                                <com.google.android.material.button.MaterialButton
 
-                        <TextView
-                            style="@style/ActionCardDescription"
-                            android:layout_height="49dp"
-                            android:text="@string/view_insights_desc" />
+                                    android:id="@+id/btnAddTrans"
+                                    style="@style/ActionCardButton"
+                                    android:layout_width="117dp"
+                                    android:text="@string/add_transaction_button" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
 
-                        <com.google.android.material.button.MaterialButton
+                        <com.google.android.material.card.MaterialCardView style="@style/ActionCardStyle">
 
-                            android:id="@+id/btnTrackBudCat"
-                            style="@style/ActionCardButton"
-                            android:text="@string/track_budget_button" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
+                            <LinearLayout style="@style/ActionCardLinearLayout">
 
-            </GridLayout>
+                                <TextView
+                                    style="@style/ActionCardTitle"
+                                    android:text="@string/view_your_budget_title" />
 
+                                <TextView
+                                    style="@style/ActionCardDescription"
+                                    android:text="@string/view_your_budget_desc" />
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnViewBudCat"
+                                    style="@style/ActionCardButton"
+                                    android:text="@string/view_budget_category_button" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView style="@style/ActionCardStyle">
+
+                            <LinearLayout style="@style/ActionCardLinearLayout">
+
+                                <TextView
+                                    style="@style/ActionCardTitle"
+                                    android:text="@string/view_insights_title" />
+
+                                <TextView
+                                    style="@style/ActionCardDescription"
+                                    android:layout_height="49dp"
+                                    android:text="@string/view_insights_desc" />
+
+                                <com.google.android.material.button.MaterialButton
+
+                                    android:id="@+id/btnTrackBudCat"
+                                    style="@style/ActionCardButton"
+                                    android:text="@string/track_budget_button" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </GridLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <ImageView
+                android:id="@+id/ivCurve"
+                android:layout_width="151dp"
+                android:layout_height="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/cardOverall"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.153"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/curve" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.google.android.material.card.MaterialCardView>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
         android:layout_height="70dp"
-        android:orientation="horizontal"
         android:background="#1E1E1E"
-        android:weightSum="4"
+        android:gravity="center"
+        android:orientation="horizontal"
         android:padding="4dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:weightSum="4"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
+            android:id="@+id/iconHome1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/iconHome"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/home"
                 android:clickable="true"
-                android:focusable="true"/>
+                android:focusable="true"
+                android:src="@drawable/home" />
+
             <TextView
                 android:id="@+id/textHome"
                 android:layout_width="wrap_content"
@@ -295,18 +310,21 @@
 
 
         <LinearLayout
+            android:id="@+id/iconCategories1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/iconCategories"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/list"
                 android:clickable="true"
-                android:focusable="true"/>
+                android:focusable="true"
+                android:src="@drawable/list" />
+
             <TextView
                 android:id="@+id/textCategories"
                 android:layout_width="wrap_content"
@@ -318,18 +336,21 @@
 
 
         <LinearLayout
+            android:id="@+id/iconReports1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/iconReports"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/money"
                 android:clickable="true"
-                android:focusable="true"/>
+                android:focusable="true"
+                android:src="@drawable/money" />
+
             <TextView
                 android:id="@+id/textReports"
                 android:layout_width="wrap_content"
@@ -341,18 +362,21 @@
 
 
         <LinearLayout
+            android:id="@+id/iconProfile1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/iconProfile"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/user"
                 android:clickable="true"
-                android:focusable="true"/>
+                android:focusable="true"
+                android:src="@drawable/user" />
+
             <TextView
                 android:id="@+id/textProfile"
                 android:layout_width="wrap_content"
@@ -365,9 +389,3 @@
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--
-       Author: Lars Vogel(Vogella Tutorials)
-       Accessibiltiy:https://www.vogella.com/tutorials/android.html
-       Date Accessed: 02/05/2025
-       -->
