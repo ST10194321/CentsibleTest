@@ -15,6 +15,15 @@
         android:theme="@style/Theme.CentsibleTest"
         tools:targetApi="31">
         <activity
+            android:name=".TipAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".HealthActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SetIncomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".reports"
             android:exported="false" />
         <activity

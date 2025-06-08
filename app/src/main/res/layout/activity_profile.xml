@@ -77,7 +77,7 @@
                     android:layout_marginTop="8dp"
                     android:spinnerMode="dropdown"
                     android:popupBackground="#2C2C2C"
-                    android:textColor="@android:color/white"
+
                     android:theme="@style/ThemeOverlay.AppCompat.Dark" />
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardEditProfile"
@@ -148,7 +148,38 @@
                             android:src="@drawable/arrow_right" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardFinancialHealth"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardBackgroundColor="#1E1E1E"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="8dp">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Financial Health"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/arrow_right" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardViewGoals"
@@ -211,14 +242,14 @@
                         android:id="@+id/ivFirstStepsProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:src="@drawable/badge3"
+                        android:src="@drawable/badge1"
                         android:visibility="invisible" />
 
                     <ImageView
                         android:id="@+id/ivBudgetBeginnerProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:src="@drawable/badge3"
+                        android:src="@drawable/badge2"
                         android:visibility="invisible" />
 
                     <ImageView

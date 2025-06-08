@@ -34,6 +34,15 @@ class achievements : AppCompatActivity() {
 
         }
 
+
+        binding.btnBack.setOnClickListener {
+            val up = Intent(this, profile::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }
+            startActivity(up)
+            finish()
+        }
+
         // Navigate to Home screen
         binding.iconHome.setOnClickListener {
             val i = Intent(this, MainActivity::class.java)

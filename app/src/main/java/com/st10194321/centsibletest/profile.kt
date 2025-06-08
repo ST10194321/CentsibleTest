@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Base64
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
@@ -21,6 +23,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.st10194321.centsibletest.databinding.ActivityProfileBinding
 import com.st10194321.centsibletest.CurrencyRepository
+import com.st10194321.centsibletest.SetIncomeActivity
+import com.st10194321.centsibletest.HealthActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -85,38 +89,41 @@ class profile : AppCompatActivity() {
 
         // ====== BIND THE NEW SPINNER ======
         spinnerCurrency = findViewById(R.id.spinnerCurrency)
+
+// use YOUR spinner_item.xml which already has white text
         val adapter = ArrayAdapter(
             this,
-            android.R.layout.simple_spinner_item,
+            R.layout.spinner_item,          // ← your custom layout
             availableCurrencies
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        ).apply {
+            // if you want the dropdown rows white too, point them here
+            setDropDownViewResource(R.layout.spinner_item)
+        }
+
         spinnerCurrency.adapter = adapter
 
-        // Pre‐select the saved currency (or default to "ZAR")
-        val saved = prefs.getString(KEY_SEL_CURRENCY, "ZAR")
-        val pos = availableCurrencies.indexOf(saved).coerceAtLeast(0)
-        spinnerCurrency.setSelection(pos)
+// … the rest of your selection logic stays the same …
+        spinnerCurrency.setSelection(
+            availableCurrencies.indexOf(prefs.getString(KEY_SEL_CURRENCY, "ZAR"))
+                .coerceAtLeast(0)
+        )
 
         spinnerCurrency.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>, view: View?, position: Int, id: Long
             ) {
-                val chosen = availableCurrencies[position]
-                // Save it
-                prefs.edit().putString(KEY_SEL_CURRENCY, chosen).apply()
+                // if you want to recolor the closed‐spinner text (just in case)
+                (view as? TextView)?.setTextColor(Color.WHITE)
 
-                // Immediately fetch fresh rates in the background
+                val chosen = availableCurrencies[position]
+                prefs.edit().putString(KEY_SEL_CURRENCY, chosen).apply()
                 CoroutineScope(Dispatchers.IO).launch {
                     CurrencyRepository.get().fetchLatestRates()
                 }
-                // You might also want to refresh any open screens, e.g. rebind transaction lists
             }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // no‐op
-            }
+            override fun onNothingSelected(parent: AdapterView<*>) = Unit
         }
+
         // ====== END SPINNER LOGIC ======
 
         // Load profile image from Firestore if available
@@ -155,9 +162,23 @@ class profile : AppCompatActivity() {
             startActivity(Intent(this, editprofile::class.java))
         }
 
+        binding.cardSetIncome.setOnClickListener {
+            startActivity(Intent(this, SetIncomeActivity::class.java))
+        }
+
+        binding.cardFinancialHealth.setOnClickListener {
+            startActivity(Intent(this, HealthActivity::class.java))
+        }
+
+
         // View goals screen
         binding.cardViewGoals.setOnClickListener {
             startActivity(Intent(this, viewgoals::class.java))
+        }
+        binding.achievementsLabel.setOnClickListener{
+            val i = Intent(this, achievements::class.java)
+            startActivity(i)
+            finish()
         }
 
         // Logout
