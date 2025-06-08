@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".signin"
     android:background="@drawable/bg_curve"
-
     android:padding="16dp">
 
     <ImageButton
@@ -17,8 +16,7 @@
         android:background="@android:color/transparent"
         android:src="@drawable/btnback"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvSignIn"
@@ -57,7 +55,6 @@
         android:textColor="@color/colorGreys"
         android:textSize="14dp"
         android:textStyle="bold"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.116"
@@ -72,13 +69,10 @@
         android:layout_height="wrap_content"
         android:hint="@string/enter_your_email"
         android:textColorHint="@color/colorGrey"
+        android:layout_marginTop="4dp"
         app:layout_constraintTop_toBottomOf="@id/tvEmailLabel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="4dp"
-
-        >
-
+        app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etEmail"
@@ -87,13 +81,8 @@
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:padding="20dp"
-            app:boxStrokeColor="@color/outline_color"
-
-
-            />
-
+            app:boxStrokeColor="@color/outline_color" />
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <TextView
         android:id="@+id/tvPasswordLabel"
@@ -113,26 +102,22 @@
         style="@style/CustomTextInputStyle"
         android:layout_width="327dp"
         android:layout_height="wrap_content"
-
         android:hint="@string/enter_your_password"
         android:textColorHint="@color/colorGrey"
+        android:layout_marginTop="4dp"
+        app:boxStrokeColor="@color/outline_color"
         app:layout_constraintTop_toBottomOf="@id/tvPasswordLabel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        android:layout_marginTop="4dp"
-        app:boxStrokeColor="@color/outline_color">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPassword"
-android:textColor="@color/colorGreys"
+            android:textColor="@color/colorGreys"
             android:layout_width="327dp"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:padding="20dp" />
-
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <Button
         android:id="@+id/btnSignIn"
@@ -143,9 +128,52 @@ android:textColor="@color/colorGreys"
         android:text="@string/sign_in"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tilPassword" />
+
+    <Button
+        android:id="@+id/btnBiometric"
+        style="@style/CustomButtonStyle"
+        android:layout_width="327dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Use Fingerprint"
+        android:textColor="@color/black"
+        android:drawableLeft="@drawable/fingerprint"
+        android:drawablePadding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/btnSignIn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/dont_have_account"
+        android:textColor="@color/colorLightGray"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toStartOf="@+id/tvSignUp"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnBiometric" />
+
+    <TextView
+        android:id="@+id/tvSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/sign_up"
+        android:textColor="@color/colorAccentGreen"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.724"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnBiometric" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -159,45 +187,17 @@ android:textColor="@color/colorGreys"
         app:layout_constraintVertical_bias="0.185"
         app:srcCompat="@drawable/curve" />
 
-
-
-    <TextView
-        android:id="@+id/textView"
+    <ImageButton
+        android:id="@+id/btnFoward"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="@string/dont_have_account"
-        android:textColor="@color/colorLightGray"
-        android:textSize="14dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/btnback"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.33"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.619" />
-
-    <TextView
-        android:id="@+id/tvSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sign_up"
-        android:textColor="@color/colorAccentGreen"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.688"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.655" />
-
+        app:layout_constraintVertical_bias="0.952" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--
-       Author: Lars Vogel(Vogella Tutorials)
-       Accessibiltiy:https://www.vogella.com/tutorials/android.html
-       Date Accessed: 02/05/2025
-       -->
