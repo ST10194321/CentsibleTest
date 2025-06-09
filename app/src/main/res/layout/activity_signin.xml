@@ -64,11 +64,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilEmail"
-        style="@style/CustomTextInputStyle"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="327dp"
         android:layout_height="wrap_content"
         android:hint="@string/enter_your_email"
         android:textColorHint="@color/colorGrey"
+        app:boxStrokeColor="@color/outline_color"
         android:layout_marginTop="4dp"
         app:layout_constraintTop_toBottomOf="@id/tvEmailLabel"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +77,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etEmail"
-            android:textColor="@color/colorGreys"
+            android:textColor="@color/white"
             android:layout_width="327dp"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -98,8 +99,9 @@
         app:layout_constraintTop_toBottomOf="@id/tilEmail" />
 
     <com.google.android.material.textfield.TextInputLayout
+
         android:id="@+id/tilPassword"
-        style="@style/CustomTextInputStyle"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="327dp"
         android:layout_height="wrap_content"
         android:hint="@string/enter_your_password"
@@ -112,7 +114,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPassword"
-            android:textColor="@color/colorGreys"
+            android:textColor="@color/white"
             android:layout_width="327dp"
             android:layout_height="wrap_content"
             android:inputType="textPassword"

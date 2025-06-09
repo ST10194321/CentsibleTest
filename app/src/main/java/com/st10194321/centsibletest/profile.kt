@@ -21,10 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import com.st10194321.centsibletest.databinding.ActivityProfileBinding
-import com.st10194321.centsibletest.CurrencyRepository
-import com.st10194321.centsibletest.SetIncomeActivity
-import com.st10194321.centsibletest.HealthActivity
+import com.st10194321.centsibletest.databinding.ActivityProfileBinding // Corrected import
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -36,73 +33,85 @@ class profile : AppCompatActivity() {
     private var capturedBitmap: Bitmap? = null
     private lateinit var cameraLauncher: ActivityResultLauncher<Void?>
     private lateinit var spinnerCurrency: Spinner
-    val achivements : achievements = achievements()
+    // val achivements : achievements = achievements() // This line is not used and can be removed
 
     // Firebase
     private val auth = FirebaseAuth.getInstance()
+    // Using safe call for auth.currentUser to avoid NullPointerException if user is not logged in
     private val db   = FirebaseFirestore.getInstance()
-    private val uid  = auth.currentUser!!.uid
+    private val uid  = auth.currentUser?.uid ?: "" // Handle null UID by providing an empty string
 
     // SharedPreferences for “selected_currency”
     private val PREFS_NAME = "centsible_prefs"
     private val KEY_SEL_CURRENCY = "selected_currency"
     private lateinit var prefs: SharedPreferences
 
-    // Hard‐code the currencies you want to support:
+    // Hard-code the currencies you want to support:
     private val availableCurrencies = listOf("ZAR", "USD", "EUR", "GBP")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // Make sure CurrencyRepository has been initialized in Application.onCreate()
-        // (or you can call it here if you never did it elsewhere):
         CurrencyRepository.initialize(applicationContext)
 
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         enableEdgeToEdge()
 
-        if (uid != null) {
-            db.collection("users").document(uid)
-                .collection("achievements")
-                .get()
-                .addOnSuccessListener { snapshot ->
-                    for (doc in snapshot.documents) {
-                        val name = doc.getString("name") ?: continue
+        // Important: Check if UID is valid before attempting Firestore operations
+        if (uid.isEmpty()) {
+            Toast.makeText(this, "User not logged in.", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, signin::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+            return // Stop further execution
+        }
 
-                        when (name) {
-                            "First Steps" -> {
-                                findViewById<ImageView>(R.id.ivFirstStepsProfile).visibility = View.VISIBLE
-                            }
-                            "Budget Beginner" -> {
-                                findViewById<ImageView>(R.id.ivBudgetBeginnerProfile).visibility = View.VISIBLE
-                            }
-                            "Smart Spender" -> {
-                                findViewById<ImageView>(R.id.ivSmartSpenderProfile).visibility = View.VISIBLE
-                            }
+        // --- Fetch Achievements (existing code) ---
+        db.collection("users").document(uid)
+            .collection("achievements")
+            .get()
+            .addOnSuccessListener { snapshot ->
+                for (doc in snapshot.documents) {
+                    val name = doc.getString("name") ?: continue
+
+                    when (name) {
+                        "First Steps" -> {
+                            findViewById<ImageView>(R.id.ivFirstStepsProfile).visibility = View.VISIBLE
                         }
+                        "Budget Beginner" -> {
+                            findViewById<ImageView>(R.id.ivBudgetBeginnerProfile).visibility = View.VISIBLE
+                        }
+                        "Smart Spender" -> {
+                            findViewById<ImageView>(R.id.ivSmartSpenderProfile).visibility = View.VISIBLE
+                        }
+                        // Add more cases for other achievements if needed
                     }
                 }
-        }
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Failed to load achievements: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        // --- End Fetch Achievements ---
+
 
         prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
 
-        // ====== BIND THE NEW SPINNER ======
+        // ====== Spinner Currency Logic ======
         spinnerCurrency = findViewById(R.id.spinnerCurrency)
 
-// use YOUR spinner_item.xml which already has white text
         val adapter = ArrayAdapter(
             this,
-            R.layout.spinner_item,          // ← your custom layout
+            R.layout.spinner_item,
             availableCurrencies
         ).apply {
-            // if you want the dropdown rows white too, point them here
             setDropDownViewResource(R.layout.spinner_item)
         }
 
         spinnerCurrency.adapter = adapter
 
-// … the rest of your selection logic stays the same …
         spinnerCurrency.setSelection(
             availableCurrencies.indexOf(prefs.getString(KEY_SEL_CURRENCY, "ZAR"))
                 .coerceAtLeast(0)
@@ -112,8 +121,7 @@ class profile : AppCompatActivity() {
             override fun onItemSelected(
                 parent: AdapterView<*>, view: View?, position: Int, id: Long
             ) {
-                // if you want to recolor the closed‐spinner text (just in case)
-                (view as? TextView)?.setTextColor(Color.WHITE)
+                (view as? TextView)?.setTextColor(Color.WHITE) // Set text color for selected item
 
                 val chosen = availableCurrencies[position]
                 prefs.edit().putString(KEY_SEL_CURRENCY, chosen).apply()
@@ -123,40 +131,46 @@ class profile : AppCompatActivity() {
             }
             override fun onNothingSelected(parent: AdapterView<*>) = Unit
         }
+        // ====== End Spinner Logic ======
 
-        // ====== END SPINNER LOGIC ======
-
-        // Load profile image from Firestore if available
+        // --- Fetch User Profile Data (Image and Name) ---
         db.collection("users").document(uid).get()
             .addOnSuccessListener { document ->
                 if (document.exists()) {
+                    // Load Profile Image
                     val base64Image = document.getString("image")
                     if (!base64Image.isNullOrEmpty()) {
                         val imageBytes = Base64.decode(base64Image, Base64.DEFAULT)
                         val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
                         binding.profileImage.setImageBitmap(bitmap)
                     }
+
+                    // *** FETCH AND DISPLAY USER NAME HERE ***
+                    val firstName = document.getString("firstName")
+                    val lastName = document.getString("lastName")
+
+                    val fullName = if (!firstName.isNullOrEmpty() && !lastName.isNullOrEmpty()) {
+                        "$firstName $lastName"
+                    } else if (!firstName.isNullOrEmpty()) {
+                        firstName
+                    } else if (!lastName.isNullOrEmpty()) {
+                        lastName
+                    } else {
+                        "Guest User" // Default or fallback name if no name parts are found
+                    }
+                    binding.userName.text = fullName // Set the name to your TextView with ID 'userName'
+                    // *****************************************
+
                 }
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this, "Failed to load profile image: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Failed to load profile data: ${e.message}", Toast.LENGTH_SHORT).show()
             }
+        // --- End Fetch User Profile Data ---
 
-        // Navigation bar
-        binding.iconHome.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }
-        binding.iconCategories.setOnClickListener {
-            startActivity(Intent(this, viewBugCat::class.java))
-            finish()
-        }
-        binding.iconProfile.setOnClickListener {
-            // Already here, but if you want to refresh:
-            startActivity(Intent(this, profile::class.java))
-            finish()
-        }
-        binding.iconHome1.setOnClickListener {
+
+        // ====== Navigation bar (Keeping the first set of listeners, assuming they are the correct ones) ======
+        binding.iconHome1.setOnClickListener { // These IDs refer to the LinearLayout wrappers
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
@@ -165,12 +179,15 @@ class profile : AppCompatActivity() {
             finish()
         }
         binding.iconProfile1.setOnClickListener {
-            // Already here, but if you want to refresh:
-            startActivity(Intent(this, profile::class.java))
-            finish()
+            // Already here, no need to restart self. If a refresh is truly needed, handle it carefully.
+            // For example, you could call 'recreate()' but that restarts the whole activity lifecycle.
+            // Simply doing nothing or showing a toast might be better here.
+            // Toast.makeText(this, "You are already on the Profile screen.", Toast.LENGTH_SHORT).show()
         }
+        // ====== End Navigation bar ======
 
-        // Edit profile screen
+
+        // --- Other Clicks ---
         binding.tvEditProfile.setOnClickListener {
             startActivity(Intent(this, editprofile::class.java))
         }
@@ -183,11 +200,10 @@ class profile : AppCompatActivity() {
             startActivity(Intent(this, HealthActivity::class.java))
         }
 
-
-        // View goals screen
         binding.cardViewGoals.setOnClickListener {
             startActivity(Intent(this, viewgoals::class.java))
         }
+
         binding.achievementsLabel.setOnClickListener{
             val i = Intent(this, achievements::class.java)
             startActivity(i)
@@ -233,6 +249,8 @@ class profile : AppCompatActivity() {
             .addOnSuccessListener {
                 Toast.makeText(this, "Profile Image added", Toast.LENGTH_SHORT).show()
                 // Refresh this Activity to see changes
+                // You might reconsider this 'refresh' logic as it restarts the activity.
+                // It's generally better to update the UI directly if possible.
                 startActivity(Intent(this, profile::class.java))
                 finish()
             }

@@ -28,6 +28,14 @@ class viewTrans : AppCompatActivity() {
     private lateinit var tvStartDate: TextView
     private lateinit var tvEndDate: TextView
     private lateinit var btnApplyFilter: Button
+    private lateinit var iconHome1: LinearLayout
+    private lateinit var iconCategories1: LinearLayout
+    private lateinit var iconReports1: LinearLayout
+    private lateinit var iconProfile1: LinearLayout
+    private lateinit var iconHome: ImageView
+    private lateinit var iconCategories: ImageView
+    private lateinit var iconReports: ImageView
+    private lateinit var iconProfile: ImageView
 
     private var startDate: String? = null
     private var endDate: String? = null
@@ -48,6 +56,7 @@ class viewTrans : AppCompatActivity() {
             insets
         }
 
+
         // bind views
         rvTransactions  = findViewById(R.id.rvTransactions)
         tvOverallLabel  = findViewById(R.id.tvOverallLabel)
@@ -59,6 +68,16 @@ class viewTrans : AppCompatActivity() {
         tvStartDate     = findViewById(R.id.tvStartDate)
         tvEndDate       = findViewById(R.id.tvEndDate)
         btnApplyFilter  = findViewById(R.id.btnApplyFilter)
+        iconHome1     = findViewById(R.id.iconHome1)
+        iconCategories1 = findViewById(R.id.iconCategories1)
+        iconReports1  = findViewById(R.id.iconReports1)
+        iconProfile1  = findViewById(R.id.iconProfile1)
+        iconHome      = findViewById(R.id.iconHome)
+        iconCategories = findViewById(R.id.iconCategories)
+        iconReports   = findViewById(R.id.iconReports)
+        iconProfile   = findViewById(R.id.iconProfile)
+
+
 
         // read category
         categoryName = intent.getStringExtra(EXTRA_CATEGORY) ?: run {
@@ -90,6 +109,48 @@ class viewTrans : AppCompatActivity() {
             startActivity(Intent(this, add_trans::class.java))
             finish()
         }
+
+        iconHome1.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+            finish()
+        }
+        iconProfile1.setOnClickListener {
+            val i = Intent(this, profile::class.java)
+            startActivity(i)
+            finish()
+        }
+        iconCategories1.setOnClickListener {
+            val i = Intent(this, viewBugCat::class.java)
+            startActivity(i)
+            finish()
+        }
+        iconReports1.setOnClickListener {
+            val i = Intent(this, reports::class.java)
+            startActivity(i)
+            finish()
+        }
+        iconHome.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+            finish()
+        }
+        iconProfile.setOnClickListener {
+            val i = Intent(this, profile::class.java)
+            startActivity(i)
+            finish()
+        }
+        iconCategories.setOnClickListener {
+            val i = Intent(this, viewBugCat::class.java)
+            startActivity(i)
+            finish()
+        }
+        iconReports.setOnClickListener {
+            val i = Intent(this, reports::class.java)
+            startActivity(i)
+            finish()
+        }
+
 
         // initial load
         loadCategoryLimit(categoryName)

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_curve"
+    android:fitsSystemWindows="true"
     android:padding="20dp">
 
     <!-- Back button -->
@@ -39,8 +40,8 @@
             android:layout_height="match_parent"
             android:padding="16dp">
 
-            <ScrollView
-                android:id="@+id/scrollContent"
+            <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@id/saveButton"
@@ -103,7 +104,7 @@
                     </LinearLayout>
 
                 </LinearLayout>
-            </ScrollView>
+            </LinearLayout>
 
             <Button
                 android:id="@+id/saveButton"
@@ -111,6 +112,7 @@
                 android:layout_height="50dp"
                 android:layout_alignParentBottom="true"
                 android:text="Save"
+                android:backgroundTint="@color/colorAccentGreen"
                 android:textColor="#000000" />
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
