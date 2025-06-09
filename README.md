@@ -52,7 +52,7 @@ Badges are awarded for staying under your max and min budget goals and maintaini
 ---
 ## Demo Video
 
-🎥 [Click here to watch the Demo](https://youtu.be/RKOgar9fjY0)
+🎥 [Click here to watch the Demo](https://youtu.be/df5fGuT8DAk)
 
 ## Screenshots
 
