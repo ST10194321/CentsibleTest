@@ -9,7 +9,7 @@ The app helps users stay on top of their finances by organizing their expenses, 
 
 Key Features
 ------------------------------------------------------
-- **Secure Authentication** – Username/password login with session management.  
+- **Secure Authentication** – Username/password login with session management and biometrics.  
 - **Category Management** – Create, edit, delete custom budget categories.  
 - **Transaction Logging** – Track expenses by date, time, description, category, and photo.  
 - **Budget Goals** – Define monthly min/max limits and receive timely alerts.   
@@ -69,6 +69,7 @@ Follow these steps to get started with Centsible:
 1. **Register / Login**  
    - On first launch, tap **Register** to create an account with a username and password.  
    - Afterwards, use **Login** to access your dashboard.
+   - Users can log in using biometrics (fingerprint) once they have signed up
 
 2. **Create a Budget Category**  
    - Navigate to **Categories** from the bottom menu.  
@@ -85,9 +86,23 @@ Follow these steps to get started with Centsible:
 5. **View Your Entries**  
    - The **Transactions** list shows all entries for the selected period.  
    - Tap any entry to view details and attached receipt images.
+  
+6. **Reports**
+   - The **Reports** page shows two graphs that visualize their spending habits.
+   - Pie Chart - showing expenses per category
+   - Bar Graph - showing the total budget vs total expenses with added visualization of their max and min goals limit on the bar graph.
+  
+7. **Currency Conversion**
+   - Users can select the display currency in profile section.
+   - The currency will change for all the amounts automatically.
+  
+8. **Financial Health**
+   - Set your monthly income.
+   - The **Financial Health** will give you an overall health score based on your income vs expenses.
+   - This page will also give you tips based on your spending habits.
 
-6. **Earn Badges & Notifications**  
-   - Reach milestones (e.g., “Under Budget 3 Months”) to earn badges.  
+10. **Earn Badges & Notifications**  
+   - Reach milestones (e.g., “Budget Beginner”) to earn badges.  
    - Receive push notifications when you’re nearing your budget limit.
 
 
@@ -103,9 +118,9 @@ Link to detailed docs or a GitHub Pages site:
 Maintain a **CHANGELOG.md** to track releases:
 
 ```markdown
-## [1.0.0] – 2025-05-01
+## [1.1.0] – 2025-05-01
 ### Added
-- Initial release with core budgeting features.
+- 2nd release with added budgeting features.
 ```
 ## Contributers
 - Ayushkar Ramkissoon: ST10036346
