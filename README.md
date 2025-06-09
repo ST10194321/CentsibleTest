@@ -52,7 +52,7 @@ Badges are awarded for staying under your max and min budget goals and maintaini
 ---
 ## Demo Video
 
-🎥 [Click here to watch the Demo](https://youtu.be/irYLi_9jh4k)
+🎥 [Click here to watch the Demo](https://youtu.be/RKOgar9fjY0)
 
 ## Screenshots
 
@@ -71,8 +71,11 @@ Badges are awarded for staying under your max and min budget goals and maintaini
 The **Centsible Budgeting Application** adheres to modern design principles to create an intuitive, clean, and user-friendly interface. The design focuses on clarity, accessibility, and engagement, enabling users to navigate the app easily while taking control of their financial well-being.  
 
 
-### Logo (images/logonew.png)
-The **Centsible** logo features a stylized “C” that resembles a cent symbol (¢), immediately conveying that the app is focused on money management. The primary logo color is **green (#A1DC7C)**, symbolizing financial growth and stability. This color choice ties into the global association of green with currency and prosperity.  
+### Logo 
+<img src="images/logonew.png" alt="Centsible Logo" width="200"/>
+
+- The **Centsible** logo features a stylized “C” that resembles a cent symbol (¢), immediately conveying that the app is focused on money management. The primary logo color is
+  **green (#A1DC7C)**, symbolizing financial growth and stability. This color choice ties into the global association of green with currency and prosperity.  
 
 ---
 
