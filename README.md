@@ -193,3 +193,25 @@ Maintain a **CHANGELOG.md** to track releases:
 
 With this README, new users can understand Centsible’s purpose, get it running locally, and start budgeting smarter. 
 
+## References
+
+- Android Developers, 2025. Achievements. Android Developers. [online] Available at: <<https://developer.android.com/games/pgs/achievements>> [Accessed 3 Jun. 2025].
+
+- Android Developers, 2025. Photo basics (Camera deprecated). Android Developers. [online] Available at: <<https://developer.android.com/media/camera/camera-deprecated/photobasics#kotlin>> [Accessed 1 May 2025].
+
+- Kotlin Documentation Team, 2025. coerceIn - Kotlin Standard Library. Kotlin.org. [online] Available at: <<https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.ranges/coerce-in.html>> [Accessed 21 Apr. 2025].
+
+- Chetan R, 2013. Datepicker - How to popup DatePicker when entering EditText. Stack Overflow. [online] Available at: <<https://stackoverflow.com/questions/14933330/datepicker-how-to-popup-datepicker-when-entering-edittext>> [Accessed 21 Apr. 2025].
+
+- Android Developers, 2025. Currency class reference. Android Developers. [online] Available at: <<https://developer.android.com/reference/android/icu/util/Currency>> [Accessed 9 Jun. 2025].
+
+- Firebase Documentation Team, 2025. Get a document. Firebase. [online] Available at: <<https://firebase.google.com/docs/firestore/query-data/get-data#get_a_document>> [Accessed 20 Apr. 2025].
+
+- GeeksforGeeks, 2025. How to make a Scientific Calculator Android App using Kotlin? GeeksforGeeks. [online] Available at: <<https://www.geeksforgeeks.org/how-to-make-a-scientific-calculator-android-app-using-kotlin/>> [Accessed 5 Jun. 2025].
+
+- Cowan, J., 2021. Android Kotlin get value of selected Spinner item. Stack Overflow. [online] Available at: <<https://stackoverflow.com/questions/65556362/android-kotlin-get-value-of-selected-spinner-item>> [Accessed 24 Apr. 2025].
+
+- Miller, D., 2025. jBCrypt – Java implementation of OpenBSD’s Blowfish password hashing. Mindrot.org. [online] Available at: <<https://www.mindrot.org/projects/jBCrypt/>> [Accessed 10 Apr. 2025].
+
+- Thornsby, J., 2025. How to add fingerprint authentication to your Android app using BiometricPrompt. Android Authority. [online] Available at: <<https://www.androidauthority.com/add-fingerprint-authentication-app-biometricprompt-943784/>> [Accessed 29 May 2025].
+
