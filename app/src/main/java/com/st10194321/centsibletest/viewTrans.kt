@@ -162,7 +162,7 @@ class viewTrans : AppCompatActivity() {
     private fun loadCategoryLimit(categoryName: String) {
         val uid = auth.currentUser?.uid ?: return
         if (categoryName == "All Transactions") {
-            // sum all category limits
+            // sum of all category limits
             db.collection("users").document(uid)
                 .collection("categories")
                 .get()
@@ -190,7 +190,7 @@ class viewTrans : AppCompatActivity() {
                 }
         }
     }
-
+    // retrieving all transactions to display
     private fun fetchTransactions(categoryName: String, limit: Long) {
         val uid = auth.currentUser?.uid ?: return
         val ref = db.collection("users").document(uid).collection("transactions")

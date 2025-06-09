@@ -10,3 +10,8 @@ object FinancialHealthCalculator {
         else               -> (percentSaved / 20 * 60).toInt()              // 0–60
     }
 }
+
+//Author: GeeksforGeeks
+//Accessibiltiy: https://www.geeksforgeeks.org/how-to-make-a-scientific-calculator-android-app-using-kotlin/
+//Date Accessed: 05/06/2025
+

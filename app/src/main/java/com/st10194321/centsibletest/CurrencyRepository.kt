@@ -84,7 +84,7 @@ class CurrencyRepository private constructor(private val prefs: SharedPreference
         return@withContext getCachedRatesOrNull()
     }
 
-    /** Write the quotes map to SharedPreferences as JSON + record timestamp. */
+    //Write the quotes map to SharedPreferences as JSON + record timestamp.
     private fun cacheRates(resp: CurrencyResponse) {
         val editor = prefs.edit()
         val quotesJson = Gson().toJson(resp.quotes)
@@ -93,17 +93,15 @@ class CurrencyRepository private constructor(private val prefs: SharedPreference
         editor.apply()
     }
 
-    /** Return the cached map, or null if never saved. */
+    //Return the cached map, or null if never saved.
     private fun getCachedRatesOrNull(): Map<String, Double>? {
         val json = prefs.getString(KEY_CACHED_RATES, null) ?: return null
         val type = object : TypeToken<Map<String, Double>>() {}.type
         return Gson().fromJson(json, type)
     }
 
-    /**
-     * Return the cached rates **only if** they are younger than maxAgeMillis (default = 12h).
-     * Otherwise return null, forcing a re-fetch.
-     */
+
+    // Return the cached rates **only if** they are younger than maxAgeMillis (default = 12h). Otherwise return null, forcing a re-fetch.
     fun getRatesIfFreshOrNull(maxAgeMillis: Long = 12 * 60 * 60 * 1000): Map<String, Double>? {
         val last = prefs.getLong(KEY_LAST_FETCH_TIME, 0L)
         val now = System.currentTimeMillis()
@@ -114,3 +112,7 @@ class CurrencyRepository private constructor(private val prefs: SharedPreference
         }
     }
 }
+
+//Author: Android Developers
+//Accessibiltiy: https://developer.android.com/reference/android/icu/util/Currency
+//Date Accessed: 09/06/2025

@@ -16,10 +16,7 @@ class AchievementManager(private val context: Context) {
     private val db = FirebaseFirestore.getInstance()
     private val uid = auth.currentUser?.uid
 
-    /**
-     * Unlocks an achievement for the current user, if not already unlocked.
-     */
-
+    // Unlocks an achievement for the current user, if not already unlocked.
     private fun awardAchievement(context: Context, uid: String, name: String) {
         val achievementRef = db.collection("users").document(uid)
             .collection("achievements").document(name)
@@ -53,10 +50,8 @@ class AchievementManager(private val context: Context) {
             }
     }
 
-        // 🥈 Budget Beginner – Complete one month within your max goal
+        // Budget Beginner – Complete one month within your max goal
         fun checkBudgetBeginner(context : Context,uid: String) {
-
-
             db.collection("users").document(uid)
                 .collection("goals")
                 .get()
@@ -97,7 +92,7 @@ class AchievementManager(private val context: Context) {
                 }
         }
 
-        // 🥉 Smart Spender – Spend less than your minimum goal
+        // Smart Spender – Spend less than your minimum goal
         fun checkSmartSpender(context : Context,uid: String) {
             val monthNames = DateFormatSymbols().months
 
@@ -146,4 +141,8 @@ class AchievementManager(private val context: Context) {
         }
 
 }
+
+//Author: Android Developers
+//Accessibiltiy: https://developer.android.com/games/pgs/achievements
+//Date Accessed: 03/06/2025
 

@@ -17,6 +17,7 @@ class CategoryAdapter(
         private val icon    = view.findViewById<ImageView>(R.id.ivIcon)
         private val name    = view.findViewById<TextView>(R.id.tvName)
 
+        // shows icons used to represent each category
         fun bind(cat: Category) {
             name.text = cat.name
             icon.setImageResource(

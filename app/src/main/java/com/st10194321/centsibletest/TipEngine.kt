@@ -59,3 +59,6 @@ object TipEngine {
         return tips
     }
 }
+//Author: Keiran Haas
+//Accessibiltiy: https://stackoverflow.com/questions/78557410/daemon-compilation-failed-could-not-connect-to-kotlin-compile-daemon
+//Date Accessed: 09/06/2025

@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.st10194321.centsibletest.databinding.ActivityAchievementsBinding
@@ -30,8 +28,6 @@ class achievements : AppCompatActivity() {
             loadAchievements(uid)
 
             // Call achievement checks
-
-
         }
 
 
