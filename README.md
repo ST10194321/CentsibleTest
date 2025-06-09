@@ -15,6 +15,41 @@ Key Features
 - **Budget Goals** – Define monthly min/max limits and receive timely alerts.   
 - **Gamification** – Badges, progress bars, and notifications to keep you motivated.
 
+  
+## Additional Features
+------------------------------------------------------
+
+### 1.Biometric Login  
+Users can log in using fingerprint authentication after initial sign-up, providing a faster and more secure experience.
+
+### 2.Currency Conversion  
+All financial data in the app (transactions, graphs, budget goals, health, etc.) can be dynamically converted to your chosen currency.  
+- **Base currency**: South African Rand (ZAR)  
+- **Available in the Profile section**
+
+### 3.Financial Health Calculator  
+After setting your monthly income, the app evaluates your financial behavior and generates a **health score (e.g., 98/100)** based on income vs. expenses.  
+The health screen includes:
+- Savings rate percentage  
+- Budget used percentage  
+- Personalized tips on how much you've saved, how much you can spend per day, and other insights  
+
+---
+
+## Gamification
+------------------------------------------------------
+
+Centsible includes gamification elements to keep users motivated and engaged.
+
+### Achievement Badges  
+Users unlock achievements based on their budgeting habits:
+- **First Steps** (Basic)
+- **Budget Beginner** (Silver)
+- **Smart Spender** (Gold)
+
+Badges are awarded for staying under your max and min budget goals and maintaining consistent financial habits.
+
+---
 ## Demo Video
 
 🎥 [Click here to watch the Demo](https://youtu.be/irYLi_9jh4k)
@@ -30,6 +65,29 @@ Key Features
 | ![](images/reports.png) | ![](images/health.png) | ![](images/currency.png) |![](images/acheive.png) |
 
 ---
+## Design Implementations
+------------------------------------------------------
+
+The **Centsible Budgeting Application** adheres to modern design principles to create an intuitive, clean, and user-friendly interface. The design focuses on clarity, accessibility, and engagement, enabling users to navigate the app easily while taking control of their financial well-being.  
+
+
+### Logo (images/logonew.png)
+The **Centsible** logo features a stylized “C” that resembles a cent symbol (¢), immediately conveying that the app is focused on money management. The primary logo color is **green (#A1DC7C)**, symbolizing financial growth and stability. This color choice ties into the global association of green with currency and prosperity.  
+
+---
+
+### Colour Scheme
+
+| Color      | Hex Code   | Usage & Justification |
+|------------|------------|------------------------|
+| **Green**  | `#A1DC7C`  | Used for buttons, progress bars, and key highlights. Evokes growth and financial positivity.|
+| **Black**  | `#000000`  | Main background color. Provides strong contrast and enhances text readability, critical for financial clarity.|
+| **Grey**   | `#3A3A3A`  | Used for secondary text and icons. Offers a subtle visual hierarchy without distracting from core elements. |
+| **White**  | `#FFFFFF`  | Primary text color. Enhances readability against dark backgrounds, maintaining a bold and professional appearance. |
+
+---
+
+The design choices reflect a careful balance between aesthetic appeal and usability, ensuring that users can focus on their budgeting goals without distraction. The use of a consistent color scheme, clean typography, and logical spacing contributes to a visually harmonious and effective user experience.
 
 
 ## Installation
